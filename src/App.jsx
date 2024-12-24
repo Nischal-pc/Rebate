@@ -1,7 +1,10 @@
-import LandingPage from "./components/LandingPage";
+import LandingPage from "./components/Home";
 import NavBar from "./components/NavBar";
-import Rebateoption from "./components/Rebateoption";
-import RebateQualifier from "./components/RebateQualifier";
+import EligibilityChecker from "./components/EligibilityChecker";
+import BottomSection from "./components/BottomSection";
+
+// import Rebateoption from "./components/Rebateoption";
+// import RebateQualifier from "./components/RebateQualifier";
 
 function App() {
   return (
@@ -10,8 +13,11 @@ function App() {
         <NavBar />
       </div>
       <LandingPage />
-      <Rebateoption />
-      <RebateQualifier />
+      <EligibilityChecker />
+      <BottomSection />
+
+      {/* <Rebateoption />
+      <RebateQualifier /> */}
     </>
   );
 }
