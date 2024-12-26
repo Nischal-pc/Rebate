@@ -12,12 +12,12 @@ const reviews = [
   {
     id: 3,
     text: "The rebate information was clear and easy to understand. Highly recommend!",
-    name: "John, Vancouver",
+    name: "Suruchi, Scarborough",
   },
   {
     id: 4,
     text: "I got an amazing rebate for installing new windows. Thank you!",
-    name: "Emily, Calgary",
+    name: "Prabin, North York",
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const reviews = [
   {
     id: 8,
     text: "I saved thousands of dollars on my home energy upgrades, all thanks to these rebates!",
-    name: "Olivia, Toronto",
+    name: "Mikel, Toronto",
   },
 ];
 

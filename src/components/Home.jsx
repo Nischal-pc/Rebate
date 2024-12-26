@@ -26,10 +26,10 @@ const LandingPage = () => {
 
         {/* Content */}
         <div className="relative z-10">
-          <h1 className="text-5xl font-bold text-white mb-4">
+          <h1 className="text-5xl font-bold font-sans text-white mb-4">
             Discover Ontario Rebates
           </h1>
-          <p className="text-lg text-gray-200 mb-6">
+          <p className="text-lg font-sans text-gray-200 mb-6">
             Empowering Ontario Residents with Financial Support for a
             Sustainable Future
           </p>

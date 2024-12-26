@@ -1,14 +1,14 @@
 import { useState } from "react";
+import { IoClose } from "react-icons/io5"; // Import close icon
 
 const rebates = [
   {
     id: 1,
-    title: "Ontario Energy Rebates",
+    title: "HomeEnergySaver Program",
     shortDescription:
       "Get up to $10,000 for energy-efficient home upgrades such as windows, doors, and insulation.",
     fullDescription:
-      "Ontario offers energy rebates to homeowners who make energy-efficient upgrades to their homes. These include rebates for windows, doors, insulation, and energy-efficient appliances. The program helps reduce greenhouse gas emissions and promotes energy conservation, ultimately lowering utility bills for homeowners.",
-    category: "Energy",
+      "The HomeEnergySaver Program helps homeowners reduce energy usage and save on bills. It offers expert advice, personalized solutions, and practical tips for making your home more energy-efficient.",
     link: "/rebates/energy-rebates",
   },
   {
@@ -23,13 +23,14 @@ const rebates = [
   },
   {
     id: 3,
-    title: "Enbridge Rebates",
+    title: "Home Efficiency Rebate Plus (HER+)",
     shortDescription:
       "Get rebates for energy-saving home upgrades and installations, including insulation, windows, and heating systems.",
     fullDescription:
       "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
     category: "Energy",
     link: "/rebates/enbridge-rebates",
+    detailedContent: `The Home Efficiency Rebate Plus (HER+) program helps homeowners save money by offering rebates for energy-efficient home upgrades. This includes improvements like better insulation, energy-efficient windows, and upgraded heating systems. The goal is to make your home more comfortable, lower energy bills, and reduce environmental impact.`,
   },
   {
     id: 4,
@@ -45,16 +46,14 @@ const rebates = [
 
 const RebatePage = () => {
   const [filter, setFilter] = useState("All");
-  const [expandedRebate, setExpandedRebate] = useState(null);
+  const [selectedRebate, setSelectedRebate] = useState(null);
 
   const filteredRebates =
     filter === "All"
       ? rebates
       : rebates.filter((rebate) => rebate.category === filter);
 
-  const toggleDescription = (id) => {
-    setExpandedRebate((prev) => (prev === id ? null : id));
-  };
+  const closeModal = () => setSelectedRebate(null);
 
   return (
     <div className="bg-gray-50 py-8 px-4">
@@ -104,28 +103,50 @@ const RebatePage = () => {
       </div>
 
       {/* Rebate List */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
         {filteredRebates.map((rebate) => (
           <div
             key={rebate.id}
-            className="border rounded-lg shadow-md bg-white p-6"
+            className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg"
           >
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
-              {rebate.title}
-            </h2>
-            <p className="text-gray-600 mb-4">{rebate.shortDescription}</p>
-            <button
-              onClick={() => toggleDescription(rebate.id)}
-              className="text-blue-600 hover:underline font-medium"
-            >
-              {expandedRebate === rebate.id ? "Show Less" : "Learn More"}
-            </button>
-            {expandedRebate === rebate.id && (
-              <p className="mt-4 text-gray-700">{rebate.fullDescription}</p>
-            )}
+            <div className="p-4">
+              <h5 className="mb-2 text-slate-800 text-xl font-semibold">
+                {rebate.title}
+              </h5>
+              <p className="text-slate-600 leading-normal font-light">
+                {rebate.shortDescription}
+              </p>
+              <button
+                className="rounded-md bg-blue-600 py-2 px-4 mt-4 text-center text-sm text-white hover:bg-slate-700"
+                onClick={() => setSelectedRebate(rebate)}
+              >
+                Read More
+              </button>
+            </div>
           </div>
         ))}
       </div>
+
+      {/* Modal */}
+      {selectedRebate && (
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[80vw] h-auto overflow-y-auto relative">
+            {/* Close Icon */}
+            <IoClose
+              className="absolute top-2 right-2 text-2xl cursor-pointer"
+              onClick={closeModal}
+            />
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+              {selectedRebate.title}
+            </h2>
+            <p className="text-gray-700 mb-6">
+              {selectedRebate.fullDescription}
+            </p>
+            {/* Display Detailed Content */}
+            {selectedRebate.detailedContent}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

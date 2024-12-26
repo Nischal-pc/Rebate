@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Rebateoption = () => {
-  const [openAccordion, setOpenAccordion] = useState("her-plus");
+  const [openAccordion, setOpenAccordion] = useState(null);
 
   const toggleAccordion = (accordionId) => {
     setOpenAccordion(openAccordion === accordionId ? null : accordionId);
