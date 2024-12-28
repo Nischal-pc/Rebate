@@ -29,18 +29,20 @@ const LandingPage = () => {
           <h1 className="text-5xl font-bold font-sans text-white mb-4">
             Discover Ontario Rebates
           </h1>
-          <p className="text-lg font-sans text-gray-200 mb-6">
+          <p className="text-lg font-sans  text-gray-200 mb-6">
             Empowering Ontario Residents with Financial Support for a
             Sustainable Future
           </p>
-          <Link
-            to="eligibility-checker"
-            smooth={true}
-            duration={500}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-700"
-          >
-            Check Your Eligibility Now
-          </Link>
+          <button>
+            <Link
+              to="eligibility-checker"
+              smooth={true}
+              duration={500}
+              className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg hover:bg-blue-700"
+            >
+              Check Your Eligibility Now
+            </Link>
+          </button>
         </div>
 
         {/* Optional SVG Overlay */}

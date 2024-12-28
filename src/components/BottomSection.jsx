@@ -46,7 +46,7 @@ const BottomSection = () => {
     <div>
       <section className="bg-gray-50 py-12 px-4 text-center">
         <h2 className="text-3xl font-semibold text-gray-800 mb-8">
-          What Our Users Say
+          Success Stories from Our Family
         </h2>
 
         {/* Review Slider */}
