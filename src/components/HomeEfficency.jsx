@@ -1,5 +1,7 @@
 import { useState } from "react";
 import StepOne from "./StepOne";
+import StepTwo from "./StepTwo";
+import StepThree from "./StepThree";
 const HomeEfficency = () => {
   const [formData, setFormData] = useState({
     residentOfOntario: "",
@@ -7,6 +9,7 @@ const HomeEfficency = () => {
     homeOccupied: "",
     enbridgeCustomer: "",
     heatingType: "",
+    prequalifyConsent: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -48,7 +51,8 @@ const HomeEfficency = () => {
       formData.homeType !== "none" &&
       !formData.homeOccupied) ||
     (formData.homeOccupied === "yes" && !formData.enbridgeCustomer) ||
-    formData.heatingType === "no";
+    formData.heatingType === "no" ||
+    formData.prequalifyConsent === "no";
 
   const steps = [
     {
@@ -62,8 +66,14 @@ const HomeEfficency = () => {
         />
       ),
     },
-    { index: 2, label: "Acknowldge", content: "Second content" },
-    { index: 3, label: "Result", content: "Third content" },
+    {
+      index: 2,
+      label: "Acknowldge",
+      content: (
+        <StepTwo formData={formData} handleInputChange={handleInputChange} />
+      ),
+    },
+    { index: 3, label: "Result", content: <StepThree /> },
     {
       index: 4,
       label: "Book Appointment",

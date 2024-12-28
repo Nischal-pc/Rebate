@@ -236,7 +236,7 @@ const StepOne = ({ formData, handleInputChange }) => {
         formData.homeType &&
         formData.homeType !== "none" &&
         formData.homeOccupied === "yes" &&
-        formData.enbridgeCustomer === "no" &&
+        formData.enbridgeCustomer === "yes" &&
         formData.heatingType === "no" && (
           <div className="mb-4 border border-red-500 p-4 text-red-700">
             Qualifying homes must be heated primarily with Enbridge NG at time
