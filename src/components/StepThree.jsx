@@ -49,8 +49,9 @@ const StepThree = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-white">
-      <h1 className="text-md font-bold mb-4">
-        Congratulations! You are eligible for one of the following upgrades
+      <h1 className="text-md text-teal-700  mb-4">
+        <span className="font-bold text-2xl">Congratulations!{""}</span>
+        You are eligible for one of the following upgrades
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {insulationData.map((item, idx) => {

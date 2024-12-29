@@ -9,7 +9,7 @@ const rebates = [
       "Get up to $10,000 for energy-efficient home upgrades such as windows, doors, and insulation.",
     fullDescription:
       "The HomeEnergySaver Program helps homeowners reduce energy usage and save on bills. It offers expert advice, personalized solutions, and practical tips for making your home more energy-efficient.",
-    link: "/assets/saveonenergy.png",
+    link: "/assets/saveonenergy1.png",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const rebates = [
     fullDescription:
       "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
     category: "Energy",
-    link: "/assets/enbridge.png",
+    link: "/assets/enbridge1.png",
     detailedContent: `The Home Efficiency Rebate Plus (HER+) program helps homeowners save money by offering rebates for energy-efficient home upgrades. This includes improvements like better insulation, energy-efficient windows, and upgraded heating systems. The goal is to make your home more comfortable, lower energy bills, and reduce environmental impact.`,
   },
   // {

@@ -41,19 +41,20 @@ const HomeEfficency = () => {
   };
 
   const isNextDisabled =
-    formData.residentOfOntario === "no" ||
-    formData.homeType === "none" ||
-    formData.homeOccupied === "no" ||
-    formData.enbridgeCustomer === "no" ||
-    !formData.residentOfOntario ||
-    (formData.residentOfOntario === "yes" && !formData.homeType) ||
+    formData.residentOfOntario === "no" || // Resident of Ontario must not be "no"
+    formData.homeType === "none" || // Home type must not be "none"
+    formData.homeOccupied === "no" || // Home must be occupied
+    formData.enbridgeCustomer === "no" || // Must be an Enbridge customer
+    !formData.residentOfOntario || // Resident of Ontario must be answered
+    (formData.residentOfOntario === "yes" && !formData.homeType) || // Home type must be answered if resident is "yes"
     (formData.homeType &&
       formData.homeType !== "none" &&
-      !formData.homeOccupied) ||
-    (formData.homeOccupied === "yes" && !formData.enbridgeCustomer) ||
-    formData.heatingType === "no" ||
-    formData.prequalifyConsent === "no";
-
+      !formData.homeOccupied) || // Home occupancy must be answered if home type is valid
+    (formData.homeOccupied === "yes" &&
+      !formData.enbridgeCustomer &&
+      formData.heatingType === "no") || // Heating type must be answered "yes" if home is occupied
+    formData.prequalifyConsent === "no" || // Prequalify consent must not be "no"
+    formData.heatingType !== "yes"; // Heating type must be answered "yes"
   const steps = [
     {
       index: 1,
@@ -68,7 +69,7 @@ const HomeEfficency = () => {
     },
     {
       index: 2,
-      label: "Acknowldge",
+      label: "Acknowledge",
       content: (
         <StepTwo formData={formData} handleInputChange={handleInputChange} />
       ),
