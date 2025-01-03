@@ -1,10 +1,11 @@
 const StepOne = ({ formData, handleInputChange }) => {
+  console.log(formData);
   return (
     <div>
       {/* Question 1 */}
       <div className="mb-4">
-        <label className="block text-md font-medium text-gray-700">
-          Are you a resident of Ontario?*
+        <label className="block text-lg font-medium text-gray-700">
+          Are you a resident of Ontario?
         </label>
         <div className="flex gap-x-4 mt-4">
           <button
@@ -40,209 +41,303 @@ const StepOne = ({ formData, handleInputChange }) => {
         </div>
       </div>
 
-      {/* Stop flow if "No" */}
-      {formData.residentOfOntario === "no" && (
-        <div className="mb-4 border border-red-500 p-4 text-red-700">
-          To be eligible for these rebates, you must reside in Ontario.
+      {formData.residentOfOntario && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Is this your primary residence?
+          </label>
+          <div className="flex gap-x-4 mt-4">
+            <button
+              type="button"
+              className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
+                formData.primaryResidence === "yes"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "primaryResidence", value: "yes" },
+                })
+              }
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
+                formData.primaryResidence === "no"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "primaryResidence", value: "no" },
+                })
+              }
+            >
+              No
+            </button>
+          </div>
+        </div>
+      )}
+      {formData.primaryResidence && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Enter your postal code:
+          </label>
+          <input
+            type="text"
+            name="postalCode"
+            value={formData.postalCode}
+            onChange={handleInputChange}
+            className="mt-2 block w-full px-4 py-2 border rounded-md"
+            placeholder="Enter postal code"
+          />
+        </div>
+      )}
+      {/* Question about ownership */}
+      {formData.postalCode && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Are you the registered property owner?
+          </label>
+          <div className="flex gap-x-4 mt-4">
+            <button
+              type="button"
+              className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
+                formData.ownerShip === "yes"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "ownerShip", value: "yes" },
+                })
+              }
+            >
+              Yes
+            </button>
+            <button
+              type="button"
+              className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
+                formData.ownerShip === "no"
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "ownerShip", value: "no" },
+                })
+              }
+            >
+              No
+            </button>
+          </div>
         </div>
       )}
 
-      {/* Question 2 (Only if Q1 is "Yes") */}
-      {formData.residentOfOntario === "yes" && (
+      {formData.ownerShip && (
         <div className="mb-4 mt-4">
-          <label className="block text-md font-medium text-gray-700">
-            What type of home do you have?*
+          <label className="block text-lg font-medium text-gray-700">
+            What type of home do you have?
+          </label>
+          <div className="grid grid-cols-5 gap-8 mt-4">
+            <button
+              type="button"
+              className="flex flex-col items-center space-y-2"
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "homeType", value: "detached" },
+                })
+              }
+            >
+              <div
+                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                  formData.homeType === "detached"
+                    ? "border-green-700"
+                    : "border-gray-200"
+                }`}
+              >
+                <img
+                  src="/assets/1.png"
+                  alt="Detached"
+                  className="w-full h-auto aspect-square scale-105 object-contain"
+                />
+              </div>
+              <span className="text-md">Detached/Semi-detached</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center space-y-2"
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "homeType", value: "rowHouse" },
+                })
+              }
+            >
+              <div
+                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                  formData.homeType === "rowHouse"
+                    ? "border-green-700"
+                    : "border-gray-200"
+                }`}
+              >
+                <img
+                  src="/assets/2.png"
+                  alt="Row House"
+                  className="w-full h-auto aspect-square scale-105 object-contain"
+                />
+              </div>
+              <span className="text-md">Row House or Townhouse</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center space-y-2"
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "homeType", value: "mobileHome" },
+                })
+              }
+            >
+              <div
+                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                  formData.homeType === "mobileHome"
+                    ? "border-green-700"
+                    : "border-gray-200"
+                }`}
+              >
+                <img
+                  src="/assets/3.png"
+                  alt="Mobile Home"
+                  className="w-full h-auto aspect-square scale-105 object-contain"
+                />
+              </div>
+              <span className="text-md">
+                Mobile Home on a Permanent Foundation
+              </span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center space-y-2"
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "homeType", value: "floatingHouse" },
+                })
+              }
+            >
+              <div
+                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                  formData.homeType === "floatingHouse"
+                    ? "border-green-700"
+                    : "border-gray-200"
+                }`}
+              >
+                <img
+                  src="/assets/4.png"
+                  alt="Floating House"
+                  className="w-full h-auto aspect-square scale-105 object-contain"
+                />
+              </div>
+              <span className="text-md">Permanently Moored Floating House</span>
+            </button>
+
+            <button
+              type="button"
+              className="flex flex-col items-center space-y-2"
+              onClick={() =>
+                handleInputChange({
+                  target: { name: "homeType", value: "none" },
+                })
+              }
+            >
+              <div
+                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                  formData.homeType === "none"
+                    ? "border-green-700"
+                    : "border-gray-200"
+                }`}
+              >
+                <img
+                  src="/assets/5.png"
+                  alt="None"
+                  className="w-full h-auto aspect-square object-contain scale-105"
+                />
+              </div>
+              <span className="text-md">None of the Above</span>
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Ownership length */}
+      {formData.homeType && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            How long have you owned this property?
           </label>
           <select
-            name="homeType"
-            value={formData.homeType}
+            name="ownershipLength"
+            value={formData.ownershipLength}
             onChange={handleInputChange}
             className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
           >
             <option value="">Select</option>
-            <option value="detached">Detached/Semi-detached</option>
-            <option value="rowHouse">Row House or Townhouse</option>
-            <option value="mobileHome">
-              Mobile Home on a Permanent Foundation
-            </option>
-            <option value="floatingHouse">
-              Permanently Moored Floating House
-            </option>
-            <option value="none">None of the Above</option>
+            <option value="lessThan6Months">Less than 6 months</option>
+            <option value="6MonthsTo1Year">6 months to 1 year</option>
+            <option value="1To2Years">1 to 2 years</option>
+            <option value="moreThan2Years">More than 2 years</option>
           </select>
         </div>
       )}
 
-      {/* Stop flow if "None of the Above" is selected */}
-      {formData.residentOfOntario === "yes" && formData.homeType === "none" && (
-        <div className="mb-4 border border-red-500 p-4 text-red-700">
-          {`Your type of home isn't eligible for these rebates.`}
+      {/* Household income */}
+      {formData.ownershipLength && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            What is your total household income (approximately)?
+          </label>
+          <select
+            name="income"
+            value={formData.income}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">Select</option>
+            <option value="lessThan30000">Less than $30,000</option>
+            <option value="30000to50000">$30,000 to $50,000</option>
+            <option value="50000to70000">$50,000 to $70,000</option>
+            <option value="70000to100000">$70,000 to $100,000</option>
+            <option value="greaterThan100000">Greater than $100,000</option>
+          </select>
         </div>
       )}
-
-      {/* Question 3 (Only if Q2 is answered and valid) */}
-      {formData.homeType &&
-        formData.homeType !== "none" &&
-        formData.residentOfOntario === "yes" && (
-          <div className="mb-4 ">
-            <label className="block  text-md font-medium text-gray-700">
-              Is the home receiving upgrades occupied by the owner?*
-            </label>
-            <div className="flex gap-x-4 mt-4">
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.homeOccupied === "yes"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "homeOccupied", value: "yes" },
-                  })
-                }
-              >
-                Yes
-              </button>
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.homeOccupied === "no"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "homeOccupied", value: "no" },
-                  })
-                }
-              >
-                No
-              </button>
-            </div>
-          </div>
-        )}
-
-      {/* Stop flow if Q3 is "No" */}
-      {formData.residentOfOntario === "yes" &&
-        formData.homeType &&
-        formData.homeType !== "none" &&
-        formData.homeOccupied === "no" && (
-          <div className="mb-4 border border-red-500 p-4 text-red-700">
-            Only owner-occupied homes qualify for these rebates.
-          </div>
-        )}
-
-      {/* Question 4 (Only if Q3 is "Yes") */}
-      {formData.homeOccupied === "yes" &&
-        formData.homeType !== "none" &&
-        formData.residentOfOntario === "yes" && (
-          <div className="mb-4">
-            <label className="block text-md font-medium text-gray-700">
-              Are you an active Enbridge customer, or in the process of
-              converting to Enbridge gas?*
-            </label>
-            <div className="flex gap-x-4 mt-4">
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.enbridgeCustomer === "yes"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "enbridgeCustomer", value: "yes" },
-                  })
-                }
-              >
-                Yes
-              </button>
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.enbridgeCustomer === "no"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "enbridgeCustomer", value: "no" },
-                  })
-                }
-              >
-                No
-              </button>
-            </div>
-          </div>
-        )}
-
-      {formData.residentOfOntario === "yes" &&
-        formData.homeType &&
-        formData.homeType !== "none" &&
-        formData.homeOccupied === "yes" &&
-        formData.enbridgeCustomer === "no" && (
-          <div className="mb-4 border border-red-500 p-4 text-red-700">
-            To be eligible for rebates, you need to be an Enbridge customer.
-          </div>
-        )}
-
-      {/* Question 5 (Only if Q4 is "Yes") */}
-      {formData.homeOccupied === "yes" &&
-        formData.homeType !== "none" &&
-        formData.residentOfOntario === "yes" &&
-        formData.enbridgeCustomer === "yes" && (
-          <div className="mb-4">
-            <label className="block text-md font-medium text-gray-700">
-              Do you currently heat your home with a natural gas fired
-              appliance?*
-            </label>
-            <div className="flex gap-x-4 mt-4">
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.heatingType === "yes"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "heatingType", value: "yes" },
-                  })
-                }
-              >
-                Yes
-              </button>
-              <button
-                type="button"
-                className={`px-4 py-2 w-[30vw] mx-auto rounded-md font-medium ${
-                  formData.heatingType === "no"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200 text-gray-700"
-                }`}
-                onClick={() =>
-                  handleInputChange({
-                    target: { name: "heatingType", value: "no" },
-                  })
-                }
-              >
-                No
-              </button>
-            </div>
-          </div>
-        )}
-
-      {formData.residentOfOntario === "yes" &&
-        formData.homeType &&
-        formData.homeType !== "none" &&
-        formData.homeOccupied === "yes" &&
-        formData.enbridgeCustomer === "yes" &&
-        formData.heatingType === "no" && (
-          <div className="mb-4 border border-red-500 p-4 text-red-700">
-            Qualifying homes must be heated primarily with Enbridge NG at time
-            of the Pre-Audit and/or Post-Audit.
-          </div>
-        )}
+      {/* {formData.income && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            Have you applied for any of the rebates below?
+          </label>
+          <select
+            name="rebateType"
+            value={formData.rebateType}
+            onChange={handleInputChange}
+            className="mt-2 block w-full px-4 py-2 border rounded-md"
+          >
+            {" "}
+            <option value="">Select</option>
+            <option value="Rebate 1">Canada Greener Homes Loan</option>
+            <option value="Rebate 2">Home Efficiency Rebate</option>
+            <option value="Rebate 3">HomeEnergySaver Program</option>
+            <option value="Rebate 4">Thermostat Rebate</option>
+            <option value="Rebate 5">
+              Oil to Heat Pump Affordability program
+            </option>
+            <option value="Rebate 6">No</option>
+          </select>
+        </div>
+      )} */}
     </div>
   );
 };

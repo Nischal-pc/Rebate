@@ -6,20 +6,20 @@ const rebates = [
     id: 1,
     title: "HomeEnergySaver Program",
     shortDescription:
-      "Get up to $10,000 for energy-efficient home upgrades such as windows, doors, and insulation.",
+      "The HomeEnergySaver Program offers incentives to Ontario homeowners with electrically heated homes to install energy-efficient heat pumps, providing rebates up to $5,000 for air source heat pumps and $10,000 for ground source heat pumps.",
     fullDescription:
       "The HomeEnergySaver Program helps homeowners reduce energy usage and save on bills. It offers expert advice, personalized solutions, and practical tips for making your home more energy-efficient.",
-    link: "/assets/saveonenergy1.png",
+    link: "/assets/saveonenergy2.png",
   },
   {
     id: 2,
-    title: "Canada Greener Homes Grant",
+    title: "Canada Greener Homes Loan",
     shortDescription:
-      "Save on home retrofits including heat pumps, solar panels, and smart thermostats.",
+      "The Canada Greener Homes Loan offers interest-free financing for energy-efficient home upgrades.",
     fullDescription:
-      "The Canada Greener Homes Grant helps homeowners make their homes more energy-efficient by offering rebates for retrofits such as installing heat pumps, solar panels, and smart thermostats. This program aims to reduce energy consumption and increase the adoption of green technologies across the country.",
+      "The Canada Mortgage and Housing Corporation (CMHC) provides an interest-free loan program to support homeowners in implementing energy-efficient retrofits. This initiative, known as the Canada Greener Homes Loan, allows eligible property owners to borrow between $5,000 and $40,000 for improvements recommended by registered energy advisors during a pre-retrofit evaluation4. The loan is available as an unsecured personal loan, subject to credit approval, with a 10-year repayment term. Homeowners can access up to 15% of the loan amount in advance to initiate the retrofit work, with the remaining funds disbursed after a post-retrofit energy audit confirms the completed upgrades",
     category: "Sustainability",
-    link: "/assets/green.jpg",
+    link: "/assets/green1.png",
   },
   {
     id: 3,
@@ -30,18 +30,17 @@ const rebates = [
       "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
     category: "Energy",
     link: "/assets/enbridge1.png",
-    detailedContent: `The Home Efficiency Rebate Plus (HER+) program helps homeowners save money by offering rebates for energy-efficient home upgrades. This includes improvements like better insulation, energy-efficient windows, and upgraded heating systems. The goal is to make your home more comfortable, lower energy bills, and reduce environmental impact.`,
   },
-  // {
-  //   id: 4,
-  //   title: "Home Energy Assessment",
-  //   shortDescription:
-  //     "Get rebates for professional energy audits and identify ways to save on utility bills.",
-  //   fullDescription:
-  //     "Home energy assessments are an essential first step in improving energy efficiency in your home. Ontario offers rebates for energy audits, which can help identify areas for improvement, such as insulation, air leaks, and inefficient appliances. This program provides homeowners with valuable information to reduce energy consumption and save on utility bills.",
-  //   category: "Energy",
-  //   link: "/rebates/energy-assessment",
-  // },
+  {
+    id: 4,
+    title: " Oil to Heat Pump Affordability program",
+    shortDescription:
+      "The Oil to Heat Pump Affordability (OHPA) program provides grants of up to $10,000 (or $15,000 in co-delivery provinces) to Canadian homeowners for switching from oil heating to electric heat pumps. The program aims to reduce energy costs and promote energy efficiency.",
+    fullDescription:
+      "The Oil to Heat Pump Affordability (OHPA) program is a Canadian initiative designed to assist homeowners in transitioning from oil-based heating systems to more efficient electric heat pumps. This program offers financial support through grants, making it easier for eligible households to upgrade their heating systems and reduce their energy costs.",
+    category: "Energy",
+    link: "/assets/oiltoheat1.png",
+  },
 ];
 
 const RebatePage = () => {
@@ -103,11 +102,11 @@ const RebatePage = () => {
       </div>
 
       {/* Rebate List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10        m-10 justify-items-center">
         {filteredRebates.map((rebate) => (
           <div
             key={rebate.id}
-            className="relative flex flex-col bg-white shadow-sm border border-slate-200 rounded-lg"
+            className="relative flex flex-col bg-white shadow-sm  border-gray-200 border-2"
           >
             {/* Background Image and Centered Header */}
             <div className="relative w-full h-48 sm:h-64 md:h-72">

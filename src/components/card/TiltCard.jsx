@@ -58,8 +58,10 @@ const TiltCard = ({ title, desc, saving }) => {
           ref={contentRef}
           className="tilt-card-content p-6 flex flex-col justify-between relative z-10"
         >
-          <h2 className="text-3xl font-bold text-black mb-2 ">{title}</h2>
-          <p className="text-black">{desc}</p>
+          <h2 className="text-2xl font-bold text-black mb-2 line-clamp-1 ">
+            {title}
+          </h2>
+          <p className="text-black line-clamp-2">{desc}</p>
 
           <div className="text-2xl font-bold text-black">{saving}</div>
           {/* <button className="w-full py-2 bg-white text-purple-700 rounded-lg font-semibold transform transition hover:scale-105 active:scale-95">

@@ -58,9 +58,9 @@ const BottomSection = () => {
             }}
           >
             {/* Display all reviews */}
-            {[...reviews, ...reviews].map((review) => (
+            {[...reviews, ...reviews].map((review, index) => (
               <div
-                key={review.id}
+                key={`${review.id}-${index}`} // Ensure unique keys by combining `id` and `index`
                 className="flex-none w-80 p-4 mx-2"
                 style={{
                   minWidth: "300px", // Adjust card width as needed
@@ -101,17 +101,7 @@ const BottomSection = () => {
       <footer className="bg-gray-800 text-white py-6">
         <div className="text-center">
           <p>&copy; 2024 Energy Efficiency Broker. All rights reserved.</p>
-          <nav className="mt-4 space-x-4">
-            <a href="/about" className="hover:underline">
-              About Us
-            </a>
-            <a href="/contact" className="hover:underline">
-              Contact
-            </a>
-            <a href="/faq" className="hover:underline">
-              FAQ
-            </a>
-          </nav>
+          {/*       > */}
         </div>
       </footer>
     </div>

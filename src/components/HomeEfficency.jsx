@@ -2,6 +2,7 @@ import { useState } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+
 const HomeEfficency = () => {
   const [formData, setFormData] = useState({
     residentOfOntario: "",
@@ -10,17 +11,50 @@ const HomeEfficency = () => {
     enbridgeCustomer: "",
     heatingType: "",
     prequalifyConsent: "",
+    primaryResidence: "",
+    owernShip: "",
+    province: "",
+    heatingSystem: "",
+    energyAudit: "",
+    owneshipLength: "",
+    income: "",
+    plannedUpgrades: [],
+    homeAge: "",
+    rebateType: "",
+    postalCode: "",
   });
 
   const [errors, setErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, type, checked, selectedOptions } = e.target;
+
+    if (type === "checkbox") {
+      // Handle checkbox input (for single checkboxes like plannedUpgrades)
+      setFormData((prevData) => {
+        const newValue = checked
+          ? [...prevData[name], value]
+          : prevData[name].filter((item) => item !== value);
+        return { ...prevData, [name]: newValue };
+      });
+    } else if (type === "select-multiple") {
+      // Handle select multiple (for selecting multiple values)
+      const selectedValues = Array.from(
+        selectedOptions,
+        (option) => option.value
+      );
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: selectedValues,
+      }));
+    } else {
+      // Handle other types (input, radio, etc.)
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
     validateField(name, value); // Validate on change
   };
 
@@ -41,24 +75,16 @@ const HomeEfficency = () => {
   };
 
   const isNextDisabled =
-    formData.residentOfOntario === "no" || // Resident of Ontario must not be "no"
-    formData.homeType === "none" || // Home type must not be "none"
-    formData.homeOccupied === "no" || // Home must be occupied
-    formData.enbridgeCustomer === "no" || // Must be an Enbridge customer
-    !formData.residentOfOntario || // Resident of Ontario must be answered
-    (formData.residentOfOntario === "yes" && !formData.homeType) || // Home type must be answered if resident is "yes"
-    (formData.homeType &&
-      formData.homeType !== "none" &&
-      !formData.homeOccupied) || // Home occupancy must be answered if home type is valid
-    (formData.homeOccupied === "yes" &&
-      !formData.enbridgeCustomer &&
-      formData.heatingType === "no") || // Heating type must be answered "yes" if home is occupied
-    formData.prequalifyConsent === "no" || // Prequalify consent must not be "no"
-    formData.heatingType !== "yes"; // Heating type must be answered "yes"
+    currentStep === 1
+      ? !formData.income // Disable if no planned upgrades selected
+      : currentStep === 2
+      ? !formData.prequalifyConsent || formData.prequalifyConsent === "no"
+      : false;
+
   const steps = [
     {
       index: 1,
-      label: "Start",
+      label: "1 of 1",
       content: (
         <StepOne
           formData={formData}
@@ -69,12 +95,16 @@ const HomeEfficency = () => {
     },
     {
       index: 2,
-      label: "Acknowledge",
+      label: "2 of 2",
       content: (
         <StepTwo formData={formData} handleInputChange={handleInputChange} />
       ),
     },
-    { index: 3, label: "Result", content: <StepThree /> },
+    {
+      index: 3,
+      label: "Result",
+      content: <StepThree formData={formData} />,
+    },
     {
       index: 4,
       label: "Book Appointment",
@@ -147,14 +177,15 @@ const HomeEfficency = () => {
         ))}
       </ul>
       <div className="bg-white p-6 rounded-lg shadow-lg w-[60vw] mx-auto mt-5 sm:mt-8">
-        {steps.map((step) => (
+        {/* {steps.map((step) => (
           <div
             key={step.index}
             style={{ display: currentStep === step.index ? "block" : "none" }}
           >
             {step.content}
           </div>
-        ))}
+        ))} */}
+        {steps?.[currentStep - 1]?.content}
         <div className="mt-5 flex justify-between items-center gap-x-2">
           <button
             type="button"
@@ -164,22 +195,30 @@ const HomeEfficency = () => {
           >
             Back
           </button>
-          {currentStep < steps.length ? (
+          {currentStep === 3 ? (
             <button
               type="button"
-              onClick={handleNext}
-              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none "
-              disabled={isNextDisabled} // Disable if any field is empty or invalid
+              onClick={handleNext} // Replace with your booking logic
+              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
             >
-              Next
+              Book Appointment
+            </button>
+          ) : currentStep === 4 ? (
+            <button
+              type="button"
+              onClick={() => alert("Form submitted!")} // Replace with your form submission logic
+              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            >
+              Submit
             </button>
           ) : (
             <button
               type="button"
-              onClick={() => setCurrentStep(1)}
+              onClick={handleNext}
               className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+              disabled={isNextDisabled} // Disable if any field is empty or invalid
             >
-              Book an Appointment
+              Next
             </button>
           )}
         </div>

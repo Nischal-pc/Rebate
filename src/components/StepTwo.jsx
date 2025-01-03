@@ -1,73 +1,135 @@
-const StepTwo = ({ formData, handleInputChange, handleNext }) => {
+const StepTwo = ({ formData, handleInputChange }) => {
   const canProceed = formData.prequalifyConsent === "yes";
 
   return (
     <div>
-      {/* Qualification Criteria */}
-      <div className="mb-6">
-        <p className="mb-2">To qualify you must:</p>
-        <ul className="list-disc list-inside text-gray-700">
-          <li>
-            Have an energy assessment both before and after your renovations.
-          </li>
-          <li>Complete two eligible upgrades.</li>
-          <li>Provide copies of all receipts for energy upgrades.</li>
-          <li>
-            Post assessment must be completed within 120 days of the
-            pre-assessment.
-          </li>
-        </ul>
-      </div>
-
-      {/* Prequalify Statement Consent */}
-      <div className="mb-4">
-        <p className="mb-2 text-gray-700 font-medium">
-          Prequalify Statement Consent*
-        </p>
-        <p className="text-sm text-gray-600 mb-4">
-          You must acknowledge you have read the prequalifying statement before
-          proceeding to the calculator.
-        </p>
-        <div className="flex gap-x-4">
+      <div className="mb-4 mt-4">
+        <label className="block text-lg font-medium text-gray-700">
+          What is your current primary heating system?
+        </label>
+        <div className="grid grid-cols-5 gap-8 mt-4">
           <button
             type="button"
-            className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
-              formData.prequalifyConsent === "yes"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
+            className="flex flex-col items-center space-y-2"
             onClick={() =>
               handleInputChange({
-                target: { name: "prequalifyConsent", value: "yes" },
+                target: { name: "heatingSystem", value: "oilFurnace" },
               })
             }
           >
-            I Agree
+            <div
+              className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                formData.heatingSystem === "oilFurnace"
+                  ? "border-green-700"
+                  : "border-gray-200"
+              }`}
+            >
+              <img
+                src="/assets/oil.png"
+                alt="Detached"
+                className="w-full h-auto aspect-square scale-50 scale object-contain"
+              />
+            </div>
+            <span className="text-md">Oil furnace or boiler</span>
           </button>
           <button
             type="button"
-            className={`w-[30vw] mx-auto px-4 py-2 rounded-md font-medium ${
-              formData.prequalifyConsent === "no"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
+            className="flex flex-col items-center space-y-2"
             onClick={() =>
               handleInputChange({
-                target: { name: "prequalifyConsent", value: "no" },
+                target: { name: "heatingSystem", value: "propane" },
               })
             }
           >
-            I Disagree
+            <div
+              className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                formData.heatingSystem === "propane"
+                  ? "border-green-700"
+                  : "border-gray-200"
+              }`}
+            >
+              <img
+                src="/assets/propane.png"
+                alt="Detached"
+                className="w-full h-auto aspect-square scale-50 object-contain"
+              />
+            </div>
+            <span className="text-md">Propane</span>
+          </button>
+          <button
+            type="button"
+            className="flex flex-col items-center space-y-2"
+            onClick={() =>
+              handleInputChange({
+                target: { name: "heatingSystem", value: "naturalGas" },
+              })
+            }
+          >
+            <div
+              className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                formData.heatingSystem === "naturalGas"
+                  ? "border-green-700"
+                  : "border-gray-200"
+              }`}
+            >
+              <img
+                src="/assets/naturalgas.png"
+                alt="Detached"
+                className="w-full h-auto aspect-square scale-50 object-contain"
+              />
+            </div>
+            <span className="text-md">Natural Gas Furnace</span>
+          </button>
+          <button
+            type="button"
+            className="flex flex-col items-center space-y-2"
+            onClick={() =>
+              handleInputChange({
+                target: { name: "heatingSystem", value: "heatpump" },
+              })
+            }
+          >
+            <div
+              className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                formData.heatingSystem === "heatpump"
+                  ? "border-green-700"
+                  : "border-gray-200"
+              }`}
+            >
+              <img
+                src="/assets/heatpump.png"
+                alt="Detached"
+                className="w-full h-auto aspect-square scale-50 object-contain"
+              />
+            </div>
+            <span className="text-md">Heat Pump</span>
+          </button>
+          <button
+            type="button"
+            className="flex flex-col items-center space-y-2"
+            onClick={() =>
+              handleInputChange({
+                target: { name: "heatingSystem", value: "other" },
+              })
+            }
+          >
+            <div
+              className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                formData.heatingSystem === "other"
+                  ? "border-green-700"
+                  : "border-gray-200"
+              }`}
+            >
+              <img
+                src="/assets/other.png"
+                alt="Detached"
+                className="w-full h-auto aspect-square scale-50 object-contain"
+              />
+            </div>
+            <span className="text-md">Other</span>
           </button>
         </div>
       </div>
-
-      {/* Error Message */}
-      {formData.prequalifyConsent === "no" && (
-        <div className="mb-4 border border-red-500 p-4 text-red-700">
-          You must agree with the prequalifying statement to proceed.
-        </div>
-      )}
     </div>
   );
 };

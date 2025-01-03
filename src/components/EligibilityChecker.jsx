@@ -1,51 +1,5 @@
-import { useState } from "react";
 import HomeEfficency from "./HomeEfficency";
 const EligibilityChecker = () => {
-  const [formData, setFormData] = useState({
-    rebateType: "",
-    income: "",
-    homeOwnership: false,
-    electricVehicle: false,
-    homeAge: "",
-  });
-
-  // const [eligibilityResult, setEligibilityResult] = useState(null);
-
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value,
-    }));
-  };
-
-  // const checkEligibility = () => {
-  //   let isEligible = false;
-
-  //   // Ontario Energy Rebates eligibility check
-  //   if (formData.rebateType === "energy" && formData.homeOwnership) {
-  //     if (parseInt(formData.income) < 80000 && formData.homeAge > 10) {
-  //       isEligible = true;
-  //     }
-  //   }
-
-  //   // Electric Vehicle Incentives eligibility check
-  //   if (formData.rebateType === "ev" && formData.electricVehicle) {
-  //     isEligible = true;
-  //   }
-
-  //   // Canada Greener Homes Grant eligibility check
-  //   if (formData.rebateType === "greenerHomes" && formData.homeOwnership) {
-  //     isEligible = true;
-  //   }
-
-  //   setEligibilityResult(
-  //     isEligible
-  //       ? "Congratulations! You are eligible for this rebate."
-  //       : "Unfortunately, you are not eligible for this rebate."
-  //   );
-  // };
-
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">
       <header className="text-center mb-12">
@@ -58,10 +12,10 @@ const EligibilityChecker = () => {
         </p>
       </header>
 
-      <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
-        {/* <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+      {/* <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
           Check Your Eligibility
-        </h2> */}
+        </h2>
 
         <form>
           <div className="mb-4">
@@ -80,10 +34,11 @@ const EligibilityChecker = () => {
             </select>
           </div>
 
-          {/* Income Field for Energy Rebates */}
+          
         </form>
       </div>
-      {formData.rebateType === "greenerHomes" && <HomeEfficency />}
+      {formData.rebateType === "greenerHomes" && <HomeEfficency />} */}
+      <HomeEfficency />
     </div>
   );
 };
