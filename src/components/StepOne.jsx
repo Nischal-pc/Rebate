@@ -159,7 +159,7 @@ const StepOne = ({ formData, handleInputChange }) => {
                 }`}
               >
                 <img
-                  src="/assets/1.png"
+                  src="/assets/house.png"
                   alt="Detached"
                   className="w-full h-auto aspect-square scale-105 object-contain"
                 />
@@ -184,7 +184,7 @@ const StepOne = ({ formData, handleInputChange }) => {
                 }`}
               >
                 <img
-                  src="/assets/2.png"
+                  src="/assets/townhouse.png"
                   alt="Row House"
                   className="w-full h-auto aspect-square scale-105 object-contain"
                 />
@@ -209,7 +209,7 @@ const StepOne = ({ formData, handleInputChange }) => {
                 }`}
               >
                 <img
-                  src="/assets/3.png"
+                  src="/assets/tinyhouse.png"
                   alt="Mobile Home"
                   className="w-full h-auto aspect-square scale-105 object-contain"
                 />
@@ -236,7 +236,7 @@ const StepOne = ({ formData, handleInputChange }) => {
                 }`}
               >
                 <img
-                  src="/assets/4.png"
+                  src="/assets/houseboat.png"
                   alt="Floating House"
                   className="w-full h-auto aspect-square scale-105 object-contain"
                 />

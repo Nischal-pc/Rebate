@@ -1,225 +1,88 @@
-// const StepThree = ({ formData }) => {
-//   // Extract values from formData
-//   const isOntarioResident = formData.residentOfOntario === "yes";
-//   const isPrimaryResidence = formData.primaryResidence === "yes";
-//   const isPropertyOwner = formData.ownerShip === "yes";
-//   const hasEnerGuide = formData.energyAudit === "yes";
-//   const ownershipLengthOver6Months =
-//     formData.ownershipLength &&
-//     formData.ownershipLength !== "Less than 6 months";
-//   const incomeRange =
-//     formData.income === "30000to50000" || formData.income === "50000to70000"; // assuming these ranges for programs like HomeEnergySaver and Canada HomeLoan Grant
-//   const hasHeatPumpUpgrade = formData.plannedUpgrades?.includes("Heat Pump");
-//   const hasAtticInsulationUpgrade =
-//     formData.plannedUpgrades?.includes("Attic Insulation");
-//   const hasWaterHeaterUpgrade =
-//     formData.plannedUpgrades?.includes("Water Heater");
-//   const hasSmartThermostatUpgrade = formData.plannedUpgrades?.includes(
-//     "Smart Thermostat Installation"
-//   );
-
-//   // Home Efficiency Rebate (HER) Eligibility
-//   const isEligibleForHER =
-//     isOntarioResident &&
-//     isPrimaryResidence &&
-//     isPropertyOwner &&
-//     hasEnerGuide &&
-//     ownershipLengthOver6Months &&
-//     (hasAtticInsulationUpgrade || hasWaterHeaterUpgrade); // Must have either Attic Insulation or Water Heater upgrade
-
-//   // HomeEnergySaver Program Eligibility
-//   const isEligibleForHomeEnergySaver =
-//     isOntarioResident &&
-//     isPrimaryResidence &&
-//     isPropertyOwner &&
-//     hasEnerGuide &&
-//     incomeRange &&
-//     (hasHeatPumpUpgrade ||
-//       hasAtticInsulationUpgrade ||
-//       hasSmartThermostatUpgrade); // Must have at least one planned upgrade from eligible list
-
-//   // Canada HomeLoan Grant Eligibility
-//   const isEligibleForCanadaHomeLoanGrant =
-//     isOntarioResident &&
-//     isPrimaryResidence &&
-//     isPropertyOwner &&
-//     hasEnerGuide &&
-//     incomeRange &&
-//     (hasAtticInsulationUpgrade || hasSmartThermostatUpgrade); // Focus on insulation and smart thermostat upgrades
-
-//   // Thermostat Rebate Eligibility
-//   const isEligibleForThermostatRebate =
-//     isOntarioResident &&
-//     isPrimaryResidence &&
-//     isPropertyOwner &&
-//     hasSmartThermostatUpgrade; // Must have Smart Thermostat installation planned
-
-//   return (
-//     <div className="bg-gradient-to-r from-blue-100 to-blue-300 min-h-screen flex items-center justify-center py-12 px-6">
-//       <div className="w-full max-w-3xl bg-white shadow-lg rounded-lg p-8">
-//         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
-//           Step Three: Eligibility Results
-//         </h1>
-
-//         {/* Home Efficiency Rebate (HER) */}
-//         {isEligibleForHER && (
-//           <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl mb-6">
-//             <h2 className="text-3xl font-semibold text-green-800">
-//               Home Efficiency Rebate (HER)
-//             </h2>
-//             <p className="mt-2 text-gray-700">
-//               You qualify for the Home Efficiency Rebate! Based on your home
-//               energy audit and ownership details, you're eligible for a rebate
-//               to improve your home's energy efficiency.
-//             </p>
-//             <div className="mt-4 text-green-600 font-medium">Eligible</div>
-//           </div>
-//         )}
-
-//         {/* HomeEnergySaver Program */}
-//         {isEligibleForHomeEnergySaver && (
-//           <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl mb-6">
-//             <h2 className="text-3xl font-semibold text-blue-800">
-//               HomeEnergySaver Program
-//             </h2>
-//             <p className="mt-2 text-gray-700">
-//               You qualify for the HomeEnergySaver Program! Based on your income
-//               and planned energy-saving upgrades, you're eligible for this
-//               program.
-//             </p>
-//             <div className="mt-4 text-blue-600 font-medium">Eligible</div>
-//           </div>
-//         )}
-
-//         {/* Canada HomeLoan Grant */}
-//         {isEligibleForCanadaHomeLoanGrant && (
-//           <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl mb-6">
-//             <h2 className="text-3xl font-semibold text-yellow-800">
-//               Canada HomeLoan Grant
-//             </h2>
-//             <p className="mt-2 text-gray-700">
-//               You qualify for the Canada HomeLoan Grant! This grant helps with
-//               financing home upgrades and energy efficiency improvements.
-//             </p>
-//             <div className="mt-4 text-yellow-600 font-medium">Eligible</div>
-//           </div>
-//         )}
-
-//         {/* Thermostat Rebate */}
-//         {isEligibleForThermostatRebate && (
-//           <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl mb-6">
-//             <h2 className="text-3xl font-semibold text-purple-800">
-//               Thermostat Rebate
-//             </h2>
-//             <p className="mt-2 text-gray-700">
-//               You qualify for the Thermostat Rebate based on your smart
-//               thermostat installation upgrade.
-//             </p>
-//             <div className="mt-4 text-purple-600 font-medium">Eligible</div>
-//           </div>
-//         )}
-
-//         {/* If no programs match */}
-//         {!(
-//           isEligibleForHER ||
-//           isEligibleForHomeEnergySaver ||
-//           isEligibleForCanadaHomeLoanGrant ||
-//           isEligibleForThermostatRebate
-//         ) && (
-//           <div className="bg-gray-200 p-6 rounded-lg shadow-lg text-center">
-//             <h2 className="text-3xl font-semibold text-gray-800">
-//               No Matching Programs
-//             </h2>
-//             <p className="mt-4 text-gray-600">
-//               It seems you do not qualify for any of the available programs
-//               based on the provided information. Please check your inputs or
-//               contact support for more assistance.
-//             </p>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default StepThree;
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
+import { validPostalCodes } from "./data/postalCodes";
 
 const StepThree = ({ formData, index }) => {
   // Extract values from formData
   const {
     residentOfOntario,
     primaryResidence,
+    postalCode,
     ownerShip,
-    energyAudit,
     ownershipLength,
+    homeType,
     income,
-    plannedUpgrades,
-    currentHeatingSystem,
+    heatingSystem,
+    gasProvider,
   } = formData;
 
-  // Common eligibility checks
+  // Eligibility checks
   const isOntarioResident = residentOfOntario === "yes";
   const isPrimaryResidence = primaryResidence === "yes";
   const isPropertyOwner = ownerShip === "yes";
-  const hasEnerGuide = energyAudit === "yes";
   const ownershipLengthOver6Months =
     ownershipLength && ownershipLength !== "Less than 6 months";
   const incomeRange = income === "30000to50000" || income === "50000to70000";
-  const lowIncome = income === "30000to50000";
-
-  // Upgrade-specific checks
-  const hasHeatPumpUpgrade = plannedUpgrades?.includes("Heat Pump");
-  const hasAtticInsulationUpgrade =
-    plannedUpgrades?.includes("Attic Insulation");
-  const hasWaterHeaterUpgrade = plannedUpgrades?.includes("Water Heater");
-  const hasSmartThermostatUpgrade = plannedUpgrades?.includes(
-    "Smart Thermostat Installation"
-  );
-  const usesOilHeating = currentHeatingSystem === "Oil furnace or boiler";
+  const eligibleHouses =
+    homeType === "detached" ||
+    homeType === "rowHouse" ||
+    homeType === "mobileHome" ||
+    homeType === "floatingHouse";
 
   // Program-specific eligibility
-  const isEligibleForHER =
+  const isEligibleForHomeEfficiencyRebate =
     isOntarioResident &&
-    isPrimaryResidence &&
+    (isPrimaryResidence || primaryResidence === "no") &&
+    eligibleHouses &&
     isPropertyOwner &&
-    hasEnerGuide &&
-    ownershipLengthOver6Months &&
-    (hasAtticInsulationUpgrade || hasWaterHeaterUpgrade);
+    heatingSystem === "naturalGas" &&
+    gasProvider === "enbridge";
+
+  const checked_input = validPostalCodes.includes(
+    postalCode.trim().substring(0, 3).toUpperCase()
+  );
 
   const isEligibleForHomeEnergySaver =
     isOntarioResident &&
-    isPrimaryResidence &&
-    isPropertyOwner &&
-    hasEnerGuide &&
-    incomeRange &&
-    (hasHeatPumpUpgrade ||
-      hasAtticInsulationUpgrade ||
-      hasSmartThermostatUpgrade);
+    (isPrimaryResidence || primaryResidence === "no") &&
+    eligibleHouses &&
+    checked_input &&
+    (heatingSystem === "heatpump" || heatingSystem === "baseboard") &&
+    ownerShip === "yes";
 
   const isEligibleForCanadaGreenerHomeLoan =
     isOntarioResident &&
     isPrimaryResidence &&
+    eligibleHouses &&
     isPropertyOwner &&
-    hasEnerGuide &&
-    (hasAtticInsulationUpgrade || hasSmartThermostatUpgrade);
+    (heatingSystem === "naturalGas" ||
+      heatingSystem === "baseboard" ||
+      heatingSystem === "propane" ||
+      heatingSystem === "heatpump" ||
+      heatingSystem == "oilFurnace" ||
+      gasProvider === "enbridge") &&
+    ownershipLengthOver6Months;
 
   const isEligibleForOilToHeatPumpProgram =
     isOntarioResident &&
     isPrimaryResidence &&
     isPropertyOwner &&
-    usesOilHeating &&
-    lowIncome &&
-    hasHeatPumpUpgrade;
+    eligibleHouses &&
+    ownershipLengthOver6Months &&
+    heatingSystem === "oilFurnace";
 
   const isEligibleForThermostatRebate =
-    isOntarioResident &&
-    isPrimaryResidence &&
-    isPropertyOwner &&
-    hasSmartThermostatUpgrade;
+    isOntarioResident && isPrimaryResidence && isPropertyOwner;
+
+  const conditionForConfet =
+    isEligibleForCanadaGreenerHomeLoan ||
+    isEligibleForHomeEfficiencyRebate ||
+    isEligibleForHomeEnergySaver ||
+    isEligibleForOilToHeatPumpProgram ||
+    isEligibleForThermostatRebate;
+
   useEffect(() => {
-    if (true) {
+    if (conditionForConfet) {
       const duration = 15 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -250,35 +113,54 @@ const StepThree = ({ formData, index }) => {
         });
       }, 250);
     }
-  }, [
-    isEligibleForHER,
-    isEligibleForCanadaGreenerHomeLoan,
-    isEligibleForOilToHeatPumpProgram,
-    isEligibleForHomeEnergySaver,
-    isEligibleForThermostatRebate,
-  ]);
+  }, [conditionForConfet]);
 
   // Mapping eligibility to programs
   const eligibilityCriteria = [
     {
       name: "Home Efficiency Rebate (HER)",
-      eligible: isEligibleForHER,
+      eligible: isEligibleForHomeEfficiencyRebate,
+      amount: "$5,000",
+      image: "/images/homeEfficiency.jpg",
+      message:
+        "Save energy, save money! You qualify for up to $5,000 in energy efficiency upgrades. Let’s make your home more efficient and reduce your bills!",
+      step: "Talk to our Expert Sales Agent to get more information about these rebates",
     },
     {
       name: "HomeEnergySaver Program",
       eligible: isEligibleForHomeEnergySaver,
+      amount: "$10,000",
+      image: "/assets/homesaver.jpg",
+      message:
+        "Upgrade your home for comfort and savings! Get up to $10,000 in energy-saving benefits. Make your home the best it can be!",
+      step: " Book an appointment to see how we can help you save.",
     },
     {
       name: "Canada Greener Home Loan",
       eligible: isEligibleForCanadaGreenerHomeLoan,
+      amount: "$10,000",
+      image: "/assets/heatpumpfor.jpg",
+      message:
+        "Go green with a loan up to $10,000! Make your home energy-efficient and eco-friendly with trusted government-backed support.",
+      step: " Secure your loan and start your home’s green transformation.",
     },
     {
       name: "Oil to Heat Pump Affordability Program",
       eligible: isEligibleForOilToHeatPumpProgram,
+      amount: "$10,000",
+      image: "/assets/greenhomeloan.webp",
+      message:
+        "Make the switch to a heat pump! You qualify for up to $10,000 to replace your oil furnace. Let’s make your home more energy-efficient today.",
+      step: " Book an appointment to explore your options and get started.",
     },
     {
       name: "Thermostat Rebate",
       eligible: isEligibleForThermostatRebate,
+      amount: "$100",
+      image: "/assets/oiltopump.jpg",
+      message:
+        "Smart thermostats for smart savings! Get a $100 rebate on your new thermostat. A simple change for better control and savings.",
+      step: " Book an appointment and claim your rebate today.",
     },
   ];
 
@@ -288,50 +170,101 @@ const StepThree = ({ formData, index }) => {
   );
 
   return (
-    <div className="flex flex-col w-full mx-auto  items-center justify-center py-6 px-6">
-      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
-        Eligibility Results
-      </h1>
-      <div className="w-full h-full   ">
+    <div className="flex flex-col w-full mx-auto items-center justify-center py-6 px-6">
+      {eligiblePrograms.length > 0 && (
+        <h1 className="text-4xl font-semibold text-center text-green-600 mb-8">
+          Congratulations! You Are Eligible for These Programs
+        </h1>
+      )}
+
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
         {eligiblePrograms.length > 0 ? (
           eligiblePrograms.map((program, index) => (
             <div
               key={index}
-              className={`p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl mb-6 ${
-                program.name.includes("HER")
-                  ? "bg-green-50 border-l-4 border-green-500"
-                  : program.name.includes("HomeEnergySaver")
-                  ? "bg-blue-50 border-l-4 border-blue-500"
-                  : program.name.includes("Canada Greener")
-                  ? "bg-yellow-50 border-l-4 border-yellow-500"
-                  : program.name.includes("Oil to Heat Pump")
-                  ? "bg-red-50 border-l-4 border-red-500"
-                  : "bg-purple-50 border-l-4 border-purple-500"
-              }`}
+              className="flex flex-col justify-between p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
+              style={{
+                backgroundImage: `url('${program.image}')`,
+                backgroundSize: "cover",
+                backgroundBlendMode: "soft-light",
+              }}
             >
-              <h2 className="text-3xl font-semibold text-gray-800">
+              <div className="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-sm rounded-3xl"></div>
+              <div className="flex justify-center mb-4 z-50">
+                {" "}
+                <div className="flex items-center justify-center text-white bg-blue-600 text-4xl font-semibold rounded-full w-16 h-16 shadow-xl">
+                  {index + 1}
+                </div>
+              </div>
+
+              {/* Program Name */}
+              <div className="text-3xl z-50 font-extrabold text-white text-center mb-4">
                 {program.name}
-              </h2>
-              <p className="mt-2 text-gray-700">
-                {`Great news! You're eligible for the ${program.name}. Take the next step toward success by connecting with our expert sales team today—they're ready to provide personalized guidance and all the information you need!`}
+              </div>
+
+              {/* Rebate Amount */}
+              <div className="text-center z-50 mb-6">
+                <h3
+                  className="text-4xl font-bold text-green-200"
+                  style={{
+                    letterSpacing: "0.05em",
+                    textShadow: "2px 2px 5px rgba(0, 0, 0, 0.15)",
+                  }}
+                >
+                  {program.amount}
+                </h3>
+              </div>
+
+              {/* Image */}
+              {/* <div className="flex justify-center mb-6">
+                <img
+                  src={program.image}
+                  alt={program.name}
+                  className="w-32 h-32 object-cover rounded-xl shadow-md"
+                />
+              </div> */}
+
+              {/* Message */}
+              <p className="text-center z-50 text-gray-200 mb-4">
+                {" "}
+                {program.message}
+              </p>
+              <p className="text-center text-sm z-50 text-gray-200 mb-4">
+                {" "}
+                {program.step}
               </p>
 
-              <div className="mt-4 font-medium text-gray-600">Eligible</div>
+              {/* CTA */}
+              <div className="text-center z-50">
+                <button className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out">
+                  Book Appointment
+                </button>
+              </div>
             </div>
           ))
         ) : (
-          <div className="bg-gray-200 p-6 rounded-lg shadow-lg text-center">
-            <h2 className="text-3xl font-semibold text-gray-800">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+            <h2 className="text-2xl font-semibold text-gray-800">
               No Matching Programs
             </h2>
             <p className="mt-4 text-gray-600">
-              It seems you do not qualify for any of the available programs
-              based on the provided information. Please check your inputs or
-              contact support for more assistance.
+              Unfortunately, you don't qualify for any available programs based
+              on your inputs. Please review your information or contact support.
             </p>
           </div>
         )}
       </div>
+      {eligiblePrograms.length > 0 && (
+        <div>
+          <h2 className="text-4xl mb-2 text-center font-semibold text-blue-400">
+            Suggested RoadMap
+          </h2>
+          <img
+            src="/assets/roadmap.png"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+      )}
     </div>
   );
 };

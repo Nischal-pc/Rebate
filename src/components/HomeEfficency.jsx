@@ -13,15 +13,17 @@ const HomeEfficency = () => {
     prequalifyConsent: "",
     primaryResidence: "",
     owernShip: "",
-    province: "",
     heatingSystem: "",
-    energyAudit: "",
     owneshipLength: "",
     income: "",
-    plannedUpgrades: [],
     homeAge: "",
     rebateType: "",
     postalCode: "",
+    furnaceAge: "",
+    heaterAge: "",
+    gasProvider: "",
+    gasBill: "",
+    electricBill: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -78,7 +80,7 @@ const HomeEfficency = () => {
     currentStep === 1
       ? !formData.income // Disable if no planned upgrades selected
       : currentStep === 2
-      ? !formData.prequalifyConsent || formData.prequalifyConsent === "no"
+      ? !formData.electricBill
       : false;
 
   const steps = [
