@@ -1,8 +1,12 @@
 import { useForm } from "react-hook-form";
 import { validationSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
+import Modal from "../modal/Modal";
+import { useState } from "react";
 
 const Appointment = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -11,9 +15,24 @@ const Appointment = () => {
     resolver: yupResolver(validationSchema),
     defaultValues: { date: null },
   });
-  const onSubmit = (data) => {
+
+  const onSubmit = async (data) => {
     console.log(data);
+    if (data) {
+      const res = await fetch(
+        "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        }
+      );
+      const result = await res.json();
+      if (result.status === "success") {
+        setIsModalVisible(true);
+      }
+    }
   };
+
   return (
     <div className="flex flex-col w-full relative">
       {/* Blue Background */}
@@ -46,7 +65,7 @@ const Appointment = () => {
               <input
                 id="firstName"
                 name="firstName"
-                placeholder="John"
+                placeholder="Peter"
                 {...register("firstName")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
@@ -68,7 +87,7 @@ const Appointment = () => {
               <input
                 id="lastName"
                 name="lastName"
-                placeholder="Doe"
+                placeholder="Parker"
                 {...register("lastName")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
@@ -110,7 +129,7 @@ const Appointment = () => {
               <input
                 id="phoneNumber"
                 name="phoneNumber"
-                placeholder="(123) 456-7890"
+                placeholder="123 456 7890"
                 {...register("phoneNumber")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
@@ -192,6 +211,16 @@ const Appointment = () => {
           </button>
         </form>
       </div>
+
+      {/* Modal */}
+      {isModalVisible && (
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"></div>
+          <div className="fixed inset-0 flex justify-center items-center z-50">
+            <Modal setModalVisible={setIsModalVisible} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -7,27 +7,6 @@ import { DataContext } from "./context/context";
 
 const HomeEfficency = () => {
   const { formData, setFormData } = useContext(DataContext);
-  // const [formData, setFormData] = useState({
-  //   residentOfOntario: "",
-  //   homeType: "",
-  //   homeOccupied: "",
-  //   enbridgeCustomer: "",
-  //   heatingType: "",
-  //   prequalifyConsent: "",
-  //   primaryResidence: "",
-  //   owernShip: "",
-  //   heatingSystem: "",
-  //   owneshipLength: "",
-  //   income: "",
-  //   homeAge: "",
-  //   rebateType: "",
-  //   postalCode: "",
-  //   furnaceAge: "",
-  //   heaterAge: "",
-  //   gasProvider: "",
-  //   gasBill: "",
-  //   electricBill: "",
-  // });
 
   const [errors, setErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(1);

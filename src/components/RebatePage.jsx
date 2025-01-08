@@ -53,11 +53,12 @@ const rebates = [
   {
     id: 5,
     title: "Home Renovation Savings Program ",
-    shortDescription: "Save 25% on mortgage insurance for green homes.",
+    shortDescription:
+      "Enbridge Gas and Save on Energy have teamed up to offer Ontarians rebates for energy-efficient home upgrades, including insulation, heat pumps, smart thermostats, solar panels, and more.",
     fullDescription:
-      "CMHC Eco Plus, formerly known as the CMHC Green Home program, is an initiative by the Canada Mortgage and Housing Corporation to promote energy-efficient housing. It provides a 25% partial refund on mortgage loan insurance premiums to homeowners who use CMHC-insured financing for energy-efficient homes. The program applies to new purchases, construction, and renovations that meet specific energy efficiency criteria.",
+      "Enbridge Gas and Save on Energy have collaborated to introduce a new program designed to assist Ontarians in enhancing their home's energy efficiency and comfort. This program provides substantial rebates for various energy-efficient upgrades, such as insulation, heat pumps, smart thermostats, solar panels, and other improvements, whether your home is heated by natural gas or electricity.",
     category: "Rebate",
-    link: "/assets/comingsoon.jpg",
+    link: "/assets/comingsoon1.png",
     amount: "Up to $12,000",
     areas: "Ontario",
   },

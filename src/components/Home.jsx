@@ -30,7 +30,8 @@ const LandingPage = () => {
         </div>
 
       </header> */}
-      <header className="relative bg-[url('/assets/main1.jpg')] bg-cover bg-center h-screen flex flex-col justify-center overflow-hidden">
+
+      <header className="relative bg-[url('/assets/main4.webp')] bg-cover bg-center h-screen flex flex-col justify-center overflow-hidden">
         {/* Overlay for gradient effect */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 opacity-80"></div>
 
@@ -99,12 +100,10 @@ const LandingPage = () => {
           </div>
         </div>
       </header>
-
       {/* Featured Rebates Section */}
       <section className="bg-white" id="Rebate-Page">
         <RebatePage />
       </section>
-
       {/* Testimonials Section */}
     </div>
   );

@@ -8,7 +8,7 @@ export const validationSchema= Yup.object().shape({
     phoneNumber: Yup.string()
       .matches(
         /^\d{3}\d{3}\d{4}$/,
-        'Phone number must be 8 Digits'
+        'Phone number must be 10 Digits'
       )
       .required('Phone Number is required'),
     date: Yup.date().nullable().required('Preferred Date is required'),

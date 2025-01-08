@@ -254,7 +254,7 @@ const StepThree = ({ handleNext }) => {
             </div>
           ))
         ) : (
-          <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-lg  text-center">
             <h2 className="text-2xl font-semibold text-gray-800">
               No Matching Programs
             </h2>
@@ -265,17 +265,6 @@ const StepThree = ({ handleNext }) => {
           </div>
         )}
       </div>
-      {/* {eligiblePrograms.length > 0 && (
-        <div>
-          <h2 className="text-4xl mb-2 text-center font-semibold text-blue-400">
-            Suggested RoadMap
-          </h2>
-          <img
-            src="/assets/roadmap.png"
-            className="w-full h-auto object-contain"
-          />
-        </div>
-      )} */}
     </div>
   );
 };
