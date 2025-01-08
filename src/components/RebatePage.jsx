@@ -183,7 +183,7 @@ const RebatePage = () => {
       {/* Modal */}
       {selectedRebate && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-[80vw] h-auto overflow-y-auto relative">
+          <div className="bg-white rounded-lg p-6 w-[80vw] h-full overflow-y-auto relative">
             {/* Close Icon */}
             <IoClose
               className="absolute top-2 right-2 text-2xl cursor-pointer"
@@ -192,11 +192,14 @@ const RebatePage = () => {
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               {selectedRebate.title}
             </h2>
-            <p className="text-gray-700 mb-6">
+            <iframe
+              src="https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings"
+              className="w-full h-full border-0"
+            />
+            {/* <p className="text-gray-700 mb-6">
               {selectedRebate.fullDescription}
             </p>
-            {/* Display Detailed Content */}
-            {selectedRebate.detailedContent}
+            {selectedRebate.detailedContent} */}
           </div>
         </div>
       )}
