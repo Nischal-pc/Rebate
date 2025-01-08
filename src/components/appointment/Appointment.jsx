@@ -23,7 +23,30 @@ const Appointment = () => {
         "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
         {
           method: "POST",
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            lead: {
+              source: "EBC",
+              types: [],
+            },
+            customer: {
+              firstName: data.firstName,
+              lastName: data.lastName,
+              email: data.email,
+              mobile: data.phoneNumber,
+              home: "",
+            },
+            address: {
+              fullAddress: data.address,
+              street: "",
+              city: "",
+              province: "",
+              country: "",
+              postalCode: "",
+            },
+            meetingTime: formatMeetingTime(data.date, data.time),
+
+            notes: "",
+          }),
         }
       );
       const result = await res.json();
@@ -32,7 +55,27 @@ const Appointment = () => {
       }
     }
   };
+  function formatMeetingTime(date, time) {
+    // Ensure the date is a valid Date object
+    if (!(date instanceof Date) || isNaN(date.getTime())) {
+      throw new Error("Invalid date format. Expected a valid Date object.");
+    }
 
+    // Validate time format (HH:mm)
+    const timeRegex = /^\d{2}:\d{2}$/;
+    if (!timeRegex.test(time)) {
+      throw new Error("Invalid time format. Expected format: HH:mm");
+    }
+
+    // Extract hours and minutes from the time string
+    const [hours, minutes] = time.split(":").map(Number);
+
+    // Set the hours and minutes on the Date object
+    date.setUTCHours(hours, minutes, 0, 0);
+
+    // Return the date as an ISO string in UTC
+    return date.toISOString();
+  }
   return (
     <div className="flex flex-col w-full relative">
       {/* Blue Background */}

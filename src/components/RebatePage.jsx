@@ -13,6 +13,7 @@ const rebates = [
     category: "Rebate",
     amount: "$10,000",
     areas: "Ontario",
+    website: "https://saveonenergy.ca/For-Your-Home/HomeEnergySaver",
   },
   {
     id: 2,
@@ -25,6 +26,8 @@ const rebates = [
     link: "/assets/green1.png",
     amount: " up to $40,000",
     areas: "Ontario || BC",
+    website:
+      "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/canada-greener-homes-loan/24286",
   },
   {
     id: 3,
@@ -37,6 +40,8 @@ const rebates = [
     link: "/assets/enbridge1.png",
     amount: "$ 5,000",
     areas: "Ontario",
+    website:
+      "https://www.enbridgegas.com/ontario/rebates-energy-conservation/home-efficiency-rebate",
   },
   {
     id: 4,
@@ -49,6 +54,8 @@ const rebates = [
     link: "/assets/oiltoheat1.png",
     amount: "Up to $10,000",
     areas: "Canada wide",
+    website:
+      "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/oil-heat-pump-affordability-program/24775?utm_campaign=nrcan-rncan-heat-pump-24-25&utm_source=ggl&utm_medium=sem&utm_content=ad-text-en&adv=2425-640752&utm_term=ohpa+program&gad_source=1&gclid=Cj0KCQiA4fi7BhC5ARIsAEV1YiZ7j1kIL5jYasvj8CTNljV0EVNbA-N0QpJaXE547LR5f-gIoGxFxgwaAkgYEALw_wcB",
   },
   {
     id: 5,
@@ -61,6 +68,7 @@ const rebates = [
     link: "/assets/comingsoon1.png",
     amount: "Up to $12,000",
     areas: "Ontario",
+    website: "https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings",
   },
   // {
   //   id: 6,
@@ -148,7 +156,7 @@ const RebatePage = () => {
               <img
                 src={rebate.link} // Ensure this is a valid image URL
                 alt="Background"
-                className="absolute inset-0 w-full h-full object-cover transition-transform transform hover:scale-110"
+                className="absolute bg-white inset-0 w-full h-full object-contain transition-transform transform hover:scale-110"
               />
             </div>
 
@@ -182,7 +190,14 @@ const RebatePage = () => {
 
       {/* Modal */}
       {selectedRebate && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              closeModal();
+            }
+          }}
+          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+        >
           <div className="bg-white rounded-lg p-6 w-[80vw] h-full overflow-y-auto relative">
             {/* Close Icon */}
             <IoClose
@@ -192,14 +207,29 @@ const RebatePage = () => {
             <h2 className="text-2xl font-bold mb-4 text-gray-800">
               {selectedRebate.title}
             </h2>
-            <iframe
-              src="https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings"
-              className="w-full h-full border-0"
-            />
-            {/* <p className="text-gray-700 mb-6">
+            {selectedRebate.title === "HomeEnergySaver Program" && (
+              <iframe
+                src={selectedRebate.website}
+                className="w-full h-full border-0"
+              />
+            )}
+            {selectedRebate.title === "Home Renovation Savings Program" && (
+              <iframe
+                src={selectedRebate.website}
+                className="w-full h-full border-0"
+              />
+            )}
+            {selectedRebate.title === "Home Efficiency Rebate" && (
+              <iframe
+                src={selectedRebate.website}
+                className="w-full h-full border-0"
+              />
+            )}
+
+            <p className="text-gray-700 mb-6">
               {selectedRebate.fullDescription}
             </p>
-            {selectedRebate.detailedContent} */}
+            {selectedRebate.detailedContent}
           </div>
         </div>
       )}

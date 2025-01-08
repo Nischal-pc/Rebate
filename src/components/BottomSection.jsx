@@ -2,27 +2,27 @@ const reviews = [
   {
     id: 1,
     text: "Thanks to this website, I received $5,000 for home insulation upgrades.",
-    name: "Ali, Toronto",
+    name: "Catherine Robillard, Toronto",
   },
   {
     id: 2,
     text: "This platform helped me save on my energy bills by offering great rebates.",
-    name: "Jessica, Ottawa",
+    name: "Anuja Saranga, Ottawa",
   },
   {
     id: 3,
     text: "The rebate information was clear and easy to understand. Highly recommend!",
-    name: "Suruchi, Scarborough",
+    name: "Smith Anderson, Scarborough",
   },
   {
     id: 4,
     text: "I got an amazing rebate for installing new windows. Thank you!",
-    name: "Prabin, North York",
+    name: "Sarenkan Ethayakanthan, North York",
   },
   {
     id: 5,
     text: "Fantastic experience! The rebates I got made a huge difference in my renovation costs.",
-    name: "Michael, Hamilton",
+    name: "Denise Paul, Hamilton",
   },
   {
     id: 6,
@@ -32,12 +32,12 @@ const reviews = [
   {
     id: 7,
     text: "Quick and easy process to get rebates for my home improvements.",
-    name: "David, Brampton",
+    name: "Adin Klaasen, Brampton",
   },
   {
     id: 8,
     text: "I saved thousands of dollars on my home energy upgrades, all thanks to these rebates!",
-    name: "Mikel, Toronto",
+    name: "Tammra Mulcaster, Toronto",
   },
 ];
 
