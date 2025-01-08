@@ -12,6 +12,7 @@ export default {
       fontFamily: {
         sans: ['Noto Sans', 'Arial', 'sans-serif'],
         heading: ['Source Sans Pro', 'Arial', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
       fontSize: {
         base: '1rem',  // Default body font size (16px)

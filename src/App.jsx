@@ -15,9 +15,6 @@ function App() {
       <LandingPage />
       <EligibilityChecker />
       <BottomSection />
-
-      {/* <Rebateoption />
-      <RebateQualifier /> */}
     </>
   );
 }

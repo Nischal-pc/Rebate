@@ -10,6 +10,9 @@ const rebates = [
     fullDescription:
       "The HomeEnergySaver Program helps homeowners reduce energy usage and save on bills. It offers expert advice, personalized solutions, and practical tips for making your home more energy-efficient.",
     link: "/assets/saveonenergy2.png",
+    category: "Rebate",
+    amount: "$10,000",
+    areas: "Ontario",
   },
   {
     id: 2,
@@ -18,8 +21,10 @@ const rebates = [
       "The Canada Greener Homes Loan offers interest-free financing for energy-efficient home upgrades.",
     fullDescription:
       "The Canada Mortgage and Housing Corporation (CMHC) provides an interest-free loan program to support homeowners in implementing energy-efficient retrofits. This initiative, known as the Canada Greener Homes Loan, allows eligible property owners to borrow between $5,000 and $40,000 for improvements recommended by registered energy advisors during a pre-retrofit evaluation4. The loan is available as an unsecured personal loan, subject to credit approval, with a 10-year repayment term. Homeowners can access up to 15% of the loan amount in advance to initiate the retrofit work, with the remaining funds disbursed after a post-retrofit energy audit confirms the completed upgrades",
-    category: "Sustainability",
+    category: "Loan",
     link: "/assets/green1.png",
+    amount: " up to $40,000",
+    areas: "Ontario || BC",
   },
   {
     id: 3,
@@ -28,8 +33,10 @@ const rebates = [
       "Get rebates for energy-saving home upgrades and installations, including insulation, windows, and heating systems.",
     fullDescription:
       "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
-    category: "Energy",
+    category: "Rebate",
     link: "/assets/enbridge1.png",
+    amount: "$ 5,000",
+    areas: "Ontario",
   },
   {
     id: 4,
@@ -38,9 +45,33 @@ const rebates = [
       "The Oil to Heat Pump Affordability (OHPA) program provides grants of up to $10,000 (or $15,000 in co-delivery provinces) to Canadian homeowners for switching from oil heating to electric heat pumps. The program aims to reduce energy costs and promote energy efficiency.",
     fullDescription:
       "The Oil to Heat Pump Affordability (OHPA) program is a Canadian initiative designed to assist homeowners in transitioning from oil-based heating systems to more efficient electric heat pumps. This program offers financial support through grants, making it easier for eligible households to upgrade their heating systems and reduce their energy costs.",
-    category: "Energy",
+    category: "Rebate",
     link: "/assets/oiltoheat1.png",
+    amount: "Up to $10,000",
+    areas: "Canada wide",
   },
+  {
+    id: 5,
+    title: "Home Renovation Savings Program ",
+    shortDescription: "Save 25% on mortgage insurance for green homes.",
+    fullDescription:
+      "CMHC Eco Plus, formerly known as the CMHC Green Home program, is an initiative by the Canada Mortgage and Housing Corporation to promote energy-efficient housing. It provides a 25% partial refund on mortgage loan insurance premiums to homeowners who use CMHC-insured financing for energy-efficient homes. The program applies to new purchases, construction, and renovations that meet specific energy efficiency criteria.",
+    category: "Rebate",
+    link: "/assets/comingsoon.jpg",
+    amount: "Up to $12,000",
+    areas: "Ontario",
+  },
+  // {
+  //   id: 6,
+  //   title: "CleanBC Better Homes & Renovation Rebate",
+  //   shortDescription: "Get rebates for energy-efficient home upgrades in B.C.",
+  //   fullDescription:
+  //     "The CleanBC Better Homes and Home Renovation Rebate Program offers substantial financial incentives to British Columbia residents for various energy-efficient home upgrades. This program covers a wide range of improvements including heat pumps, insulation, windows, doors, and more. Rebates vary based on the type of upgrade and the applicant's income level, making energy-efficient renovations more accessible to B.C. homeowners.",
+  //   category: "Rebate",
+  //   link: "/assets/cleanbcbetterhomes.png",
+  //   amount: "Up to $14,000 ",
+  //   areas: "British Columbia",
+  // },
 ];
 
 const RebatePage = () => {
@@ -55,7 +86,7 @@ const RebatePage = () => {
   const closeModal = () => setSelectedRebate(null);
 
   return (
-    <div className="bg-gray-50 py-8 px-4">
+    <div className="bg-white py-8 px-4" id="Rebate-page">
       {/* Page Header */}
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -81,58 +112,68 @@ const RebatePage = () => {
         </button>
         <button
           className={`px-4 py-2 rounded-lg mx-2 ${
-            filter === "Energy"
+            filter === "Rebate"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
-          onClick={() => setFilter("Energy")}
+          onClick={() => setFilter("Rebate")}
         >
-          Energy
+          Rebate
         </button>
         <button
           className={`px-4 py-2 rounded-lg mx-2 ${
-            filter === "Sustainability"
+            filter === "Loan"
               ? "bg-blue-600 text-white"
               : "bg-gray-200 text-gray-700 hover:bg-gray-300"
           }`}
-          onClick={() => setFilter("Sustainability")}
+          onClick={() => setFilter("Loan")}
         >
-          Sustainability
+          Loan
         </button>
       </div>
 
       {/* Rebate List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10        m-10 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 m-10 justify-items-center">
         {filteredRebates.map((rebate) => (
           <div
             key={rebate.id}
-            className="relative flex flex-col bg-white shadow-sm  border-gray-200 border-2"
+            className="relative flex flex-col w-full bg-white shadow-lg border-gray-200 border-2 rounded-3xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 min-h-[350px]"
           >
-            {/* Background Image and Centered Header */}
+            {/* Apply blur to the entire background */}
+            <div className="absolute inset-0 bg-blue-50 bg-opacity-40 backdrop-blur-sm"></div>
+
+            {/* Background Image and Blur */}
             <div className="relative w-full h-48 sm:h-64 md:h-72">
               <img
-                src={rebate.link} // Replace with your image URL
+                src={rebate.link} // Ensure this is a valid image URL
                 alt="Background"
-                className="absolute inset-0 w-full h-full object-cover backdrop-blur-sm  "
+                className="absolute inset-0 w-full h-full object-cover transition-transform transform hover:scale-110"
               />
-
-              {/* Centered Header Title */}
             </div>
 
-            {/* Content Below Image */}
-            <div className="relative z-10 p-4 bg-white rounded-b-lg">
-              <h5 className=" text-slate-800 text-2xl font-semibold z-10">
+            {/* Slanted Premium Badge */}
+            <div className="absolute top-2 right-2 bg-teal-500 text-white text-sm font-semibold py-2 px-4 rounded-full z-20 transform -hue-rotate-60">
+              {rebate.amount}
+            </div>
+
+            {/* Content Above the Blurred Background */}
+            <div className="relative z-10 p-4 rounded-b-lg flex-1">
+              <h5 className="text-black text-2xl font-semibold ">
                 {rebate.title}
               </h5>
-              <p className="text-slate-600 leading-normal line-clamp-2 font-light">
+              <p className="text-gray-600 leading-normal h-12 line-clamp-2 font-light">
                 {rebate.shortDescription}
               </p>
-              <button
-                className="rounded-md bg-blue-600 py-2 px-4 mt-4 text-center text-sm text-white hover:bg-slate-700"
-                onClick={() => setSelectedRebate(rebate)}
-              >
-                Read More
-              </button>
+
+              <div className="flex justify-between">
+                <button
+                  className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-2 px-4 mt-2 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
+                  onClick={() => setSelectedRebate(rebate)}
+                >
+                  Read More
+                </button>
+                <span className="text-gray-700 px-2 py-4">{rebate.areas}</span>
+              </div>
             </div>
           </div>
         ))}

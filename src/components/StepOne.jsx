@@ -314,6 +314,25 @@ const StepOne = ({ formData, handleInputChange }) => {
           </select>
         </div>
       )}
+      {formData.income && (
+        <div className="mb-4">
+          <label className="block text-lg font-medium text-gray-700">
+            How old is your house?
+          </label>
+          <select
+            name="homeAge"
+            value={formData.homeAge}
+            onChange={handleInputChange}
+            className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="">Select</option>
+            <option value="lessThan1Year">Less than 1 Year</option>
+            <option value="1to5"> 1 to 5 Years</option>
+            <option value="5to10">5 to 10 Years</option>
+            <option value="Greaterthan10">Greater than 10 Years</option>
+          </select>
+        </div>
+      )}
       {/* {formData.income && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">

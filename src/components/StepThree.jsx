@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
 import { validPostalCodes } from "./data/postalCodes";
+import { useContext } from "react";
+import { DataContext } from "./context/context";
 
-const StepThree = ({ formData, index }) => {
-  // Extract values from formData
+const StepThree = ({ handleNext }) => {
+  const { formData } = useContext(DataContext);
   const {
     residentOfOntario,
     primaryResidence,
@@ -121,7 +123,7 @@ const StepThree = ({ formData, index }) => {
       name: "Home Efficiency Rebate (HER)",
       eligible: isEligibleForHomeEfficiencyRebate,
       amount: "$5,000",
-      image: "/images/homeEfficiency.jpg",
+      image: "/assets/rebate.jpg",
       message:
         "Save energy, save money! You qualify for up to $5,000 in energy efficiency upgrades. Let’s make your home more efficient and reduce your bills!",
       step: "Talk to our Expert Sales Agent to get more information about these rebates",
@@ -172,17 +174,23 @@ const StepThree = ({ formData, index }) => {
   return (
     <div className="flex flex-col w-full mx-auto items-center justify-center py-6 px-6">
       {eligiblePrograms.length > 0 && (
-        <h1 className="text-4xl font-semibold text-center text-green-600 mb-8">
-          Congratulations! You Are Eligible for These Programs
-        </h1>
+        <>
+          <h1 className="text-4xl font-semibold text-center text-green-600 mb-4">
+            Congratulations!
+          </h1>
+          <span className="text-lg mb-8 text-green-600 ">
+            {" "}
+            You Are Eligible for These Programs{" "}
+          </span>
+        </>
       )}
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center">
+      <div className="w-full   grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center ">
         {eligiblePrograms.length > 0 ? (
           eligiblePrograms.map((program, index) => (
             <div
               key={index}
-              className="flex flex-col justify-between p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
+              className="flex flex-col justify-between  p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
               style={{
                 backgroundImage: `url('${program.image}')`,
                 backgroundSize: "cover",
@@ -236,8 +244,11 @@ const StepThree = ({ formData, index }) => {
 
               {/* CTA */}
               <div className="text-center z-50">
-                <button className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out">
-                  Book Appointment
+                <button
+                  onClick={handleNext}
+                  className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
+                >
+                  Apply Today
                 </button>
               </div>
             </div>
@@ -254,7 +265,7 @@ const StepThree = ({ formData, index }) => {
           </div>
         )}
       </div>
-      {eligiblePrograms.length > 0 && (
+      {/* {eligiblePrograms.length > 0 && (
         <div>
           <h2 className="text-4xl mb-2 text-center font-semibold text-blue-400">
             Suggested RoadMap
@@ -264,7 +275,7 @@ const StepThree = ({ formData, index }) => {
             className="w-full h-auto object-contain"
           />
         </div>
-      )}
+      )} */}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import HomeEfficency from "./HomeEfficency";
 const EligibilityChecker = () => {
   return (
-    <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">
+    <div className="bg-blue-50 py-8 px-4">
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Eligibility Checker

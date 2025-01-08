@@ -1,33 +1,37 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+import Appointment from "./appointment/Appointment";
+import { DataContext } from "./context/context";
 
 const HomeEfficency = () => {
-  const [formData, setFormData] = useState({
-    residentOfOntario: "",
-    homeType: "",
-    homeOccupied: "",
-    enbridgeCustomer: "",
-    heatingType: "",
-    prequalifyConsent: "",
-    primaryResidence: "",
-    owernShip: "",
-    heatingSystem: "",
-    owneshipLength: "",
-    income: "",
-    homeAge: "",
-    rebateType: "",
-    postalCode: "",
-    furnaceAge: "",
-    heaterAge: "",
-    gasProvider: "",
-    gasBill: "",
-    electricBill: "",
-  });
+  const { formData, setFormData } = useContext(DataContext);
+  // const [formData, setFormData] = useState({
+  //   residentOfOntario: "",
+  //   homeType: "",
+  //   homeOccupied: "",
+  //   enbridgeCustomer: "",
+  //   heatingType: "",
+  //   prequalifyConsent: "",
+  //   primaryResidence: "",
+  //   owernShip: "",
+  //   heatingSystem: "",
+  //   owneshipLength: "",
+  //   income: "",
+  //   homeAge: "",
+  //   rebateType: "",
+  //   postalCode: "",
+  //   furnaceAge: "",
+  //   heaterAge: "",
+  //   gasProvider: "",
+  //   gasBill: "",
+  //   electricBill: "",
+  // });
 
   const [errors, setErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
+  const [conditionForConfet, setConditionForConfet] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked, selectedOptions } = e.target;
@@ -78,10 +82,19 @@ const HomeEfficency = () => {
 
   const isNextDisabled =
     currentStep === 1
-      ? !formData.income // Disable if no planned upgrades selected
+      ? !formData.homeAge // Disable if no planned upgrades selected
       : currentStep === 2
       ? !formData.electricBill
       : false;
+  const handleNext = () => {
+    setConditionForConfet(false);
+    if (currentStep < steps.length) setCurrentStep((prev) => prev + 1);
+  };
+
+  const handleBack = () => {
+    setConditionForConfet(false);
+    if (currentStep > 1) setCurrentStep((prev) => prev - 1);
+  };
 
   const steps = [
     {
@@ -105,23 +118,21 @@ const HomeEfficency = () => {
     {
       index: 3,
       label: "Result",
-      content: <StepThree formData={formData} />,
+      content: (
+        <StepThree
+          formData={formData}
+          handleNext={handleNext}
+          handleBack={handleBack}
+        />
+      ),
     },
     {
       index: 4,
       label: "Book Appointment",
-      content: "Final content",
+      content: <Appointment />,
       isFinal: true,
     },
   ];
-
-  const handleNext = () => {
-    if (currentStep < steps.length) setCurrentStep((prev) => prev + 1);
-  };
-
-  const handleBack = () => {
-    if (currentStep > 1) setCurrentStep((prev) => prev - 1);
-  };
 
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">
@@ -192,32 +203,35 @@ const HomeEfficency = () => {
           <button
             type="button"
             onClick={handleBack}
-            className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+            className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
             disabled={currentStep === 1}
           >
-            Back
+            <i className="fa-solid fa-arrow-left-long"></i>
           </button>
           {currentStep === 3 ? (
             <button
               type="button"
               onClick={handleNext} // Replace with your booking logic
-              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+              className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
             >
               Book Appointment
             </button>
-          ) : currentStep === 4 ? (
-            <button
-              type="button"
-              onClick={() => alert("Form submitted!")} // Replace with your form submission logic
-              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-            >
-              Submit
-            </button>
-          ) : (
+          ) : currentStep === 4 ? null : (
+            // <button
+            //   type="button"
+            //   onClick={() => alert("Form submitted!")} // Replace with your form submission logic
+            //   className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            // >
+            //   Submit
+            // </button>
             <button
               type="button"
               onClick={handleNext}
-              className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+              className={`py-3 px-6 rounded-full shadow-lg font-bold text-white transition-all duration-300 ease-in-out ${
+                isNextDisabled
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 hover:shadow-xl hover:bg-blue-700"
+              }`}
               disabled={isNextDisabled} // Disable if any field is empty or invalid
             >
               Next
