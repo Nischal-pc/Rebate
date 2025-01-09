@@ -6,7 +6,7 @@ export const validationSchema= Yup.object().shape({
       firstName: Yup.string().required("First name is required"),
       lastName: Yup.string().required("First name is required"),
       email: Yup.string().email('Invalid email address').required('Email is required'),
-      phoneNumber: Yup.string().min(10,"Invalid phone number").required('Phone Number is required'),
+    mobile: Yup.string().min(10,"Invalid phone number").required('Phone Number is required'),
     }),
     address: Yup.object().shape({
       fullAddress:Yup.string().required("address is required"),

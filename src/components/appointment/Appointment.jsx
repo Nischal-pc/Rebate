@@ -260,12 +260,12 @@ const Appointment = () => {
                 id="phoneNumber"
                 name="phoneNumber"
                 placeholder="123 456 7890"
-                {...register("customer.phoneNumber")}
+                {...register("customer.mobile")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
-              {errors?.customer?.phoneNumber && (
+              {errors?.customer?.mobile && (
                 <p className="text-red-500 text-xs">
-                  {errors.customer.phoneNumber?.message}
+                  {errors.customer.mobile?.message}
                 </p>
               )}
             </div>
