@@ -2,22 +2,119 @@ import { useForm } from "react-hook-form";
 import { validationSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Modal from "../modal/Modal";
-import { useState } from "react";
-
+import { useRef, useState, useEffect, useContext } from "react";
+import { DataContext } from "../context/context";
+import { ref } from "yup";
 const Appointment = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { formData, setFormData } = useContext(DataContext);
+  const inputRef = useRef(null);
+
+  const autocompleteRef = useRef(null);
 
   const {
     register,
     handleSubmit,
+    watch,
+    getValues,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(validationSchema),
     defaultValues: { date: null },
   });
 
+  useEffect(() => {
+    // Function to initialize Google Maps Autocomplete
+    const initializeAutocomplete = () => {
+      console.log("55", window.google);
+      if (window.google) {
+        const autocomplete = new window.google.maps.places.Autocomplete(
+          inputRef.current,
+          {
+            types: ["geocode"],
+          }
+        );
+        autocompleteRef.current = autocomplete;
+
+        console.log("55", "window.google");
+        autocomplete.addListener("place_changed", () => {
+          console.log("clicked for plac");
+          const place = autocomplete.getPlace();
+          const address = {
+            street: "",
+            city: "",
+            province: "",
+            postalCode: "",
+            country: "",
+            fullAddress: "", // Initialize fullAddress
+          };
+
+          place.address_components.forEach((component) => {
+            const types = component.types;
+            if (types.includes("street_number")) {
+              address.street = component.long_name;
+            }
+            if (types.includes("route")) {
+              address.street += " " + component.long_name;
+            }
+            if (types.includes("locality")) {
+              address.city = component.long_name;
+            }
+            if (types.includes("administrative_area_level_1")) {
+              address.province = component.short_name;
+            }
+            if (types.includes("postal_code")) {
+              address.postalCode = component.long_name;
+            }
+            if (types.includes("country")) {
+              address.country = component.long_name;
+            }
+          });
+          console.log(place.address_components);
+
+          // Set full address here
+          address.fullAddress = `${address.street}, ${address.city}, ${address.province}, ${address.postalCode}, ${address.country}`;
+          setValue("address", address);
+
+          // Update form data
+          setFormData((data) => {
+            console.log("on line 78");
+            return {
+              ...data,
+              address,
+              // Send the full address
+            };
+          });
+        });
+      } else {
+        console.error("Google Maps API not loaded or inputRef is null");
+      }
+    };
+
+    // Wait for Google Maps API to load
+    const interval = setInterval(() => {
+      console.log(inputRef.current);
+      if (window.google && inputRef.current) {
+        initializeAutocomplete();
+      }
+      clearInterval(interval);
+    }, 100);
+
+    // Cleanup listener on unmount
+    return () => {
+      if (autocompleteRef.current) {
+        window.google.maps.event.clearInstanceListeners(
+          autocompleteRef.current
+        );
+      }
+      clearInterval(interval);
+    };
+  }, []);
+
   const onSubmit = async (data) => {
     console.log(data);
+
     if (data) {
       const res = await fetch(
         "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
@@ -28,21 +125,8 @@ const Appointment = () => {
               source: "EBC",
               types: [],
             },
-            customer: {
-              firstName: data.firstName,
-              lastName: data.lastName,
-              email: data.email,
-              mobile: data.phoneNumber,
-              home: "",
-            },
-            address: {
-              fullAddress: data.address,
-              street: "",
-              city: "",
-              province: "",
-              country: "",
-              postalCode: "",
-            },
+            customer: data.customer,
+            address: data.address,
             meetingTime: formatMeetingTime(data.date, data.time),
 
             notes: "",
@@ -76,8 +160,9 @@ const Appointment = () => {
     // Return the date as an ISO string in UTC
     return date.toISOString();
   }
+
   return (
-    <div className="flex flex-col w-full relative">
+    <div className="flex flex-col w-full">
       {/* Blue Background */}
       <div className="bg-gradient-to-r from-blue-500 to-indigo-500 h-48"></div>
 
@@ -89,7 +174,7 @@ const Appointment = () => {
         >
           <div className="mb-8 text-center">
             <h2 className="text-3xl font-extrabold text-gray-800 mb-3">
-              Boost Your Savings with Expert Guidance—Book Now!
+              Boost Your Savings with Expert Guidance
             </h2>
             <p className="text-gray-600">
               Book an appointment now and let us help you claim your savings.
@@ -109,12 +194,12 @@ const Appointment = () => {
                 id="firstName"
                 name="firstName"
                 placeholder="Peter"
-                {...register("firstName")}
+                {...register("customer.firstName")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
-              {errors.firstName && (
+              {errors?.customer?.firstName && (
                 <p className="text-red-500 text-xs">
-                  {errors.firstName.message}
+                  {errors.customer.firstName?.message}
                 </p>
               )}
             </div>
@@ -131,12 +216,12 @@ const Appointment = () => {
                 id="lastName"
                 name="lastName"
                 placeholder="Parker"
-                {...register("lastName")}
+                {...register("customer.lastName")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
-              {errors.lastName && (
+              {errors?.customer?.lastName && (
                 <p className="text-red-500 text-xs">
-                  {errors.lastName.message}
+                  {errors.customer.lastName?.message}
                 </p>
               )}
             </div>
@@ -153,11 +238,13 @@ const Appointment = () => {
                 id="email"
                 name="email"
                 placeholder="example@mail.com"
-                {...register("email")}
+                {...register("customer.email")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
-              {errors.email && (
-                <p className="text-red-500 text-xs">{errors.email.message}</p>
+              {errors?.customer?.email && (
+                <p className="text-red-500 text-xs">
+                  {errors.customer.email?.message}
+                </p>
               )}
             </div>
 
@@ -173,12 +260,12 @@ const Appointment = () => {
                 id="phoneNumber"
                 name="phoneNumber"
                 placeholder="123 456 7890"
-                {...register("phoneNumber")}
+                {...register("customer.phoneNumber")}
                 className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent"
               />
-              {errors.phoneNumber && (
+              {errors?.customer?.phoneNumber && (
                 <p className="text-red-500 text-xs">
-                  {errors.phoneNumber.message}
+                  {errors.customer.phoneNumber?.message}
                 </p>
               )}
             </div>
@@ -234,14 +321,19 @@ const Appointment = () => {
             </label>
             <input
               type="text"
-              id="address"
-              name="address"
               placeholder="123 Main Street"
-              {...register("address")}
+              {...register("address.fullAddress")}
+              ref={(e) => {
+                register("address.fullAddress").ref(e);
+                inputRef.current = e;
+              }}
               className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
             />
-            {errors.address && (
-              <p className="text-red-500 text-xs">{errors.address.message}</p>
+
+            {errors?.address && (
+              <p className="text-red-500 text-xs">
+                {errors?.address?.fullAddress?.message}
+              </p>
             )}
           </div>
 

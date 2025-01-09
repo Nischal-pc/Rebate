@@ -23,6 +23,8 @@ const DataContextProvider = ({ children }) => {
     gasProvider: "",
     gasBill: "",
     electricBill: "",
+    address: "",
+    estimatedSaved: "",
   });
   return (
     <DataContext.Provider value={{ formData, setFormData }}>

@@ -167,7 +167,7 @@ const StepTwo = ({ formData, handleInputChange }) => {
           >
             <option value="">Select</option>
             <option value="enbridge">Enbridge</option>
-            <option value="6MonthsTo1Year">Others</option>
+            <option value="6MonthsTo1Year">{"Others(Union ,EPCOR)"}</option>
           </select>
         </div>
       )}

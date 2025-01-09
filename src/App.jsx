@@ -9,7 +9,7 @@ import BottomSection from "./components/BottomSection";
 function App() {
   return (
     <>
-      <div className="sticky top-0 z-50">
+      <div className="sticky top-0 z-50 ">
         <NavBar />
       </div>
       <LandingPage />

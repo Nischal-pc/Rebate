@@ -1,5 +1,85 @@
-const StepOne = ({ formData, handleInputChange }) => {
-  console.log(formData);
+import { useContext, useRef, useEffect } from "react";
+import { DataContext } from "./context/context";
+
+const StepOne = ({ handleInputChange }) => {
+  const { formData, setFormData } = useContext(DataContext);
+  const inputRef = useRef(null);
+  const autocompleteRef = useRef(null);
+
+  useEffect(() => {
+    // Function to initialize Google Maps Autocomplete
+    const initializeAutocomplete = () => {
+      if (window.google && inputRef.current) {
+        const autocomplete = new window.google.maps.places.Autocomplete(
+          inputRef.current,
+          {
+            types: ["geocode"],
+          }
+        );
+        autocompleteRef.current = autocomplete;
+
+        autocomplete.addListener("place_changed", () => {
+          const place = autocomplete.getPlace();
+          const address = {
+            street: "",
+            city: "",
+            province: "",
+            postalCode: "",
+            country: "",
+            fullAddress: place.formatted_address,
+          };
+
+          place.address_components.forEach((component) => {
+            const types = component.types;
+            if (types.includes("street_number")) {
+              address.street = component.long_name;
+            }
+            if (types.includes("route")) {
+              address.street += " " + component.long_name;
+            }
+            if (types.includes("locality")) {
+              address.city = component.long_name;
+            }
+            if (types.includes("administrative_area_level_1")) {
+              address.province = component.short_name;
+            }
+            if (types.includes("postal_code")) {
+              address.postalCode = component.long_name;
+            }
+            if (types.includes("country")) {
+              address.country = component.long_name;
+            }
+          });
+
+          setFormData((data) => ({
+            ...data,
+            postalCode: address.postalCode,
+          }));
+        });
+      } else {
+        console.error("Google Maps API not loaded or inputRef is null");
+      }
+    };
+
+    // Wait for Google Maps API to load
+    const interval = setInterval(() => {
+      if (window.google && inputRef.current) {
+        clearInterval(interval);
+        initializeAutocomplete();
+      }
+    }, 100);
+
+    // Cleanup listener on unmount
+    return () => {
+      if (autocompleteRef.current) {
+        window.google.maps.event.clearInstanceListeners(
+          autocompleteRef.current
+        );
+      }
+      clearInterval(interval);
+    };
+  }, [setFormData]);
+
   return (
     <div>
       {/* Question 1 */}
@@ -89,7 +169,10 @@ const StepOne = ({ formData, handleInputChange }) => {
             type="text"
             name="postalCode"
             value={formData.postalCode}
-            onChange={handleInputChange}
+            onChange={(e) =>
+              setFormData((data) => ({ ...data, postalCode: e.target.value }))
+            }
+            ref={inputRef}
             className="mt-2 block w-full px-4 py-2 border rounded-md"
             placeholder="Enter postal code"
           />

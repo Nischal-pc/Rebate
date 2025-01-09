@@ -95,93 +95,70 @@ const RebatePage = () => {
   const closeModal = () => setSelectedRebate(null);
 
   return (
-    <div className="bg-white py-8 px-4" id="Rebate-page">
+    <div className="bg-gray-50 py-10 px-6 min-h-screen" id="Rebate-page">
       {/* Page Header */}
       <header className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          Available Rebates
-        </h1>
-        <p className="text-lg text-gray-600">
+        <h1 className="text-5xl font-extrabold  mb-4">Available Rebates</h1>
+        <p className="text-xl text-gray-600">
           Explore financial incentives and grants available for Ontario
           residents.
         </p>
       </header>
 
       {/* Filter Options */}
-      <div className="flex justify-center mb-8">
-        <button
-          className={`px-4 py-2 rounded-lg mx-2 ${
-            filter === "All"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-          onClick={() => setFilter("All")}
-        >
-          All
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg mx-2 ${
-            filter === "Rebate"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-          onClick={() => setFilter("Rebate")}
-        >
-          Rebate
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg mx-2 ${
-            filter === "Loan"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-          onClick={() => setFilter("Loan")}
-        >
-          Loan
-        </button>
+      <div className="flex justify-center gap-4 mb-10">
+        {["All", "Rebate", "Loan"].map((option) => (
+          <button
+            key={option}
+            className={`px-6 py-2 rounded-full text-lg font-semibold shadow-md transition-all duration-300 ${
+              filter === option
+                ? "bg-blue-600 text-white scale-105"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            }`}
+            onClick={() => setFilter(option)}
+          >
+            {option}
+          </button>
+        ))}
       </div>
 
       {/* Rebate List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 m-10 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
         {filteredRebates.map((rebate) => (
           <div
             key={rebate.id}
-            className="relative flex flex-col w-full bg-white shadow-lg border-gray-200 border-2 rounded-3xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 min-h-[350px]"
+            className="relative flex flex-col bg-white shadow-lg rounded-3xl overflow-hidden border-2 border-gray-200 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400"
           >
-            {/* Apply blur to the entire background */}
-            <div className="absolute inset-0 bg-blue-50 bg-opacity-40 backdrop-blur-sm"></div>
-
-            {/* Background Image and Blur */}
-            <div className="relative w-full h-48 sm:h-64 md:h-72">
+            {/* Background Image */}
+            <div className="relative w-full h-48">
               <img
-                src={rebate.link} // Ensure this is a valid image URL
-                alt="Background"
-                className="absolute bg-white inset-0 w-full h-full object-contain transition-transform transform hover:scale-110"
+                src={rebate.link}
+                alt={rebate.title}
+                className="absolute inset-0 w-full h-full object-contain rounded-t-3xl"
               />
             </div>
 
-            {/* Slanted Premium Badge */}
-            <div className="absolute top-2 right-2 bg-teal-500 text-white text-sm font-semibold py-2 px-4 rounded-full z-20 transform -hue-rotate-60">
+            {/* Badge */}
+            <div className="absolute top-4 right-4 bg-teal-500 text-white text-sm font-bold py-1 px-3 rounded-full">
               {rebate.amount}
             </div>
 
-            {/* Content Above the Blurred Background */}
-            <div className="relative z-10 p-4 rounded-b-lg flex-1">
-              <h5 className="text-black text-2xl font-semibold ">
+            {/* Content */}
+            <div className="p-6 flex flex-col justify-between flex-1">
+              <h5 className="text-2xl font-bold text-gray-800 mb-2">
                 {rebate.title}
               </h5>
-              <p className="text-gray-600 leading-normal h-12 line-clamp-2 font-light">
+              <p className="text-gray-600 mb-4 line-clamp-2">
                 {rebate.shortDescription}
               </p>
-
-              <div className="flex justify-between">
+              <div className="flex justify-between items-center">
                 <button
-                  className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-2 px-4 mt-2 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
+                  className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-2 px-4 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
                   onClick={() => setSelectedRebate(rebate)}
                 >
                   Read More
                 </button>
-                <span className="text-gray-700 px-2 py-4">{rebate.areas}</span>
+                <span className="text-gray-700 text-sm">{rebate.areas}</span>
               </div>
             </div>
           </div>
@@ -191,49 +168,171 @@ const RebatePage = () => {
       {/* Modal */}
       {selectedRebate && (
         <div
-          onClick={(e) => {
-            if (e.target === e.currentTarget) {
-              closeModal();
-            }
-          }}
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={(e) => {
+            if (e.target === e.currentTarget) closeModal();
+          }}
         >
-          <div className="bg-white rounded-lg p-6 w-[80vw] h-full overflow-y-auto relative">
-            {/* Close Icon */}
+          <div className="bg-white rounded-lg p-6 w-[90vw] max-w-4xl overflow-y-auto relative">
+            {/* Close Button */}
             <IoClose
-              className="absolute top-2 right-2 text-2xl cursor-pointer"
+              className="absolute top-4 right-4 text-3xl text-gray-600 cursor-pointer hover:text-gray-800"
               onClick={closeModal}
             />
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">
               {selectedRebate.title}
             </h2>
-            {selectedRebate.title === "HomeEnergySaver Program" && (
-              <iframe
-                src={selectedRebate.website}
-                className="w-full h-full border-0"
-              />
-            )}
-            {selectedRebate.title === "Home Renovation Savings Program" && (
-              <iframe
-                src={selectedRebate.website}
-                className="w-full h-full border-0"
-              />
-            )}
-            {selectedRebate.title === "Home Efficiency Rebate" && (
-              <iframe
-                src={selectedRebate.website}
-                className="w-full h-full border-0"
-              />
-            )}
-
             <p className="text-gray-700 mb-6">
               {selectedRebate.fullDescription}
             </p>
-            {selectedRebate.detailedContent}
+            <iframe
+              src={selectedRebate.website}
+              className="w-full h-96 border-0 rounded-lg"
+              title={selectedRebate.title}
+            />
           </div>
         </div>
       )}
     </div>
+    // <div className="bg-white py-8 px-4" id="Rebate-page">
+    //   {/* Page Header */}
+    //   <header className="text-center mb-12">
+    //     <h1 className="text-4xl font-bold text-gray-800 mb-4">
+    //       Available Rebates
+    //     </h1>
+    //     <p className="text-lg text-gray-600">
+    //       Explore financial incentives and grants available for Ontario
+    //       residents.
+    //     </p>
+    //   </header>
+
+    //   {/* Filter Options */}
+    //   <div className="flex justify-center mb-8">
+    //     <button
+    //       className={`px-4 py-2 rounded-lg mx-2 ${
+    //         filter === "All"
+    //           ? "bg-blue-600 text-white"
+    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    //       }`}
+    //       onClick={() => setFilter("All")}
+    //     >
+    //       All
+    //     </button>
+    //     <button
+    //       className={`px-4 py-2 rounded-lg mx-2 ${
+    //         filter === "Rebate"
+    //           ? "bg-blue-600 text-white"
+    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    //       }`}
+    //       onClick={() => setFilter("Rebate")}
+    //     >
+    //       Rebate
+    //     </button>
+    //     <button
+    //       className={`px-4 py-2 rounded-lg mx-2 ${
+    //         filter === "Loan"
+    //           ? "bg-blue-600 text-white"
+    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+    //       }`}
+    //       onClick={() => setFilter("Loan")}
+    //     >
+    //       Loan
+    //     </button>
+    //   </div>
+
+    //   {/* Rebate List */}
+    //   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 m-10 justify-items-center">
+    //     {filteredRebates.map((rebate) => (
+    //       <div
+    //         key={rebate.id}
+    //         className="relative flex flex-col w-full bg-white shadow-lg border-gray-200 border-2 rounded-3xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 min-h-[350px]"
+    //       >
+    //         {/* Apply blur to the entire background */}
+    //         <div className="absolute inset-0 bg-blue-50 bg-opacity-40 backdrop-blur-sm"></div>
+
+    //         {/* Background Image and Blur */}
+    //         <div className="relative w-full h-48 sm:h-64 md:h-72">
+    //           <img
+    //             src={rebate.link} // Ensure this is a valid image URL
+    //             alt="Background"
+    //             className="absolute bg-white inset-0 w-full h-full object-contain transition-transform transform hover:scale-110"
+    //           />
+    //         </div>
+
+    //         {/* Slanted Premium Badge */}
+    //         <div className="absolute top-2 right-2 bg-teal-500 text-white text-sm font-semibold py-2 px-4 rounded-full z-20 transform -hue-rotate-60">
+    //           {rebate.amount}
+    //         </div>
+
+    //         {/* Content Above the Blurred Background */}
+    //         <div className="relative z-10 p-4 rounded-b-lg flex-1">
+    //           <h5 className="text-black text-2xl font-semibold ">
+    //             {rebate.title}
+    //           </h5>
+    //           <p className="text-gray-600 leading-normal h-12 line-clamp-2 font-light">
+    //             {rebate.shortDescription}
+    //           </p>
+
+    //           <div className="flex justify-between">
+    //             <button
+    //               className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-2 px-4 mt-2 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
+    //               onClick={() => setSelectedRebate(rebate)}
+    //             >
+    //               Read More
+    //             </button>
+    //             <span className="text-gray-700 px-2 py-4">{rebate.areas}</span>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     ))}
+    //   </div>
+
+    //   {/* Modal */}
+    //   {selectedRebate && (
+    //     <div
+    //       onClick={(e) => {
+    //         if (e.target === e.currentTarget) {
+    //           closeModal();
+    //         }
+    //       }}
+    //       className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
+    //     >
+    //       <div className="bg-white rounded-lg p-6 w-[80vw] h-full overflow-y-auto relative">
+    //         {/* Close Icon */}
+    //         <IoClose
+    //           className="absolute top-2 right-2 text-2xl cursor-pointer"
+    //           onClick={closeModal}
+    //         />
+    //         <h2 className="text-2xl font-bold mb-4 text-gray-800">
+    //           {selectedRebate.title}
+    //         </h2>
+    //         {selectedRebate.title === "HomeEnergySaver Program" && (
+    //           <iframe
+    //             src={selectedRebate.website}
+    //             className="w-full h-full border-0"
+    //           />
+    //         )}
+    //         {selectedRebate.title === "Home Renovation Savings Program" && (
+    //           <iframe
+    //             src={selectedRebate.website}
+    //             className="w-full h-full border-0"
+    //           />
+    //         )}
+    //         {selectedRebate.title === "Home Efficiency Rebate" && (
+    //           <iframe
+    //             src={selectedRebate.website}
+    //             className="w-full h-full border-0"
+    //           />
+    //         )}
+
+    //         <p className="text-gray-700 mb-6">
+    //           {selectedRebate.fullDescription}
+    //         </p>
+    //         {selectedRebate.detailedContent}
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
   );
 };
 

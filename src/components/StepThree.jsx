@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+// export default StepThree;
+import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
 import { validPostalCodes } from "./data/postalCodes";
 import { useContext } from "react";
 import { DataContext } from "./context/context";
+import RoadmapAndSavings from "./SavingCountdown";
+import EnergyGuideBox from "./EnergyGuideBox";
 
 const StepThree = ({ handleNext }) => {
   const { formData } = useContext(DataContext);
@@ -16,7 +19,33 @@ const StepThree = ({ handleNext }) => {
     income,
     heatingSystem,
     gasProvider,
+    electricBill,
+    gasBill,
+    estimatedSaved,
   } = formData;
+  const [calculatedResult, setCalculatedResult] = useState(0);
+
+  const calculateProduct = () => {
+    const gas = parseFloat(gasBill) || 0;
+    const electricity = parseFloat(electricBill) || 0;
+
+    if (isNaN(gas) || isNaN(electricity)) {
+      console.error("Invalid input for gasBill or electricityBill.");
+      setCalculatedResult(0);
+      return;
+    }
+
+    const total = (gas * electricity * 0.7 * 0.6).toFixed(2);
+    console.log(
+      `Gas Bill: ${gas}, Electricity Bill: ${electricity}, Total: ${total}`
+    );
+    setCalculatedResult(total);
+  };
+
+  // Recalculate whenever gasBill or electricityBill changes
+  useEffect(() => {
+    calculateProduct();
+  }, [electricBill, gasBill]);
 
   // Eligibility checks
   const isOntarioResident = residentOfOntario === "yes";
@@ -170,9 +199,8 @@ const StepThree = ({ handleNext }) => {
   const eligiblePrograms = eligibilityCriteria.filter(
     (program) => program.eligible
   );
-
   return (
-    <div className="flex flex-col w-full mx-auto items-center justify-center py-6 px-6">
+    <div className="flex flex-col w-full mx-auto items-center justify-center py-6 px-6 ">
       {eligiblePrograms.length > 0 && (
         <>
           <h1 className="text-4xl font-semibold text-center text-green-600 mb-4">
@@ -180,17 +208,17 @@ const StepThree = ({ handleNext }) => {
           </h1>
           <span className="text-lg mb-8 text-green-600 ">
             {" "}
-            You Are Eligible for These Programs{" "}
+            You Are Eligible To Apply For These Programs{" "}
           </span>
         </>
       )}
 
-      <div className="w-full   grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center ">
+      <div className="w-full  grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center ">
         {eligiblePrograms.length > 0 ? (
           eligiblePrograms.map((program, index) => (
             <div
               key={index}
-              className="flex flex-col justify-between  p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
+              className="flex flex-col justify-between p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
               style={{
                 backgroundImage: `url('${program.image}')`,
                 backgroundSize: "cover",
@@ -223,15 +251,6 @@ const StepThree = ({ handleNext }) => {
                 </h3>
               </div>
 
-              {/* Image */}
-              {/* <div className="flex justify-center mb-6">
-                <img
-                  src={program.image}
-                  alt={program.name}
-                  className="w-32 h-32 object-cover rounded-xl shadow-md"
-                />
-              </div> */}
-
               {/* Message */}
               <p className="text-center z-50 text-gray-200 mb-4">
                 {" "}
@@ -254,17 +273,67 @@ const StepThree = ({ handleNext }) => {
             </div>
           ))
         ) : (
-          <div className="bg-gray-100 p-6 rounded-lg shadow-lg  text-center">
+          <div className="bg-gray-100 p-6 rounded-lg shadow-lg text-center">
             <h2 className="text-2xl font-semibold text-gray-800">
               No Matching Programs
             </h2>
             <p className="mt-4 text-gray-600">
-              Unfortunately, you don't qualify for any available programs based
-              on your inputs. Please review your information or contact support.
+              Unfortunately, you do not qualify for any available programs at
+              the moment.
             </p>
           </div>
         )}
       </div>
+      {/* {eligiblePrograms.length > 0 && (
+        <div className="relative ">
+         
+          <div className="text-center mt-16 mb-16 text-4xl font-bold text-green-500">
+            ROADMAP
+          </div>
+
+         
+          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start mt-4 space-y-4 lg:space-y-0">
+          
+            <div className="lg:ml-4">
+              <EnergyGuideBox
+                title="Before Recommended Upgrades"
+                type="Current"
+                rating={146}
+                description="standard"
+              />
+            </div>
+
+           
+            <div className="bg-white flex-grow lg:mx-8 relative w-full lg:w-auto">
+              <img
+                src="/assets/Roadmapfinal.png"
+                alt="Roadmap"
+                className="w-full h-auto max-w-3xl mx-auto"
+              />
+            </div>
+
+            <div className="lg:mr-4">
+              <EnergyGuideBox
+                title="After recommended upgrades"
+                type="Potential"
+                rating={114}
+                description="standard"
+              />
+            </div>
+          </div>
+        </div>
+      )} */}
+      {eligiblePrograms.length > 0 && (
+        <div>
+          <div className="text-center mt-16 text-4xl font-bold text-green-500">
+            ROADMAP
+          </div>
+          <img src="/assets/rodmap.png" />
+        </div>
+      )}
+
+      {/* Estimate Savings Section */}
+      <RoadmapAndSavings calculatedResult={calculatedResult} />
     </div>
   );
 };
