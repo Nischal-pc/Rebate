@@ -115,7 +115,7 @@ const HomeEfficency = () => {
 
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">
-      <ul className="relative flex flex-row gap-x-2 w-[60vw] mx-auto">
+      <ul className="relative flex flex-row gap-x-2 container  sm:w-[60vw] mx-auto">
         {steps.map((step) => (
           <li
             key={step.index}
@@ -168,7 +168,7 @@ const HomeEfficency = () => {
           </li>
         ))}
       </ul>
-      <div className="bg-white p-6 rounded-lg shadow-lg w-[60vw] mx-auto mt-5 sm:mt-8">
+      <div className="bg-white p-6 rounded-lg shadow-lg container max-w-screen-xl mx-auto mt-5 sm:mt-8">
         {/* {steps.map((step) => (
           <div
             key={step.index}

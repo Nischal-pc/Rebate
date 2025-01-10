@@ -213,12 +213,12 @@ const StepThree = ({ handleNext }) => {
         </>
       )}
 
-      <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:gi lg:grid-cols-3 gap-6 justify-items-center">
         {eligiblePrograms.length > 0 ? (
           eligiblePrograms.map((program, index) => (
             <div
               key={index}
-              className="flex flex-col justify-between p-6 w-full max-w-md min-w-[350px] min-h-[350px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
+              className="flex flex-col justify-between p-6 w-full max-w-md min-w-[300px] min-h-[250px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
               style={{
                 backgroundImage: `url('${program.image}')`,
                 backgroundSize: "cover",
@@ -233,14 +233,14 @@ const StepThree = ({ handleNext }) => {
               </div>
 
               {/* Program Name */}
-              <div className="text-3xl z-50 font-extrabold text-white text-center mb-4">
+              <div className="text-2xl sm:text-3xl z-50 font-extrabold text-white text-center mb-4">
                 {program.name}
               </div>
 
               {/* Rebate Amount */}
               <div className="text-center z-50 mb-6">
                 <h3
-                  className="text-4xl font-bold text-green-200"
+                  className="text-3xl sm:text-4xl font-bold text-green-200"
                   style={{
                     letterSpacing: "0.05em",
                     textShadow: "2px 2px 5px rgba(0, 0, 0, 0.15)",
