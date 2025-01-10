@@ -95,7 +95,10 @@ const RebatePage = () => {
   const closeModal = () => setSelectedRebate(null);
 
   return (
-    <div className="bg-gray-50 py-10 px-6 min-h-screen" id="Rebate-page">
+    <div
+      className="bg-gray-50 py-10 px-16 sm:px-28 min-h-screen "
+      id="Rebate-page"
+    >
       {/* Page Header */}
       <header className="text-center mb-12">
         <h1 className="text-5xl font-extrabold  mb-4">Available Rebates</h1>
@@ -123,7 +126,7 @@ const RebatePage = () => {
       </div>
 
       {/* Rebate List */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-4 ">
         {filteredRebates.map((rebate) => (
           <div
             key={rebate.id}
