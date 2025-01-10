@@ -182,7 +182,7 @@ const NavBar = () => {
     //   </div>
     // </nav>
     <nav className="fixed top-0 left-0 w-full bg-white text-white shadow-lg">
-      <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4">
+      <div className="max-w-screen-xl mx-auto flex items-center justify-between px-6 py-4 sm:px-8 lg:px-10">
         {/* Logo and Company Name */}
         <a href="#" className="flex items-center space-x-2">
           <img
@@ -196,9 +196,6 @@ const NavBar = () => {
               borderRadius: 20,
             }}
           />
-          {/* <span className="text-xl font-semibold font-poppins">
-            EFFICIENCY BROKER CANADA
-          </span> */}
         </a>
 
         {/* Sign In and Get Started Buttons */}
