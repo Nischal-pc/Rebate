@@ -204,7 +204,9 @@ const NavBar = () => {
         {/* Sign In and Get Started Buttons */}
         <div className="flex space-x-4">
           <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-full border-2 border-transparent hover:border-white transition-all duration-300">
-            Get Started
+            <Link to="Rebate-Page" smooth={true} duration={500}>
+              Get Started
+            </Link>
           </button>
         </div>
       </div>
