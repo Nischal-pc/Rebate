@@ -6,7 +6,7 @@ const StepTwo = ({ formData, handleInputChange }) => {
         <label className="block text-lg font-medium text-gray-700">
           What is your current primary heating system?
         </label>
-        <div className="grid grid-cols-6 gap-8 mt-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 mt-4">
           <button
             type="button"
             className="flex flex-col items-center space-y-2"
@@ -25,12 +25,15 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/naturalgas.png"
-                alt="Detached"
+                alt="Natural Gas Furnace"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Natural Gas Furnace</span>
+            <span className="text-sm sm:text-md lg:text-lg">
+              Natural Gas Furnace
+            </span>
           </button>
+
           <button
             type="button"
             className="flex flex-col items-center space-y-2"
@@ -49,12 +52,15 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/oil.png"
-                alt="Detached"
-                className="w-full h-auto aspect-square scale-50 scale object-contain"
+                alt="Oil Furnace"
+                className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Oil furnace or boiler</span>
+            <span className="text-sm sm:text-md lg:text-lg">
+              Oil furnace or boiler
+            </span>
           </button>
+
           <button
             type="button"
             className="flex flex-col items-center space-y-2"
@@ -73,12 +79,13 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/propane.png"
-                alt="Detached"
+                alt="Propane"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Propane</span>
+            <span className="text-sm sm:text-md lg:text-lg">Propane</span>
           </button>
+
           <button
             type="button"
             className="flex flex-col items-center space-y-2"
@@ -97,11 +104,13 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/baseheater.png"
-                alt="Detached"
-                className="w-full h-auto aspect-square scale-50 scale object-contain"
+                alt="Electric Baseboard Heaters"
+                className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Electric baseboard heaters</span>
+            <span className="text-sm sm:text-md lg:text-lg">
+              Electric baseboard heaters
+            </span>
           </button>
 
           <button
@@ -122,12 +131,13 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/heatpump.png"
-                alt="Detached"
+                alt="Heat Pump"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Heat Pump</span>
+            <span className="text-sm sm:text-md lg:text-lg">Heat Pump</span>
           </button>
+
           <button
             type="button"
             className="flex flex-col items-center space-y-2"
@@ -146,11 +156,11 @@ const StepTwo = ({ formData, handleInputChange }) => {
             >
               <img
                 src="/assets/other.png"
-                alt="Detached"
+                alt="Other"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />
             </div>
-            <span className="text-md">Other</span>
+            <span className="text-sm sm:text-md lg:text-lg">Other</span>
           </button>
         </div>
       </div>

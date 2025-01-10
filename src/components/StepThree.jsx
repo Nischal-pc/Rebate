@@ -179,7 +179,7 @@ const StepThree = ({ handleNext }) => {
       name: "Oil to Heat Pump Affordability Program",
       eligible: isEligibleForOilToHeatPumpProgram,
       amount: "$10,000",
-      image: "/assets/greenhomeloan.webp",
+      image: "/assets/oiltopump.jpg",
       message:
         "Make the switch to a heat pump! You qualify for up to $10,000 to replace your oil furnace. Let’s make your home more energy-efficient today.",
       step: " Book an appointment to explore your options and get started.",
@@ -213,12 +213,12 @@ const StepThree = ({ handleNext }) => {
         </>
       )}
 
-      <div className="w-full  grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-items-center ">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 justify-items-center">
         {eligiblePrograms.length > 0 ? (
           eligiblePrograms.map((program, index) => (
             <div
               key={index}
-              className="flex flex-col justify-between p-6 w-full max-w-sm min-h-[450px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
+              className="flex flex-col justify-between p-6 w-full max-w-md min-w-[350px] min-h-[350px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
               style={{
                 backgroundImage: `url('${program.image}')`,
                 backgroundSize: "cover",
@@ -227,7 +227,6 @@ const StepThree = ({ handleNext }) => {
             >
               <div className="absolute inset-0 bg-black bg-opacity-40 backdrop-blur-sm rounded-3xl"></div>
               <div className="flex justify-center mb-4 z-50">
-                {" "}
                 <div className="flex items-center justify-center text-white bg-blue-600 text-4xl font-semibold rounded-full w-16 h-16 shadow-xl">
                   {index + 1}
                 </div>
@@ -253,11 +252,9 @@ const StepThree = ({ handleNext }) => {
 
               {/* Message */}
               <p className="text-center z-50 text-gray-200 mb-4">
-                {" "}
                 {program.message}
               </p>
               <p className="text-center text-sm z-50 text-gray-200 mb-4">
-                {" "}
                 {program.step}
               </p>
 
@@ -284,6 +281,7 @@ const StepThree = ({ handleNext }) => {
           </div>
         )}
       </div>
+
       {/* {eligiblePrograms.length > 0 && (
         <div className="relative ">
          
@@ -325,10 +323,10 @@ const StepThree = ({ handleNext }) => {
       )} */}
       {eligiblePrograms.length > 0 && (
         <div>
-          <div className="text-center mt-16 text-4xl font-bold text-green-500">
-            ROADMAP
+          <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
+            SUGGESTED ROADMAP
           </div>
-          <img src="/assets/rodmap.png" />
+          <img src="/assets/rodmap1.jpg" />
         </div>
       )}
 

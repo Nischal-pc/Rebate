@@ -224,7 +224,7 @@ const StepOne = ({ handleInputChange }) => {
           <label className="block text-lg font-medium text-gray-700">
             What type of home do you have?
           </label>
-          <div className="grid grid-cols-5 gap-8 mt-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mt-4">
             <button
               type="button"
               className="flex flex-col items-center space-y-2"
@@ -235,7 +235,7 @@ const StepOne = ({ handleInputChange }) => {
               }
             >
               <div
-                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                className={`flex items-center justify-center border-4 rounded-md p-4 box-border ${
                   formData.homeType === "detached"
                     ? "border-green-700"
                     : "border-gray-200"
@@ -244,10 +244,12 @@ const StepOne = ({ handleInputChange }) => {
                 <img
                   src="/assets/house.png"
                   alt="Detached"
-                  className="w-full h-auto aspect-square scale-105 object-contain"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
                 />
               </div>
-              <span className="text-md">Detached/Semi-detached</span>
+              <span className="text-sm md:text-md text-center">
+                Detached/Semi-detached
+              </span>
             </button>
 
             <button
@@ -260,7 +262,7 @@ const StepOne = ({ handleInputChange }) => {
               }
             >
               <div
-                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                className={`flex items-center justify-center border-4 rounded-md p-4 box-border ${
                   formData.homeType === "rowHouse"
                     ? "border-green-700"
                     : "border-gray-200"
@@ -269,10 +271,12 @@ const StepOne = ({ handleInputChange }) => {
                 <img
                   src="/assets/townhouse.png"
                   alt="Row House"
-                  className="w-full h-auto aspect-square scale-105 object-contain"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
                 />
               </div>
-              <span className="text-md">Row House or Townhouse</span>
+              <span className="text-sm md:text-md text-center">
+                Row House or Townhouse
+              </span>
             </button>
 
             <button
@@ -285,7 +289,7 @@ const StepOne = ({ handleInputChange }) => {
               }
             >
               <div
-                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                className={`flex items-center justify-center border-4 rounded-md p-4 box-border ${
                   formData.homeType === "mobileHome"
                     ? "border-green-700"
                     : "border-gray-200"
@@ -294,10 +298,10 @@ const StepOne = ({ handleInputChange }) => {
                 <img
                   src="/assets/tinyhouse.png"
                   alt="Mobile Home"
-                  className="w-full h-auto aspect-square scale-105 object-contain"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
                 />
               </div>
-              <span className="text-md">
+              <span className="text-sm md:text-md text-center">
                 Mobile Home on a Permanent Foundation
               </span>
             </button>
@@ -312,7 +316,7 @@ const StepOne = ({ handleInputChange }) => {
               }
             >
               <div
-                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                className={`flex items-center justify-center border-4 rounded-md p-4 box-border ${
                   formData.homeType === "floatingHouse"
                     ? "border-green-700"
                     : "border-gray-200"
@@ -321,10 +325,12 @@ const StepOne = ({ handleInputChange }) => {
                 <img
                   src="/assets/houseboat.png"
                   alt="Floating House"
-                  className="w-full h-auto aspect-square scale-105 object-contain"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
                 />
               </div>
-              <span className="text-md">Permanently Moored Floating House</span>
+              <span className="text-sm md:text-md text-center">
+                Permanently Moored Floating House
+              </span>
             </button>
 
             <button
@@ -337,7 +343,7 @@ const StepOne = ({ handleInputChange }) => {
               }
             >
               <div
-                className={`flex items-center justify-center border-4 rounded-md p-2 box-border ${
+                className={`flex items-center justify-center border-4 rounded-md p-4 box-border ${
                   formData.homeType === "none"
                     ? "border-green-700"
                     : "border-gray-200"
@@ -346,10 +352,12 @@ const StepOne = ({ handleInputChange }) => {
                 <img
                   src="/assets/5.png"
                   alt="None"
-                  className="w-full h-auto aspect-square object-contain scale-105"
+                  className="w-24 h-24 md:w-32 md:h-32 object-contain"
                 />
               </div>
-              <span className="text-md">None of the Above</span>
+              <span className="text-sm md:text-md text-center">
+                None of the Above
+              </span>
             </button>
           </div>
         </div>
