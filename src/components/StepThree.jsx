@@ -35,7 +35,7 @@ const StepThree = ({ handleNext }) => {
       return;
     }
 
-    const total = (gas * electricity * 0.7 * 0.6).toFixed(2);
+    const total = ((gas + electricity) * 0.7 * 0.6 * 12).toFixed(2);
     console.log(
       `Gas Bill: ${gas}, Electricity Bill: ${electricity}, Total: ${total}`
     );

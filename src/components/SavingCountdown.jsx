@@ -33,6 +33,13 @@ const RoadmapAndSavings = ({ calculatedResult }) => {
         </p>
         <div className="text-4xl font-extrabold text-green-500 mt-4 flex justify-center items-center">
           <SavingsCountdown targetAmount={calculatedResult} />
+          <span
+            className="text-4xl
+          "
+          >
+            {" "}
+            {""}/Year
+          </span>
         </div>
         <p className="text-sm text-gray-500 mt-2">
           *This is an estimate based on the information provided. Actual savings

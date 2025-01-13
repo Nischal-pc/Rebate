@@ -16,4 +16,5 @@ export const validationSchema= Yup.object().shape({
       street: Yup.string().optional(),
       country: Yup.string().optional(),
     }),
+    dealer:Yup.string().default("Weaver Eco Home")
 })

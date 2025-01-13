@@ -9,7 +9,7 @@ const rebates = [
       "The HomeEnergySaver Program offers incentives to Ontario homeowners with electrically heated homes to install energy-efficient heat pumps, providing rebates up to $5,000 for air source heat pumps and $10,000 for ground source heat pumps.",
     fullDescription:
       "The HomeEnergySaver Program helps homeowners reduce energy usage and save on bills. It offers expert advice, personalized solutions, and practical tips for making your home more energy-efficient.",
-    link: "/assets/saveonenergy2.png",
+    link: "/assets/saveonenergy4.jpg",
     category: "Rebate",
     amount: "$10,000",
     areas: "Ontario",
@@ -69,6 +69,7 @@ const rebates = [
     amount: "Up to $12,000",
     areas: "Ontario",
     website: "https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings",
+    startdate: "From Jan 12",
   },
   // {
   //   id: 6,
@@ -145,6 +146,11 @@ const RebatePage = () => {
             <div className="absolute top-4 right-4 bg-teal-500 text-white text-sm font-bold py-1 px-3 rounded-full">
               {rebate.amount}
             </div>
+            {rebate.id === 5 && (
+              <div className="absolute top-4 left-4 bg-red-700 text-white text-sm font-bold py-1 px-3 rounded-full">
+                {rebate.startdate}
+              </div>
+            )}
 
             {/* Content */}
             <div className="p-6 flex flex-col justify-between flex-1">
@@ -190,7 +196,7 @@ const RebatePage = () => {
             </p>
             <iframe
               src={selectedRebate.website}
-              className="w-full h-96 border-0 rounded-lg"
+              className="w-full h-[70vh] border-0 rounded-lg"
               title={selectedRebate.title}
             />
           </div>

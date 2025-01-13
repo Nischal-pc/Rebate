@@ -184,7 +184,7 @@ const NavBar = () => {
     <nav
       className="fixed top-0 left-0 w-full bg-white shadow-lg"
       style={{
-        height: "10vh", // Adjust height dynamically as a percentage of the viewport
+        height: "12vh", // Adjust height dynamically as a percentage of the viewport
       }}
     >
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-2 sm:px-6 sm:py-4 lg:px-10">
