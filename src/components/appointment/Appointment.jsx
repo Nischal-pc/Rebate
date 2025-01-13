@@ -117,7 +117,7 @@ const Appointment = () => {
 
     if (data) {
       const res = await fetch(
-        "https://hooks.zapier2.com/hooks/catch/7641205/2muw6xz/",
+        "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
         {
           method: "POST",
           body: JSON.stringify({
@@ -347,8 +347,8 @@ const Appointment = () => {
               {...register("dealer")}
               className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
             >
-              <option value="Weaver Eco Home">Virtual</option>
               <option value="Canadian Choice Home Services">In person</option>
+              <option value="Weaver Eco Home">Virtual</option>
             </select>
           </div>
 
