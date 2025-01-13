@@ -26,8 +26,8 @@ const rebates = [
     link: "/assets/green1.png",
     amount: " up to $40,000",
     areas: "Ontario || BC",
-    website:
-      "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/canada-greener-homes-loan/24286",
+    // website:
+    //   "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/canada-greener-homes-loan/24286",
   },
   {
     id: 3,
@@ -54,8 +54,8 @@ const rebates = [
     link: "/assets/oiltoheat1.png",
     amount: "Up to $10,000",
     areas: "Canada wide",
-    website:
-      "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/oil-heat-pump-affordability-program/24775?utm_campaign=nrcan-rncan-heat-pump-24-25&utm_source=ggl&utm_medium=sem&utm_content=ad-text-en&adv=2425-640752&utm_term=ohpa+program&gad_source=1&gclid=Cj0KCQiA4fi7BhC5ARIsAEV1YiZ7j1kIL5jYasvj8CTNljV0EVNbA-N0QpJaXE547LR5f-gIoGxFxgwaAkgYEALw_wcB",
+    // website:
+    //   "https://natural-resources.canada.ca/energy-efficiency/homes/canada-greener-homes-initiative/oil-heat-pump-affordability-program/24775?utm_campaign=nrcan-rncan-heat-pump-24-25&utm_source=ggl&utm_medium=sem&utm_content=ad-text-en&adv=2425-640752&utm_term=ohpa+program&gad_source=1&gclid=Cj0KCQiA4fi7BhC5ARIsAEV1YiZ7j1kIL5jYasvj8CTNljV0EVNbA-N0QpJaXE547LR5f-gIoGxFxgwaAkgYEALw_wcB",
   },
   {
     id: 5,
@@ -65,23 +65,12 @@ const rebates = [
     fullDescription:
       "Enbridge Gas and Save on Energy have collaborated to introduce a new program designed to assist Ontarians in enhancing their home's energy efficiency and comfort. This program provides substantial rebates for various energy-efficient upgrades, such as insulation, heat pumps, smart thermostats, solar panels, and other improvements, whether your home is heated by natural gas or electricity.",
     category: "Rebate",
-    link: "/assets/comingsoon1.png",
-    amount: "Up to $12,000",
+    link: "/assets/hrs-logo1.png",
+    amount: "Up to $29,000",
     areas: "Ontario",
     website: "https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings",
-    startdate: "From Jan 12",
+    startdate: "Jan 28",
   },
-  // {
-  //   id: 6,
-  //   title: "CleanBC Better Homes & Renovation Rebate",
-  //   shortDescription: "Get rebates for energy-efficient home upgrades in B.C.",
-  //   fullDescription:
-  //     "The CleanBC Better Homes and Home Renovation Rebate Program offers substantial financial incentives to British Columbia residents for various energy-efficient home upgrades. This program covers a wide range of improvements including heat pumps, insulation, windows, doors, and more. Rebates vary based on the type of upgrade and the applicant's income level, making energy-efficient renovations more accessible to B.C. homeowners.",
-  //   category: "Rebate",
-  //   link: "/assets/cleanbcbetterhomes.png",
-  //   amount: "Up to $14,000 ",
-  //   areas: "British Columbia",
-  // },
 ];
 
 const RebatePage = () => {
@@ -147,7 +136,13 @@ const RebatePage = () => {
               {rebate.amount}
             </div>
             {rebate.id === 5 && (
-              <div className="absolute top-4 left-4 bg-red-700 text-white text-sm font-bold py-1 px-3 rounded-full">
+              <div
+                style={{
+                  clipPath:
+                    "polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%)",
+                }}
+                className="absolute top-4 -left-1  bg-red-700 text-white text-sm font-bold py-1 px-4 animate-pulse shadow-lg border-2 border-white"
+              >
                 {rebate.startdate}
               </div>
             )}
@@ -203,145 +198,6 @@ const RebatePage = () => {
         </div>
       )}
     </div>
-    // <div className="bg-white py-8 px-4" id="Rebate-page">
-    //   {/* Page Header */}
-    //   <header className="text-center mb-12">
-    //     <h1 className="text-4xl font-bold text-gray-800 mb-4">
-    //       Available Rebates
-    //     </h1>
-    //     <p className="text-lg text-gray-600">
-    //       Explore financial incentives and grants available for Ontario
-    //       residents.
-    //     </p>
-    //   </header>
-
-    //   {/* Filter Options */}
-    //   <div className="flex justify-center mb-8">
-    //     <button
-    //       className={`px-4 py-2 rounded-lg mx-2 ${
-    //         filter === "All"
-    //           ? "bg-blue-600 text-white"
-    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-    //       }`}
-    //       onClick={() => setFilter("All")}
-    //     >
-    //       All
-    //     </button>
-    //     <button
-    //       className={`px-4 py-2 rounded-lg mx-2 ${
-    //         filter === "Rebate"
-    //           ? "bg-blue-600 text-white"
-    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-    //       }`}
-    //       onClick={() => setFilter("Rebate")}
-    //     >
-    //       Rebate
-    //     </button>
-    //     <button
-    //       className={`px-4 py-2 rounded-lg mx-2 ${
-    //         filter === "Loan"
-    //           ? "bg-blue-600 text-white"
-    //           : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-    //       }`}
-    //       onClick={() => setFilter("Loan")}
-    //     >
-    //       Loan
-    //     </button>
-    //   </div>
-
-    //   {/* Rebate List */}
-    //   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 m-10 justify-items-center">
-    //     {filteredRebates.map((rebate) => (
-    //       <div
-    //         key={rebate.id}
-    //         className="relative flex flex-col w-full bg-white shadow-lg border-gray-200 border-2 rounded-3xl overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 min-h-[350px]"
-    //       >
-    //         {/* Apply blur to the entire background */}
-    //         <div className="absolute inset-0 bg-blue-50 bg-opacity-40 backdrop-blur-sm"></div>
-
-    //         {/* Background Image and Blur */}
-    //         <div className="relative w-full h-48 sm:h-64 md:h-72">
-    //           <img
-    //             src={rebate.link} // Ensure this is a valid image URL
-    //             alt="Background"
-    //             className="absolute bg-white inset-0 w-full h-full object-contain transition-transform transform hover:scale-110"
-    //           />
-    //         </div>
-
-    //         {/* Slanted Premium Badge */}
-    //         <div className="absolute top-2 right-2 bg-teal-500 text-white text-sm font-semibold py-2 px-4 rounded-full z-20 transform -hue-rotate-60">
-    //           {rebate.amount}
-    //         </div>
-
-    //         {/* Content Above the Blurred Background */}
-    //         <div className="relative z-10 p-4 rounded-b-lg flex-1">
-    //           <h5 className="text-black text-2xl font-semibold ">
-    //             {rebate.title}
-    //           </h5>
-    //           <p className="text-gray-600 leading-normal h-12 line-clamp-2 font-light">
-    //             {rebate.shortDescription}
-    //           </p>
-
-    //           <div className="flex justify-between">
-    //             <button
-    //               className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-2 px-4 mt-2 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
-    //               onClick={() => setSelectedRebate(rebate)}
-    //             >
-    //               Read More
-    //             </button>
-    //             <span className="text-gray-700 px-2 py-4">{rebate.areas}</span>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-
-    //   {/* Modal */}
-    //   {selectedRebate && (
-    //     <div
-    //       onClick={(e) => {
-    //         if (e.target === e.currentTarget) {
-    //           closeModal();
-    //         }
-    //       }}
-    //       className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-50"
-    //     >
-    //       <div className="bg-white rounded-lg p-6 w-[80vw] h-full overflow-y-auto relative">
-    //         {/* Close Icon */}
-    //         <IoClose
-    //           className="absolute top-2 right-2 text-2xl cursor-pointer"
-    //           onClick={closeModal}
-    //         />
-    //         <h2 className="text-2xl font-bold mb-4 text-gray-800">
-    //           {selectedRebate.title}
-    //         </h2>
-    //         {selectedRebate.title === "HomeEnergySaver Program" && (
-    //           <iframe
-    //             src={selectedRebate.website}
-    //             className="w-full h-full border-0"
-    //           />
-    //         )}
-    //         {selectedRebate.title === "Home Renovation Savings Program" && (
-    //           <iframe
-    //             src={selectedRebate.website}
-    //             className="w-full h-full border-0"
-    //           />
-    //         )}
-    //         {selectedRebate.title === "Home Efficiency Rebate" && (
-    //           <iframe
-    //             src={selectedRebate.website}
-    //             className="w-full h-full border-0"
-    //           />
-    //         )}
-
-    //         <p className="text-gray-700 mb-6">
-    //           {selectedRebate.fullDescription}
-    //         </p>
-    //         {selectedRebate.detailedContent}
-    //       </div>
-    //     </div>
-    //   )}
-    // </div>
   );
 };
 
