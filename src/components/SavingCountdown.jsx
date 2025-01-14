@@ -31,7 +31,7 @@ const RoadmapAndSavings = ({ calculatedResult }) => {
         <p className="text-lg text-gray-600 mb-2">
           Based on your current electricity and gas usage, you could save:
         </p>
-        <div className="text-4xl font-extrabold text-green-500 mt-4 flex justify-center items-center">
+        {/* <div className="text-4xl font-extrabold text-green-500 mt-4 flex justify-center items-center">
           <SavingsCountdown targetAmount={calculatedResult} />
           <span
             className="text-4xl
@@ -40,6 +40,14 @@ const RoadmapAndSavings = ({ calculatedResult }) => {
             {" "}
             {""}/Year
           </span>
+
+        </div> */}
+        <div className="relative mt-6">
+          <div className="text-6xl font-extrabold text-green-600 flex justify-center items-center">
+            <SavingsCountdown targetAmount={calculatedResult} />
+            <span className="ml-2 text-2xl text-gray-700">/Year</span>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-green-200 to-green-400 opacity-30 rounded-full blur-lg"></div>
         </div>
         <p className="text-sm text-gray-500 mt-2">
           *This is an estimate based on the information provided. Actual savings

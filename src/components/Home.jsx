@@ -3,7 +3,7 @@ import RebatePage from "./RebatePage";
 const LandingPage = () => {
   return (
     <div>
-      <header className="relative bg-[url('/assets/main4.webp')] bg-cover bg-center min-h-screen flex flex-col justify-center overflow-hidden">
+      <header className="relative bg-[url('/assets/main5.jpg')] bg-cover bg-center min-h-screen flex flex-col justify-center overflow-hidden">
         {/* Overlay for gradient effect */}
         <div className="absolute inset-0 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 opacity-80"></div>
 

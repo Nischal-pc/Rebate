@@ -363,7 +363,6 @@ const StepOne = ({ handleInputChange }) => {
         </div>
       )}
 
-      {/* Ownership length */}
       {formData.homeType && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">
@@ -384,7 +383,6 @@ const StepOne = ({ handleInputChange }) => {
         </div>
       )}
 
-      {/* Household income */}
       {formData.ownershipLength && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">
@@ -424,30 +422,6 @@ const StepOne = ({ handleInputChange }) => {
           </select>
         </div>
       )}
-      {/* {formData.income && (
-        <div className="mb-4">
-          <label className="block text-lg font-medium text-gray-700">
-            Have you applied for any of the rebates below?
-          </label>
-          <select
-            name="rebateType"
-            value={formData.rebateType}
-            onChange={handleInputChange}
-            className="mt-2 block w-full px-4 py-2 border rounded-md"
-          >
-            {" "}
-            <option value="">Select</option>
-            <option value="Rebate 1">Canada Greener Homes Loan</option>
-            <option value="Rebate 2">Home Efficiency Rebate</option>
-            <option value="Rebate 3">HomeEnergySaver Program</option>
-            <option value="Rebate 4">Thermostat Rebate</option>
-            <option value="Rebate 5">
-              Oil to Heat Pump Affordability program
-            </option>
-            <option value="Rebate 6">No</option>
-          </select>
-        </div>
-      )} */}
     </div>
   );
 };

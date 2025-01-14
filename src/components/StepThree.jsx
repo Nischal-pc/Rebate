@@ -131,7 +131,6 @@ const StepThree = ({ handleNext }) => {
 
         const particleCount = 50 * (timeLeft / duration);
 
-        // Fire confetti in two different directions
         confetti({
           ...defaults,
           particleCount,
@@ -146,7 +145,6 @@ const StepThree = ({ handleNext }) => {
     }
   }, [conditionForConfet]);
 
-  // Mapping eligibility to programs
   const eligibilityCriteria = [
     {
       name: "Home Efficiency Rebate (HER)",
@@ -195,7 +193,6 @@ const StepThree = ({ handleNext }) => {
     },
   ];
 
-  // Filter eligible programs
   const eligiblePrograms = eligibilityCriteria.filter(
     (program) => program.eligible
   );
@@ -258,7 +255,6 @@ const StepThree = ({ handleNext }) => {
                 {program.step}
               </p>
 
-              {/* CTA */}
               <div className="text-center z-50">
                 <button
                   onClick={handleNext}
@@ -282,45 +278,6 @@ const StepThree = ({ handleNext }) => {
         )}
       </div>
 
-      {/* {eligiblePrograms.length > 0 && (
-        <div className="relative ">
-         
-          <div className="text-center mt-16 mb-16 text-4xl font-bold text-green-500">
-            ROADMAP
-          </div>
-
-         
-          <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start mt-4 space-y-4 lg:space-y-0">
-          
-            <div className="lg:ml-4">
-              <EnergyGuideBox
-                title="Before Recommended Upgrades"
-                type="Current"
-                rating={146}
-                description="standard"
-              />
-            </div>
-
-           
-            <div className="bg-white flex-grow lg:mx-8 relative w-full lg:w-auto">
-              <img
-                src="/assets/Roadmapfinal.png"
-                alt="Roadmap"
-                className="w-full h-auto max-w-3xl mx-auto"
-              />
-            </div>
-
-            <div className="lg:mr-4">
-              <EnergyGuideBox
-                title="After recommended upgrades"
-                type="Potential"
-                rating={114}
-                description="standard"
-              />
-            </div>
-          </div>
-        </div>
-      )} */}
       {eligiblePrograms.length > 0 && (
         <div>
           <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
