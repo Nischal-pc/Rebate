@@ -4,8 +4,7 @@ import confetti from "canvas-confetti";
 import { validPostalCodes } from "./data/postalCodes";
 import { useContext } from "react";
 import { DataContext } from "./context/context";
-import RoadmapAndSavings from "./EnergyCostComparison";
-import EnergyGuideBox from "./EnergyGuideBox";
+
 import Timeline from "./Timeline/Timeline";
 
 const StepThree = ({ handleNext }) => {
@@ -231,7 +230,13 @@ const StepThree = ({ handleNext }) => {
               </div>
 
               {/* Program Name */}
-              <div className="text-2xl sm:text-3xl z-50 font-extrabold text-white text-center mb-4">
+              <div
+                style={{
+                  clipPath:
+                    "polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%, 0 50%)", // Fancy dynamic clip path
+                }}
+                className="text-2xl sm:text-3xl z-50 font-extrabold text-white text-center mb-4"
+              >
                 {program.name}
               </div>
 
@@ -252,9 +257,15 @@ const StepThree = ({ handleNext }) => {
               <p className="text-center z-50 text-gray-200 mb-4">
                 {program.message}
               </p>
-              <p className="text-center text-sm z-50 text-gray-200 mb-4">
+              <div
+                style={{
+                  clipPath:
+                    "polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%, 0 50%)", // Fancy dynamic clip path
+                }}
+                className="relative left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-yellow-500 text-white text-sm font-bold py-4 px-4  border-r-4 border-white  "
+              >
                 {program.step}
-              </p>
+              </div>
             </div>
           ))
         ) : (
@@ -270,15 +281,6 @@ const StepThree = ({ handleNext }) => {
         )}
       </div>
 
-      {/* {eligiblePrograms.length > 0 && (
-        <div>
-          <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
-            SUGGESTED ROADMAP
-          </div>
-          <img src="/assets/rodmap1.jpg" />
-        </div>
-      )} */}
-
       {eligiblePrograms.length > 0 && (
         <div>
           <div className="text-center z-50">
@@ -288,9 +290,6 @@ const StepThree = ({ handleNext }) => {
             >
               Get Started
             </button>
-          </div>
-          <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
-            SUGGESTED ROADMAP
           </div>
         </div>
       )}

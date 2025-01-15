@@ -171,8 +171,10 @@ const Timeline = () => {
         totalCurrentCost={totalCurrentCost}
         totalAfterUpgrades={totalAfterUpgrades}
       />
+      <div className="text-center mt-12 mb-2 text-4xl font-bold text-green-500">
+        SUGGESTED ROADMAP
+      </div>
       <div className="text-center  mb-12">
-        <div className="grid grid-cols-2 gap-8 mb-8"></div>
         <p className="text-gray-600">
           Maximize your home's efficiency with these strategic improvements
         </p>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { TrendingDown, DollarSign, Zap, PiggyBank } from "lucide-react";
 
-const CountUpNumber = ({ end, duration = 6000 }) => {
+const CountUpNumber = ({ end, duration = 3000 }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
