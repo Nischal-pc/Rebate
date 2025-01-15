@@ -133,3 +133,46 @@ const RebatesAccordion = () => {
 };
 
 export default RebatesAccordion;
+<div>
+      {/* Estimate Savings Section */}
+      <div className="w-full max-w-md p-6 mt-8 bg-gray-50 rounded-lg text-center mx-auto">
+        <h3 className="text-2xl font-bold text-gray-800 mb-4">
+          Your Estimated Savings
+        </h3>
+        <p className="text-lg text-gray-600 mb-2">
+          Based on your current electricity and gas usage, you could save:
+        </p>
+        <div className="text-4xl font-extrabold text-green-500 mt-4 flex justify-center items-center">
+          <SavingsCountdown targetAmount={calculatedResult} />
+          <span
+            className="text-4xl
+          "
+          >
+            {" "}
+            {""}/Year
+          </span>
+        </div>
+        <p className="text-sm text-gray-500 mt-2">
+          *This is an estimate based on the information provided. Actual savings
+          may vary.
+        </p>
+      </div>
+    </div>
+    <div className="w-full max-w-lg p-8 mt-12 bg-gradient-to-br from-white via-blue-50 to-blue-100 shadow-2xl rounded-3xl text-center mx-auto border border-blue-300">
+    <h3 className="text-2xl font-extrabold text-gray-800 mb-6 tracking-tight">
+      💰 Your Estimated Savings
+    </h3>
+    <p className="text-lg text-black mb-4">
+      Based on your electricity and gas usage, you could save:
+    </p>
+    <div className="relative mt-6">
+      <div className="text-6xl font-extrabold text-green-600 flex justify-center items-center">
+        <SavingsCountdown targetAmount={calculatedResult} />
+        <span className="ml-2 text-2xl text-gray-700">/Year</span>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-green-200 to-green-400 opacity-30 rounded-full blur-lg"></div>
+    </div>
+    <p className="text-sm text-black mt-4 italic">
+      *Estimated savings based on your inputs. Actual results may vary.
+    </p>
+  </div>

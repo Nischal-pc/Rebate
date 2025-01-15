@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
@@ -112,6 +112,9 @@ const HomeEfficency = () => {
       isFinal: true,
     },
   ];
+  useEffect(() => {
+    document.getElementById("eligibility-checker").scrollIntoView();
+  }, [currentStep]);
 
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">
@@ -196,13 +199,6 @@ const HomeEfficency = () => {
               Book Appointment
             </button>
           ) : currentStep === 4 ? null : (
-            // <button
-            //   type="button"
-            //   onClick={() => alert("Form submitted!")} // Replace with your form submission logic
-            //   className="py-2 px-3 inline-flex items-center gap-x-1 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-            // >
-            //   Submit
-            // </button>
             <button
               type="button"
               onClick={handleNext}

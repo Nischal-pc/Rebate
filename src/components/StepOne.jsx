@@ -120,8 +120,19 @@ const StepOne = ({ handleInputChange }) => {
           </button>
         </div>
       </div>
+      {/* Stop flow if "No" */}
+      {formData.residentOfOntario === "no" && (
+        <div className="mb-4 border rounded-3xl bg-red-200 border-red-500 p-4 text-gray-700">
+          <div className="flex">
+            <i className="fas fa-exclamation-triangle mt-1" />
+            <span className="ml-4">
+              To be eligible for these rebates, you must reside in Ontario.
+            </span>
+          </div>
+        </div>
+      )}
 
-      {formData.residentOfOntario && (
+      {formData.residentOfOntario === "yes" && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">
             Is this your primary residence?
@@ -160,7 +171,7 @@ const StepOne = ({ handleInputChange }) => {
           </div>
         </div>
       )}
-      {formData.primaryResidence && (
+      {formData.primaryResidence && formData.residentOfOntario === "yes" && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">
             Enter your postal code:
@@ -179,7 +190,7 @@ const StepOne = ({ handleInputChange }) => {
         </div>
       )}
       {/* Question about ownership */}
-      {formData.postalCode && (
+      {formData.postalCode && formData.residentOfOntario === "yes" && (
         <div className="mb-4">
           <label className="block text-lg font-medium text-gray-700">
             Are you the registered property owner?
@@ -219,7 +230,7 @@ const StepOne = ({ handleInputChange }) => {
         </div>
       )}
 
-      {formData.ownerShip && (
+      {formData.ownerShip && formData.residentOfOntario === "yes" && (
         <div className="mb-4 mt-4">
           <label className="block text-lg font-medium text-gray-700">
             What type of home do you have?
@@ -362,66 +373,84 @@ const StepOne = ({ handleInputChange }) => {
           </div>
         </div>
       )}
+      {/* Stop flow if "None of the Above" is selected */}
 
-      {formData.homeType && (
-        <div className="mb-4">
-          <label className="block text-lg font-medium text-gray-700">
-            How long have you owned this property?
-          </label>
-          <select
-            name="ownershipLength"
-            value={formData.ownershipLength}
-            onChange={handleInputChange}
-            className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select</option>
-            <option value="lessThan6Months">Less than 6 months</option>
-            <option value="6MonthsTo1Year">6 months to 1 year</option>
-            <option value="1To2Years">1 to 2 years</option>
-            <option value="moreThan2Years">More than 2 years</option>
-          </select>
+      {/* {formData.residentOfOntario === "yes" && formData.homeType === "none" && (
+        <div className="mb-4 border rounded-3xl bg-red-200 border-red-500 p-4 text-gray-700">
+          <div className="flex">
+            <i className="fas fa-exclamation-triangle mt-1" />
+            <span className="ml-4">
+              Your type of home isn't eligible for these rebates.
+            </span>
+          </div>
         </div>
-      )}
+      )} */}
 
-      {formData.ownershipLength && (
-        <div className="mb-4">
-          <label className="block text-lg font-medium text-gray-700">
-            What is your total household income (approximately)?
-          </label>
-          <select
-            name="income"
-            value={formData.income}
-            onChange={handleInputChange}
-            className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select</option>
-            <option value="lessThan30000">Less than $30,000</option>
-            <option value="30000to50000">$30,000 to $50,000</option>
-            <option value="50000to70000">$50,000 to $70,000</option>
-            <option value="70000to100000">$70,000 to $100,000</option>
-            <option value="greaterThan100000">Greater than $100,000</option>
-          </select>
-        </div>
-      )}
-      {formData.income && (
-        <div className="mb-4">
-          <label className="block text-lg font-medium text-gray-700">
-            How old is your house?
-          </label>
-          <select
-            name="homeAge"
-            value={formData.homeAge}
-            onChange={handleInputChange}
-            className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-          >
-            <option value="">Select</option>
-            <option value="lessThan1Year">Less than 1 Year</option>
-            <option value="1to5"> 1 to 5 Years</option>
-            <option value="5to10">5 to 10 Years</option>
-            <option value="Greaterthan10">Greater than 10 Years</option>
-          </select>
-        </div>
-      )}
+      {formData.homeType &&
+        formData.residentOfOntario === "yes" &&
+        formData.homeType !== "none" && (
+          <div className="mb-4">
+            <label className="block text-lg font-medium text-gray-700">
+              How long have you owned this property?
+            </label>
+            <select
+              name="ownershipLength"
+              value={formData.ownershipLength}
+              onChange={handleInputChange}
+              className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select</option>
+              <option value="lessThan6Months">Less than 6 months</option>
+              <option value="6MonthsTo1Year">6 months to 1 year</option>
+              <option value="1To2Years">1 to 2 years</option>
+              <option value="moreThan2Years">More than 2 years</option>
+            </select>
+          </div>
+        )}
+
+      {formData.ownershipLength &&
+        formData.residentOfOntario === "yes" &&
+        formData.homeType !== "none" && (
+          <div className="mb-4">
+            <label className="block text-lg font-medium text-gray-700">
+              What is your total household income (approximately)?
+            </label>
+            <select
+              name="income"
+              value={formData.income}
+              onChange={handleInputChange}
+              className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select</option>
+              <option value="lessThan30000">Less than $30,000</option>
+              <option value="30000to50000">$30,000 to $50,000</option>
+              <option value="50000to70000">$50,000 to $70,000</option>
+              <option value="70000to100000">$70,000 to $100,000</option>
+              <option value="greaterThan100000">Greater than $100,000</option>
+            </select>
+          </div>
+        )}
+      {formData.income &&
+        formData.residentOfOntario === "yes" &&
+        formData.homeType !== "none" && (
+          <div className="mb-4">
+            <label className="block text-lg font-medium text-gray-700">
+              How old is your house?
+            </label>
+            <select
+              name="homeAge"
+              value={formData.homeAge}
+              onChange={handleInputChange}
+              className="mt-1 px-4 py-2 block w-full border-blue-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select</option>
+              <option value="lessThan1Year">Less than 1 Year</option>
+              <option value="1to5"> 1 to 5 Years</option>
+              <option value="5to10">5 to 10 Years</option>
+              <option value="Greaterthan10">Greater than 10 Years</option>
+            </select>
+          </div>
+        )}
     </div>
   );
 };

@@ -4,8 +4,9 @@ import confetti from "canvas-confetti";
 import { validPostalCodes } from "./data/postalCodes";
 import { useContext } from "react";
 import { DataContext } from "./context/context";
-import RoadmapAndSavings from "./SavingCountdown";
+import RoadmapAndSavings from "./EnergyCostComparison";
 import EnergyGuideBox from "./EnergyGuideBox";
+import Timeline from "./Timeline/Timeline";
 
 const StepThree = ({ handleNext }) => {
   const { formData } = useContext(DataContext);
@@ -114,7 +115,7 @@ const StepThree = ({ handleNext }) => {
 
   useEffect(() => {
     if (conditionForConfet) {
-      const duration = 15 * 1000;
+      const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
 
@@ -254,15 +255,6 @@ const StepThree = ({ handleNext }) => {
               <p className="text-center text-sm z-50 text-gray-200 mb-4">
                 {program.step}
               </p>
-
-              <div className="text-center z-50">
-                <button
-                  onClick={handleNext}
-                  className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
-                >
-                  Apply Today
-                </button>
-              </div>
             </div>
           ))
         ) : (
@@ -278,17 +270,31 @@ const StepThree = ({ handleNext }) => {
         )}
       </div>
 
-      {eligiblePrograms.length > 0 && (
+      {/* {eligiblePrograms.length > 0 && (
         <div>
           <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
             SUGGESTED ROADMAP
           </div>
           <img src="/assets/rodmap1.jpg" />
         </div>
-      )}
+      )} */}
 
-      {/* Estimate Savings Section */}
-      <RoadmapAndSavings calculatedResult={calculatedResult} />
+      {eligiblePrograms.length > 0 && (
+        <div>
+          <div className="text-center z-50">
+            <button
+              onClick={handleNext}
+              className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:bg-blue-700 transition-all duration-300 ease-in-out"
+            >
+              Get Started
+            </button>
+          </div>
+          <div className="text-center mt-12 mb-6 text-4xl font-bold text-green-500">
+            SUGGESTED ROADMAP
+          </div>
+        </div>
+      )}
+      {eligiblePrograms.length > 0 && <Timeline />}
     </div>
   );
 };

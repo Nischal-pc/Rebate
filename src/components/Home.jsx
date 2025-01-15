@@ -10,15 +10,15 @@ const LandingPage = () => {
         {/* Main Content */}
         <div className="relative z-10 flex flex-col items-center text-center px-6 space-y-10 max-w-7xl mx-auto">
           {/* Main Heading */}
-          <h1 className="text-4xl sm:text-3xl md:text-6xl font-extrabold mt-32 sm:mt-20 md:-mt-28   text-white leading-tight drop-shadow-md animate__animated animate__fadeIn animate__delay-1s">
-            Unlock Your Energy Savings Now
+          <h1 className="text-4xl sm:text-3xl md:text-6xl font-extrabold mt-32 sm:mt-24    text-white leading-tight drop-shadow-md animate__animated animate__fadeIn animate__delay-1s">
+            Prequalify for Trusted Rebates Today
           </h1>
 
           {/* Subheading */}
           <p className="text-base sm:text-lg md:text-xl text-gray-200 max-w-4xl leading-relaxed animate__animated animate__fadeIn animate__delay-1s">
-            At Efficiency Broker Canada, we’ve helped over 5,000 Ontario
-            homeowners secure rebates. Join them and reduce your energy costs by
-            up to 30% with zero upfront costs.
+            Efficiency Broker Canada is an independent organization dedicated to
+            assisting homeowners in calculating and accessing available energy
+            rebates
           </p>
 
           {/* Trust-Building Facts with Icons */}
