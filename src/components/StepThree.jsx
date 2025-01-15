@@ -230,13 +230,7 @@ const StepThree = ({ handleNext }) => {
               </div>
 
               {/* Program Name */}
-              <div
-                style={{
-                  clipPath:
-                    "polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%, 0 50%)", // Fancy dynamic clip path
-                }}
-                className="text-2xl sm:text-3xl z-50 font-extrabold text-white text-center mb-4"
-              >
+              <div className="text-2xl sm:text-3xl z-50 font-extrabold text-white text-center mb-4">
                 {program.name}
               </div>
 
