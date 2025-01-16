@@ -1,7 +1,7 @@
-import { useState, useContext } from "react";
+import { useContext, useState } from "react";
 import StepOne from "./StepOne";
-import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
+import StepTwo from "./StepTwo";
 import Appointment from "./appointment/Appointment";
 import { DataContext } from "./context/context";
 

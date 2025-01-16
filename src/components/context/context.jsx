@@ -26,8 +26,12 @@ const DataContextProvider = ({ children }) => {
     address: "",
     estimatedSaved: "",
   });
+  const [rebates, setRebates] = useState([]);
+
   return (
-    <DataContext.Provider value={{ formData, setFormData }}>
+    <DataContext.Provider
+      value={{ formData, setFormData, rebates, setRebates }}
+    >
       {children}
     </DataContext.Provider>
   );
