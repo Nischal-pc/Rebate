@@ -29,7 +29,10 @@ const CountUpNumber = ({ end, duration = 3000 }) => {
 
 const EnergyCostComparison = ({ totalCurrentCost, totalAfterUpgrades }) => {
   const savings = totalCurrentCost - totalAfterUpgrades;
-  const savingsPercentage = ((savings / totalCurrentCost) * 100).toFixed(1);
+  const savingsPercentage = (
+    (totalAfterUpgrades / totalCurrentCost) *
+    100
+  ).toFixed(1);
 
   return (
     <div className="space-y-6">
@@ -77,7 +80,7 @@ const EnergyCostComparison = ({ totalCurrentCost, totalAfterUpgrades }) => {
             <div className="flex items-center mb-4">
               <PiggyBank className="w-6 h-6 text-green-600 mr-2" />
               <h3 className="text-lg font-semibold text-gray-800">
-                Projected Annual Cost for Heat Pump
+                Projected Annual Cost based on Heat Pump
               </h3>
             </div>
             <p className="text-sm text-gray-500 mb-4">
@@ -106,7 +109,7 @@ const EnergyCostComparison = ({ totalCurrentCost, totalAfterUpgrades }) => {
             </div>
             <div>
               <p className="text-sm font-medium text-green-800">
-                Total Projected Annual Savings
+                Total Projected Annual Savings based on Heat Pump
               </p>
               <div className="flex items-baseline">
                 <span className="text-2xl font-bold text-green-700">

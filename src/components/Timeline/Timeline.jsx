@@ -52,10 +52,10 @@ const Timeline = () => {
   const totalCurrentCost = calculateTotalAnnualCost();
   const totalSavings = [
     "heatPump",
-    "attic",
-    "waterHeater",
-    "smartThermostat",
-    "airSealing",
+    // "attic",
+    // "waterHeater",
+    // "smartThermostat",
+    // "airSealing",
   ].reduce((acc, type) => acc + calculateSavingsAmount(type), 0);
 
   const totalAfterUpgrades = totalCurrentCost - totalSavings;
@@ -106,7 +106,7 @@ const Timeline = () => {
       title: "Install Heat Pump",
       icon: <HeatPump className="w-7 h-7" />,
       savings: formatSavings(calculateSavingsAmount("heatPump")),
-      rebate: "Up to $8,000",
+      rebate: "Up to $12,000",
       description: "High-efficiency heating & cooling solution",
       benefits: ["Reduced energy costs", "Year-round comfort", "Eco-friendly"],
       roi: "3-5 years",
@@ -116,7 +116,7 @@ const Timeline = () => {
       title: "Upgrade Hot Water Heater",
       icon: <Droplet className="w-7 h-7" />,
       savings: formatSavings(calculateSavingsAmount("waterHeater")),
-      rebate: "Up to $1,750",
+      rebate: "$500(*on qualified water heater)",
       description: "Energy-efficient water heating system",
       benefits: [
         "Lower utility bills",
@@ -129,7 +129,7 @@ const Timeline = () => {
       title: "Upgrade Attic Insulation",
       icon: <Home className="w-7 h-7" />,
       savings: formatSavings(calculateSavingsAmount("attic")),
-      rebate: "Up to $1,500",
+      rebate: "Up to $8,900",
       description: "Improved thermal barrier & comfort",
       benefits: [
         "Better temperature control",
@@ -142,7 +142,7 @@ const Timeline = () => {
       title: "Smart Thermostat",
       icon: <ThermometerSun className="w-7 h-7" />,
       savings: formatSavings(calculateSavingsAmount("smartThermostat")),
-      rebate: "Up to $100",
+      rebate: " $75",
       description: "Intelligent temperature control",
       benefits: ["Automated scheduling", "Remote control", "Usage insights"],
     },
@@ -151,7 +151,7 @@ const Timeline = () => {
       title: "Air Sealing",
       icon: <Wind className="w-7 h-7" />,
       savings: formatSavings(calculateSavingsAmount("airSealing")),
-      rebate: "Up to $1,000",
+      rebate: "Up to $250",
       description: "Reduce air leakage & drafts",
       benefits: [
         "Improved comfort",
