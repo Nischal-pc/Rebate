@@ -112,9 +112,9 @@ const HomeEfficency = () => {
       isFinal: true,
     },
   ];
-  useEffect(() => {
-    document.getElementById("eligibility-checker").scrollIntoView();
-  }, [currentStep]);
+  // useEffect(() => {
+  //   document.getElementById("eligibility-checker").scrollIntoView();
+  // }, [currentStep]);
 
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">

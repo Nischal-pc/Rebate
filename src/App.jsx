@@ -7,9 +7,6 @@ import { useEffect } from "react";
 // import RebateQualifier from "./components/RebateQualifier";
 
 function App() {
-  useEffect(() => {
-    document.getElementById("top").scrollIntoView();
-  }, []);
   return (
     <>
       <div className="sticky top-0 z-50 " id="top">
