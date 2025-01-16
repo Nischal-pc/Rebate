@@ -69,7 +69,7 @@ const rebates = [
     amount: "Up to $29,000",
     areas: "Ontario",
     website: "https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings",
-    startdate: "Jan 28",
+    startdate: "Starting Jan 28",
   },
   {
     id: 6,

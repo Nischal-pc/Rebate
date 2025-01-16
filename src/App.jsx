@@ -3,9 +3,6 @@ import NavBar from "./components/NavBar";
 import BottomSection from "./components/BottomSection";
 import { useEffect } from "react";
 
-// import Rebateoption from "./components/Rebateoption";
-// import RebateQualifier from "./components/RebateQualifier";
-
 function App() {
   return (
     <>

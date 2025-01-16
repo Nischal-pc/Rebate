@@ -251,7 +251,7 @@ const StepThree = ({ handleNext }) => {
               <p className="text-center z-50 text-gray-200 mb-4">
                 {program.message}
               </p>
-              <div
+              {/* <div
                 style={{
                   clipPath:
                     "polygon(0 0, 100% 0, 100% 100%, 50% 90%, 0 100%, 0 50%)", // Fancy dynamic clip path
@@ -259,7 +259,7 @@ const StepThree = ({ handleNext }) => {
                 className="relative left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-yellow-500 text-white text-sm font-bold py-4 px-4  border-l-4 border-white  "
               >
                 {program.step}
-              </div>
+              </div> */}
             </div>
           ))
         ) : (

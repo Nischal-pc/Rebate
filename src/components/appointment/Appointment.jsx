@@ -4,7 +4,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Modal from "../modal/Modal";
 import { useRef, useState, useEffect, useContext } from "react";
 import { DataContext } from "../context/context";
-import { ref } from "yup";
 const Appointment = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { formData, setFormData } = useContext(DataContext);
@@ -15,8 +14,7 @@ const Appointment = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    getValues,
+
     setValue,
     formState: { errors },
   } = useForm({

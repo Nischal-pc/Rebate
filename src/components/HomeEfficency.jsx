@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
@@ -80,29 +80,35 @@ const HomeEfficency = () => {
       index: 1,
       label: "1 of 1",
       content: (
-        <StepOne
-          formData={formData}
-          handleInputChange={handleInputChange}
-          errors={errors}
-        />
+        <div id="step-1">
+          <StepOne
+            formData={formData}
+            handleInputChange={handleInputChange}
+            errors={errors}
+          />
+        </div>
       ),
     },
     {
       index: 2,
       label: "2 of 2",
       content: (
-        <StepTwo formData={formData} handleInputChange={handleInputChange} />
+        <div id="step-2">
+          <StepTwo formData={formData} handleInputChange={handleInputChange} />
+        </div>
       ),
     },
     {
       index: 3,
       label: "Result",
       content: (
-        <StepThree
-          formData={formData}
-          handleNext={handleNext}
-          handleBack={handleBack}
-        />
+        <div id="step-3">
+          <StepThree
+            formData={formData}
+            handleNext={handleNext}
+            handleBack={handleBack}
+          />
+        </div>
       ),
     },
     {
@@ -112,9 +118,6 @@ const HomeEfficency = () => {
       isFinal: true,
     },
   ];
-  // useEffect(() => {
-  //   document.getElementById("eligibility-checker").scrollIntoView();
-  // }, [currentStep]);
 
   return (
     <div className="bg-blue-50 py-8 px-4" id="eligibility-checker">

@@ -77,7 +77,7 @@ const EnergyCostComparison = ({ totalCurrentCost, totalAfterUpgrades }) => {
             <div className="flex items-center mb-4">
               <PiggyBank className="w-6 h-6 text-green-600 mr-2" />
               <h3 className="text-lg font-semibold text-gray-800">
-                Projected Annual Cost
+                Projected Annual Cost for Heat Pump
               </h3>
             </div>
             <p className="text-sm text-gray-500 mb-4">

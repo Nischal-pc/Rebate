@@ -12,7 +12,7 @@ const LandingPage = () => {
         <div className="relative z-10 flex flex-col items-center text-center px-6 space-y-10 max-w-7xl mx-auto">
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-3xl md:text-6xl font-extrabold mt-32 sm:mt-24    text-white leading-tight drop-shadow-md animate__animated animate__fadeIn animate__delay-1s">
-            Prequalify for Trusted Rebates Today
+            Prequalify for Available Rebates Today
           </h1>
 
           {/* Subheading */}

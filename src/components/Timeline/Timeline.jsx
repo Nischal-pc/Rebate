@@ -123,7 +123,6 @@ const Timeline = () => {
         "Consistent hot water",
         "Long lifespan",
       ],
-      roi: "4-6 years",
     },
     {
       number: 3,
@@ -137,7 +136,6 @@ const Timeline = () => {
         "Reduced energy loss",
         "Noise reduction",
       ],
-      roi: "2-4 years",
     },
     {
       number: 4,
@@ -147,7 +145,6 @@ const Timeline = () => {
       rebate: "Up to $100",
       description: "Intelligent temperature control",
       benefits: ["Automated scheduling", "Remote control", "Usage insights"],
-      roi: "1-2 years",
     },
     {
       number: 5,
@@ -161,16 +158,11 @@ const Timeline = () => {
         "Better air quality",
         "Lower energy bills",
       ],
-      roi: "2-3 years",
     },
   ];
 
   return (
     <div className="w-full max-w-6xl mx-auto p-8 bg-white ">
-      <EnergyCostComparison
-        totalCurrentCost={totalCurrentCost}
-        totalAfterUpgrades={totalAfterUpgrades}
-      />
       <div className="text-center mt-12 mb-2 text-4xl font-bold text-green-500">
         SUGGESTED ROADMAP
       </div>
@@ -281,7 +273,7 @@ const Timeline = () => {
                     </ul>
                   </div>
 
-                  <div className="mt-4 pt-4 border-t border-gray-100">
+                  {/* <div className="mt-4 pt-4 border-t border-gray-100">
                     <div className="flex items-center justify-between text-sm">
                       <span className="text-gray-600">
                         Return on Investment:
@@ -290,7 +282,7 @@ const Timeline = () => {
                         {step.roi}
                       </span>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -312,6 +304,10 @@ const Timeline = () => {
           ))}
         </div>
       </div>
+      <EnergyCostComparison
+        totalCurrentCost={totalCurrentCost}
+        totalAfterUpgrades={totalAfterUpgrades}
+      />
     </div>
   );
 };
