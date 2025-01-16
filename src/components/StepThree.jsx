@@ -1,14 +1,14 @@
 // export default StepThree;
-import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
-import { validPostalCodes } from "./data/postalCodes";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DataContext } from "./context/context";
+import { validPostalCodes } from "./data/postalCodes";
 
+import toast from "react-hot-toast";
 import Timeline from "./Timeline/Timeline";
 
 const StepThree = ({ handleNext }) => {
-  const { formData } = useContext(DataContext);
+  const { formData, setRebates } = useContext(DataContext);
   const {
     residentOfOntario,
     primaryResidence,
@@ -21,25 +21,21 @@ const StepThree = ({ handleNext }) => {
     gasProvider,
     electricBill,
     gasBill,
-    estimatedSaved,
   } = formData;
-  const [calculatedResult, setCalculatedResult] = useState(0);
 
   const calculateProduct = () => {
     const gas = parseFloat(gasBill) || 0;
     const electricity = parseFloat(electricBill) || 0;
 
     if (isNaN(gas) || isNaN(electricity)) {
-      console.error("Invalid input for gasBill or electricityBill.");
-      setCalculatedResult(0);
+      toast.error("Invalid input for gasBill or electricityBill.");
       return;
     }
 
     const total = ((gas + electricity) * 0.7 * 0.6 * 12).toFixed(2);
-    console.log(
+    toast.error(
       `Gas Bill: ${gas}, Electricity Bill: ${electricity}, Total: ${total}`
     );
-    setCalculatedResult(total);
   };
 
   // Recalculate whenever gasBill or electricityBill changes
@@ -196,9 +192,14 @@ const StepThree = ({ handleNext }) => {
   const eligiblePrograms = eligibilityCriteria.filter(
     (program) => program.eligible
   );
+
+  useEffect(() => {
+    setRebates(eligiblePrograms);
+  }, []);
+
   return (
     <div className="flex flex-col w-full mx-auto items-center justify-center py-6 px-6 ">
-      {eligiblePrograms.length > 0 && (
+      {eligiblePrograms?.length > 0 && (
         <>
           <h1 className="text-4xl font-semibold text-center text-green-600 mb-4">
             Congratulations!
@@ -211,8 +212,8 @@ const StepThree = ({ handleNext }) => {
       )}
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-1 md:gi lg:grid-cols-3 gap-6 justify-items-center">
-        {eligiblePrograms.length > 0 ? (
-          eligiblePrograms.map((program, index) => (
+        {eligiblePrograms?.length > 0 ? (
+          eligiblePrograms?.map((program, index) => (
             <div
               key={index}
               className="flex flex-col justify-between p-6 w-full max-w-md min-w-[300px] min-h-[250px] rounded-3xl border border-gray-300 shadow-lg bg-gradient-to-br from-white via-gray-100 to-gray-50 transition-transform transform hover:scale-105 hover:shadow-2xl hover:border-blue-400 relative mb-6"
@@ -275,7 +276,7 @@ const StepThree = ({ handleNext }) => {
         )}
       </div>
 
-      {eligiblePrograms.length > 0 && (
+      {eligiblePrograms?.length > 0 && (
         <div>
           <div className="text-center z-50">
             <button
@@ -287,7 +288,7 @@ const StepThree = ({ handleNext }) => {
           </div>
         </div>
       )}
-      {eligiblePrograms.length > 0 && <Timeline />}
+      {eligiblePrograms?.length > 0 && <Timeline />}
     </div>
   );
 };

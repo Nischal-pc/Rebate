@@ -1,12 +1,15 @@
-import { useForm } from "react-hook-form";
-import { validationSchema } from "./schema";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Modal from "../modal/Modal";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useBookAppointment } from "../../repo/useBookAppointment";
 import { DataContext } from "../context/context";
+import Modal from "../modal/Modal";
+import { validationSchema } from "./schema";
 const Appointment = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const { formData, setFormData } = useContext(DataContext);
+  const { rebates, setFormData } = useContext(DataContext);
+  const bookAppointment = useBookAppointment();
   const inputRef = useRef(null);
 
   const autocompleteRef = useRef(null);
@@ -111,53 +114,14 @@ const Appointment = () => {
   }, []);
 
   const onSubmit = async (data) => {
-    console.log(data);
-
-    if (data) {
-      const res = await fetch(
-        "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            lead: {
-              source: "EBC",
-              types: [],
-            },
-            customer: data.customer,
-            address: data.address,
-            meetingTime: formatMeetingTime(data.date, data.time),
-
-            notes: "",
-          }),
-        }
-      );
-      const result = await res.json();
-      if (result.status === "success") {
-        setIsModalVisible(true);
-      }
+    try {
+      await bookAppointment.mutateAsync({ ...data });
+      setIsModalVisible(true);
+      toast.success("Success");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
-  function formatMeetingTime(date, time) {
-    // Ensure the date is a valid Date object
-    if (!(date instanceof Date) || isNaN(date.getTime())) {
-      throw new Error("Invalid date format. Expected a valid Date object.");
-    }
-
-    // Validate time format (HH:mm)
-    const timeRegex = /^\d{2}:\d{2}$/;
-    if (!timeRegex.test(time)) {
-      throw new Error("Invalid time format. Expected format: HH:mm");
-    }
-
-    // Extract hours and minutes from the time string
-    const [hours, minutes] = time.split(":").map(Number);
-
-    // Set the hours and minutes on the Date object
-    date.setUTCHours(hours, minutes, 0, 0);
-
-    // Return the date as an ISO string in UTC
-    return date.toISOString();
-  }
 
   return (
     <div className="flex flex-col w-full">
@@ -188,6 +152,8 @@ const Appointment = () => {
               >
                 First Name
               </label>
+              {/* interested rebates field add */}
+              {/* scrolling issues */}
               <input
                 id="firstName"
                 name="firstName"
@@ -334,20 +300,46 @@ const Appointment = () => {
               </p>
             )}
           </div>
-          <div className="mt-6">
-            <label
-              className="block text-gray-700 text-sm font-semibold mb-2"
-              htmlFor="dealer"
-            >
-              Appointment Type
-            </label>
-            <select
-              {...register("dealer")}
-              className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
-            >
-              <option value="Canadian Choice Home Services">In person</option>
-              <option value="Weaver Eco Home">Virtual</option>
-            </select>
+          <div className="grid mt-6">
+            <div className="mt-6">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="dealer"
+              >
+                Appointment Type
+              </label>
+              <select
+                {...register("dealer")}
+                className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+              >
+                <option value="Canadian Choice Home Services">In person</option>
+                <option value="Weaver Eco Home">Virtual</option>
+              </select>
+            </div>
+            <div className="mt-6">
+              <label
+                className="block text-gray-700 text-sm font-semibold mb-2"
+                htmlFor="interested"
+              >
+                Interested Rebates
+              </label>
+              <select
+                {...register("interested")}
+                className="w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+                multiple
+              >
+                {rebates.map((rebate, idx) => (
+                  <option key={idx} value={rebate.name}>
+                    {rebate.name}
+                  </option>
+                ))}
+              </select>
+              {errors?.interested && (
+                <p className="text-red-500 text-xs">
+                  {errors?.interested?.message}
+                </p>
+              )}
+            </div>
           </div>
 
           {/* Submit Button */}
