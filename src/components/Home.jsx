@@ -1,5 +1,6 @@
 import { Link } from "react-scroll";
 import RebatePage from "./RebatePage";
+import EligibilityChecker from "./EligibilityChecker";
 const LandingPage = () => {
   return (
     <div>
@@ -95,6 +96,7 @@ const LandingPage = () => {
       <section className="bg-white" id="Rebate-Page">
         <RebatePage />
       </section>
+      <EligibilityChecker />
     </div>
   );
 };

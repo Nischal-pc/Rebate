@@ -71,6 +71,20 @@ const rebates = [
     website: "https://saveonenergy.ca/For-Your-Home/Home-Renovation-Savings",
     startdate: "Jan 28",
   },
+  {
+    id: 6,
+    title: "Better Homes Kingston Loan Program",
+    shortDescription:
+      "Better Homes Kingston offers no-interest loans of up to $40,000 for deep-energy retrofits to homeowners in Kingston, with repayment terms of up to 20 years.",
+    fullDescription:
+      "Better Homes Kingston is a local improvement charge (LIC) financing program that provides homeowners in Kingston with no-interest loans for deep-energy retrofits. The program offers loans of up to $40,000 or 10% of the current value assessment of the home, whichever is less. Key features include a 0% interest rate, repayment terms of up to 20 years, no penalty for early repayment, and the loan being tied to the property rather than the individual. To qualify, homes must achieve a minimum 20% reduction in greenhouse gas emissions or equivalent reduction in energy consumption for electrically heated homes134.",
+    category: "Loan",
+    link: "/assets/kingston.jpg",
+    amount: "Up to $40,000",
+    areas: "Kingston, Ontario",
+    website: "",
+    startdate: "Apr 11, 2022",
+  },
 ];
 
 const RebatePage = () => {
