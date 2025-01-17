@@ -54,10 +54,8 @@ const EligibilityChecker = () => {
             based on the information provided on our platform.
           </p>
           <p className="text-sm text-gray-700 max-w-3xl mx-auto mt-4 leading-relaxed">
-            For tailored energy efficiency solutions, our experts are here to
-            assist. By using our services, you agree to these terms and
-            acknowledge our role as an independent resource, not a program
-            administrator.
+            By using our services, you agree to these terms and acknowledge our
+            role as an independent resource, not a program administrator.
           </p>
         </div>
       </div>
