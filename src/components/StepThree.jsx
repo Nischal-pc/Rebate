@@ -33,7 +33,7 @@ const StepThree = ({ handleNext }) => {
     }
 
     const total = ((gas + electricity) * 0.7 * 0.6 * 12).toFixed(2);
-    toast.error(
+    console.log(
       `Gas Bill: ${gas}, Electricity Bill: ${electricity}, Total: ${total}`
     );
   };

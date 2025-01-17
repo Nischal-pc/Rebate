@@ -1,9 +1,14 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { useEffect } from "react";
 import HomeEfficency from "./HomeEfficency";
 
 const EligibilityChecker = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="bg-blue-50 py-8 px-4">
+    <div className="bg-blue-50 py-8 px-4" id="root1">
       <header className="text-center mb-12">
         <h1 className="text-4xl font-bold text-gray-800 mb-4">
           Eligibility Checker
