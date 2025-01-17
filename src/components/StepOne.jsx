@@ -5,6 +5,12 @@ const StepOne = ({ handleInputChange }) => {
   const { formData, setFormData } = useContext(DataContext);
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
+  useEffect(() => {
+    const element = document.getElementById("eligibility-checker");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
   useEffect(() => {
     // Function to initialize Google Maps Autocomplete

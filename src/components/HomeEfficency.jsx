@@ -165,14 +165,6 @@ const HomeEfficency = () => {
         ))}
       </ul>
       <div className="bg-white p-6 rounded-lg shadow-lg container max-w-screen-xl mx-auto mt-5 sm:mt-8">
-        {/* {steps.map((step) => (
-          <div
-            key={step.index}
-            style={{ display: currentStep === step.index ? "block" : "none" }}
-          >
-            {step.content}
-          </div>
-        ))} */}
         {steps?.[currentStep - 1]?.content}
         <div className="mt-5 flex justify-between items-center gap-x-2">
           <button
@@ -200,7 +192,7 @@ const HomeEfficency = () => {
                   ? "bg-gray-400 cursor-not-allowed"
                   : "bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 hover:shadow-xl hover:bg-blue-700"
               }`}
-              disabled={isNextDisabled} // Disable if any field is empty or invalid
+              disabled={isNextDisabled}
             >
               Next
             </button>

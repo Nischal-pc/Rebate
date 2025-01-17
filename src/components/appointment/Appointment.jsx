@@ -112,6 +112,12 @@ const Appointment = () => {
       clearInterval(interval);
     };
   }, []);
+  useEffect(() => {
+    const element = document.getElementById("eligibility-checker");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
 
   const onSubmit = async (data) => {
     try {
