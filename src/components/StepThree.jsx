@@ -175,7 +175,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$10,000",
       image: "/assets/oiltopump.jpg",
       message:
-        "Make the switch to a heat pump! You qualify for up to $10,000 to replace your oil furnace. Let’s make your home more energy-efficient today.",
+        "The Oil to Heat Pump Affordability (OHPA) program helps homeowners who are currently heating their homes with oil, transition to eligible electric heat pump systems.",
       step: " Book an appointment to explore your options and get started.",
     },
     {
