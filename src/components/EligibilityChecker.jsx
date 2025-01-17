@@ -34,8 +34,8 @@ const EligibilityChecker = () => {
             is an independent organization that provides information on energy
             rebates and incentives available to homeowners. While we strive to
             keep all information accurate and up-to-date, rebate programs,
-            eligibility criteria, and funding availability are subject to change
-            without notice.
+            eligibility criteria, and funding availability are subject to
+            change.
           </p>
           <p className="text-center text-sm text-gray-600 max-w-3xl mx-auto mt-4 leading-relaxed">
             We do not administer or guarantee the approval of any rebates,
