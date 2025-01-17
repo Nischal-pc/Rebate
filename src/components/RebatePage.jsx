@@ -83,7 +83,8 @@ const rebates = [
     link: "/assets/kingston.jpg",
     amount: "Up to $40,000",
     areas: "Kingston, Ontario",
-    website: "https://www.cityofkingston.ca/better-homes",
+    website:
+      "https://www.cityofkingston.ca/building-and-renovating/better-homes-kingston/",
   },
   {
     id: 7,
