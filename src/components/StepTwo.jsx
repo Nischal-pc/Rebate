@@ -32,7 +32,7 @@ const StepTwo = ({ formData, handleInputChange }) => {
               }`}
             >
               <img
-                src="/assets/naturalgas.png"
+                src="/assets/naturalgas1.png"
                 alt="Natural Gas Furnace"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />
@@ -138,7 +138,7 @@ const StepTwo = ({ formData, handleInputChange }) => {
               }`}
             >
               <img
-                src="/assets/heatpump.png"
+                src="/assets/heatpump1.png"
                 alt="Heat Pump"
                 className="w-full h-auto aspect-square scale-50 object-contain"
               />

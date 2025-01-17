@@ -155,7 +155,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$5,000",
       image: "/assets/rebate.jpg",
       message:
-        "Save energy, save money! You qualify for up to $5,000 in energy efficiency upgrades. Let’s make your home more efficient and reduce your bills!",
+        "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
       step: "Talk to our Expert Sales Agent to get more information about these rebates",
     },
     {
@@ -164,7 +164,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$10,000",
       image: "/assets/homesaver.jpg",
       message:
-        "Upgrade your home for comfort and savings! Get up to $10,000 in energy-saving benefits. Make your home the best it can be!",
+        "The HomeEnergySaver Program offers incentives to Ontario homeowners with electrically heated homes to install energy-efficient heat pumps, providing rebates up to $5,000 for air source heat pumps and $10,000 for ground source heat pumps.",
       step: " Book an appointment to see how we can help you save.",
     },
     {
@@ -173,7 +173,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$10,000",
       image: "/assets/heatpumpfor.jpg",
       message:
-        "Go green with a loan up to $10,000! Make your home energy-efficient and eco-friendly with trusted government-backed support.",
+        "The Canada Greener Homes Loan is an interest-free financing program offered by the Canadian government to help homeowners make energy-efficient improvements to their homes",
       step: " Secure your loan and start your home’s green transformation.",
     },
     {
@@ -182,13 +182,13 @@ const StepThree = ({ handleNext }) => {
       amount: "$10,000",
       image: "/assets/oiltopump.jpg",
       message:
-        "Make the switch to a heat pump! You qualify for up to $10,000 to replace your oil furnace. Let’s make your home more energy-efficient today.",
+        "The Oil to Heat Pump Affordability (OHPA) program helps homeowners who are currently heating their homes with oil, transition to eligible electric heat pump systems.",
       step: " Book an appointment to explore your options and get started.",
     },
     {
       name: "Thermostat Rebate",
       eligible: isEligibleForThermostatRebate,
-      amount: "$100",
+      amount: "$75",
       image: "/assets/oiltopump.jpg",
       message:
         "Smart thermostats for smart savings! Get a $100 rebate on your new thermostat. A simple change for better control and savings.",
