@@ -166,7 +166,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$10,000",
       image: "/assets/heatpumpfor.jpg",
       message:
-        "Go green with a loan up to $10,000! Make your home energy-efficient and eco-friendly with trusted government-backed support.",
+        "The Canada Greener Homes Loan is an interest-free financing program offered by the Canadian government to help homeowners make energy-efficient improvements to their homes",
       step: " Secure your loan and start your home’s green transformation.",
     },
     {

@@ -130,9 +130,9 @@ const rebates = [
     id: 4,
     title: "Oil to Heat Pump Affordability Program",
     shortDescription:
-      "The Oil to Heat Pump Affordability (OHPA) program provides grants of up to $10,000 (or $15,000 in co-delivery provinces) to Canadian homeowners for switching from oil heating to electric heat pumps. The program aims to reduce energy costs and promote energy efficiency.",
+      "The Oil to Heat Pump Affordability (OHPA) program helps homeowners who are currently heating their homes with oil, transition to eligible electric heat pump systems.",
     fullDescription:
-      "The Oil to Heat Pump Affordability (OHPA) program is a Canadian initiative designed to assist homeowners in transitioning from oil-based heating systems to more efficient electric heat pumps. This program offers financial support through grants, making it easier for eligible households to upgrade their heating systems and reduce their energy costs.",
+      "The Oil to Heat Pump Affordability (OHPA) program helps homeowners who are currently heating their homes with oil, transition to eligible electric heat pump systems.",
     category: "Rebate",
     link: "/assets/oiltoheat1.png",
     amount: "Up to $10,000",
@@ -165,6 +165,19 @@ const rebates = [
     amount: "Up to $40,000",
     areas: "Kingston, Ontario",
     website: `<a href="https://www.cityofkingston.ca/better-homes" target="_blank" rel="noopener noreferrer">Go to Official Site</a>`,
+  },
+  {
+    id: 7,
+    title: "Better Homes Ottawa Loan Program",
+    shortDescription:
+      "The Better Homes Ottawa Loan Program (BHOLP) is an initiative by the City of Ottawa designed to help homeowners enhance energy efficiency in their homes. The program encourages residents to lower energy usage and reduce greenhouse gas emissions.",
+    fullDescription:
+      " The Better Homes Ottawa Loan Program (BHOLP) is an initiative by the City of Ottawa designed to help homeowners enhance energy efficiency in their homes. The program encourages residents to lower energy usage and reduce greenhouse gas emissions.",
+    category: "Loan",
+    link: "/assets/ottawa1.png",
+    amount: "Up to $125,000",
+    areas: "Ottawa, Ontario",
+    website: "https://betterhomesottawa.ca/",
   },
 ];
 
