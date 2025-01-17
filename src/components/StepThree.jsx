@@ -184,7 +184,7 @@ const StepThree = ({ handleNext }) => {
       amount: "$75",
       image: "/assets/oiltopump.jpg",
       message:
-        "Smart thermostats for smart savings! Get a $100 rebate on your new thermostat. A simple change for better control and savings.",
+        "Enbridge Gas residential customers who heat with a natural gas furnace or boiler can receive $75 off select smart thermostat model’s purchase price.",
       step: " Book an appointment and claim your rebate today.",
     },
   ];
