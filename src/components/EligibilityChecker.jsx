@@ -29,7 +29,7 @@ const EligibilityChecker = () => {
             </h3>
           </div>
           <p className="text-sm text-gray-700 max-w-3xl mx-auto leading-relaxed">
-            <span className="font-semibold text-gray-900">
+            <span className="font-medium text-gray-900">
               Energy Efficiency Broker Canada
             </span>{" "}
             is your trusted guide to navigating energy rebates and incentives
@@ -47,7 +47,7 @@ const EligibilityChecker = () => {
           <p className="text-sm text-gray-700 max-w-3xl mx-auto mt-4 leading-relaxed">
             The information we share is intended to inform and empower, not to
             replace official advice.{" "}
-            <span className="font-semibold text-gray-900">
+            <span className="font-medium text-gray-900">
               Energy Efficiency Broker Canada
             </span>{" "}
             cannot be held liable for decisions, outcomes, or actions taken
