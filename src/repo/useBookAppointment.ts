@@ -21,7 +21,7 @@ export const useBookAppointment = () =>
       console.log(data);
       try {
         const res = await fetch(
-          "https://hooks.zapier2.com/hooks/catch/7641205/2muw6xz/",
+          "https://hooks.zapier.com/hooks/catch/7641205/2muw6xz/",
           {
             method: "POST",
             body: JSON.stringify({
