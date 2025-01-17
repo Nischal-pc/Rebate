@@ -38,6 +38,13 @@ const StepThree = ({ handleNext }) => {
     );
   };
 
+  useEffect(() => {
+    const element = document.getElementById("eligibility-checker");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   // Recalculate whenever gasBill or electricityBill changes
   useEffect(() => {
     calculateProduct();

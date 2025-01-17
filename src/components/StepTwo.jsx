@@ -1,5 +1,13 @@
+import { useEffect } from "react";
+
 const StepTwo = ({ formData, handleInputChange }) => {
-  console.log(formData);
+  useEffect(() => {
+    const element = document.getElementById("eligibility-checker");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, []);
+
   return (
     <div>
       <div className="mb-4 mt-4">
