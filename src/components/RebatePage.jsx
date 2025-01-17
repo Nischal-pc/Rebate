@@ -116,8 +116,7 @@ const rebates = [
   {
     id: 3,
     title: "Home Efficiency Rebate",
-    shortDescription:
-      "Get rebates for energy-saving home upgrades and installations, including insulation, windows, and heating systems.",
+    shortDescription: "  ",
     fullDescription:
       "Enbridge offers rebates for homeowners to improve energy efficiency in their homes. This includes upgrades such as new insulation, windows, and energy-efficient heating systems. The goal of the program is to help homeowners save on their energy bills while reducing environmental impact.",
     category: "Rebate",
