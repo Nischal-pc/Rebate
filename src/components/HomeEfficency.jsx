@@ -7,16 +7,13 @@ import { DataContext } from "./context/context";
 
 const HomeEfficency = () => {
   const { formData, setFormData } = useContext(DataContext);
-
   const [errors, setErrors] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
-  const [conditionForConfet, setConditionForConfet] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value, type, checked, selectedOptions } = e.target;
 
     if (type === "checkbox") {
-      // Handle checkbox input (for single checkboxes like plannedUpgrades)
       setFormData((prevData) => {
         const newValue = checked
           ? [...prevData[name], value]
@@ -24,7 +21,6 @@ const HomeEfficency = () => {
         return { ...prevData, [name]: newValue };
       });
     } else if (type === "select-multiple") {
-      // Handle select multiple (for selecting multiple values)
       const selectedValues = Array.from(
         selectedOptions,
         (option) => option.value
@@ -34,25 +30,21 @@ const HomeEfficency = () => {
         [name]: selectedValues,
       }));
     } else {
-      // Handle other types (input, radio, etc.)
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
-    validateField(name, value); // Validate on change
+    validateField(name, value);
   };
 
-  // Validation function
   const validateField = (field, value) => {
     let error = "";
 
-    // Validation rule: if field is empty, set error
     if (!value.trim()) {
       error = "This field is required.";
     }
 
-    // Update errors state
     setErrors((prev) => ({
       ...prev,
       [field]: error,
@@ -61,17 +53,15 @@ const HomeEfficency = () => {
 
   const isNextDisabled =
     currentStep === 1
-      ? !formData.homeAge // Disable if no planned upgrades selected
+      ? !formData.homeAge
       : currentStep === 2
       ? !formData.electricBill
       : false;
   const handleNext = () => {
-    setConditionForConfet(false);
     if (currentStep < steps.length) setCurrentStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
-    setConditionForConfet(false);
     if (currentStep > 1) setCurrentStep((prev) => prev - 1);
   };
 

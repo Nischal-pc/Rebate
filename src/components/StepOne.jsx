@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { DataContext } from "./context/context";
 
 const StepOne = ({ handleInputChange }) => {

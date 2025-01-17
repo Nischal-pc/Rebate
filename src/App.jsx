@@ -1,16 +1,12 @@
+import BottomSection from "./components/BottomSection";
 import LandingPage from "./components/Home";
 import NavBar from "./components/NavBar";
-import BottomSection from "./components/BottomSection";
-import { useEffect } from "react";
 
 function App() {
   return (
     <>
-      <div className="sticky top-0 z-50 " id="top">
-        <NavBar />
-      </div>
+      <NavBar />
       <LandingPage />
-
       <BottomSection />
     </>
   );
