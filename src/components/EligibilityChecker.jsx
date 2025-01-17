@@ -20,8 +20,49 @@ const EligibilityChecker = () => {
       </header>
 
       <HomeEfficency />
-
       <div className="border-t border-gray-300 m-3">
+        <div className="container py-6 px-6 mx-auto text-center">
+          <div className="flex justify-center items-center gap-3 mb-4">
+            <ExclamationTriangleIcon className="h-6 w-6 text-red-500" />
+            <h3 className="text-lg font-bold text-gray-900 uppercase tracking-wide">
+              Disclaimer
+            </h3>
+          </div>
+          <p className="text-sm text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            <span className="font-semibold text-gray-900">
+              Energy Efficiency Broker Canada
+            </span>{" "}
+            is your trusted guide to navigating energy rebates and incentives
+            for homeowners. While we strive to keep all information accurate and
+            up-to-date, rebate programs, eligibility criteria, and funding
+            availability are subject to change.
+          </p>
+          <p className="text-sm text-gray-700 max-w-3xl mx-auto mt-4 leading-relaxed">
+            We are not affiliated with any government agency, utility provider,
+            or financial institution, nor do we administer or guarantee the
+            approval of rebates, grants, or loans. To ensure the best outcomes,
+            we encourage you to confirm program details directly with the
+            relevant authorities before taking action.
+          </p>
+          <p className="text-sm text-gray-700 max-w-3xl mx-auto mt-4 leading-relaxed">
+            The information we share is intended to inform and empower, not to
+            replace official advice.{" "}
+            <span className="font-semibold text-gray-900">
+              Energy Efficiency Broker Canada
+            </span>{" "}
+            cannot be held liable for decisions, outcomes, or actions taken
+            based on the information provided on our platform.
+          </p>
+          <p className="text-sm text-gray-700 max-w-3xl mx-auto mt-4 leading-relaxed">
+            For tailored energy efficiency solutions, our experts are here to
+            assist. By using our services, you agree to these terms and
+            acknowledge our role as an independent resource, not a program
+            administrator.
+          </p>
+        </div>
+      </div>
+
+      {/* <div className="border-t border-gray-300 m-3">
         <div className="container py-6 px-4 mx-auto text-center">
           <div className="flex justify-center items-center gap-2 mb-3">
             <ExclamationTriangleIcon className="h-5 w-5 text-red-500" />
@@ -56,7 +97,7 @@ const EligibilityChecker = () => {
             energy efficiency solutions.
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

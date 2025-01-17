@@ -173,8 +173,6 @@ const Timeline = () => {
       </div>
 
       <div className="relative mb-32">
-        {/* <div className="absolute top-1/2 left-0 w-full h-3 bg-gradient-to-r from-yellow-400 via-yellow-200 to-green-400 transform -translate-y-1/2 rounded-full shadow-lg" />
-        <div className="absolute top-1/2 left-0 w-full h-3 bg-gradient-to-r from-yellow-400/20 via-yellow-200/20 to-green-400/20 transform -translate-y-1/2 rounded-full blur-xl" /> */}
         <div className="absolute top-1/2 left-0 w-full h-3 sm:h-2 md:h-3 bg-gradient-to-r from-yellow-400 via-yellow-200 to-green-400 transform -translate-y-1/2 rounded-full shadow-lg sm:opacity-100 opacity-10" />
         <div className="absolute top-1/2 left-0 w-full h-3 sm:h-2 md:h-3 bg-gradient-to-r from-yellow-400/20 via-yellow-200/20 to-green-400/20 transform -translate-y-1/2 rounded-full blur-xl sm:opacity-100  opacity-10" />
 
@@ -272,17 +270,6 @@ const Timeline = () => {
                       ))}
                     </ul>
                   </div>
-
-                  {/* <div className="mt-4 pt-4 border-t border-gray-100">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-gray-600">
-                        Return on Investment:
-                      </span>
-                      <span className="font-semibold text-blue-600">
-                        {step.roi}
-                      </span>
-                    </div>
-                  </div> */}
                 </div>
               </div>
 
